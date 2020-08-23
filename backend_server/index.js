@@ -1,19 +1,23 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const registration = require('./server_apis/signin_signout')
-const mongoose = require('mongoose');
-const url = "mongodb+srv://doubleThumb:<doubleThumb>@cluster0.x2fv6.mongodb.net/<dbname>?retryWrites=true&w=majority";
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true} , ()=>{
-    console.log("database is connected");
+const registration = require('./server_apis/signin_signup');
+let db;
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://doubleThumb:<doubleThumb>@cluster0.x2fv6.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+ console.log("u r connected to the database");
+  db = client.db("Data");
+  //   client.close();
 });
 // set up express app
 const app = express();
 app.use(cors());
-app.use('/' ,express.static(path.normalize(__dirname + '/build')));
-app.use('/', (req , res) => {
+// app.use('/' ,express.static(path.normalize(__dirname + '/build')));
+app.use('/api', (req , res) => {
     console.log(req.url);
-    registration(req , res);
+    registration(req , res , db);
 
 });
 
