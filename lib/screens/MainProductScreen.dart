@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
-import 'package:store_app/widgets/ReusableCardWidget.dart';
+import 'package:store_app/widgets/ReusableProductCardWidget.dart';
+
+import 'CartWidget.dart';
 class MainProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFF0EEFF),
+        backgroundColor: Color(0xFFEAE8FF),
       appBar: AppBar(
-        title: Text("appbar"),
+        actions: <Widget>[
+          InputWidget(),
+          IconButton(
+            color: Colors.black,
+            icon: Icon(Icons.add_shopping_cart),
+            onPressed: () {
+              Navigator.of(context).pushNamed(CartWidget.routeName);
+            },
+          ),
+        ],
       ),
       drawer: AppDrawer(),
       body:GridView.count(

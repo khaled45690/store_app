@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:store_app/screens/CartWidget.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 void main() {
   runApp(StoreApp());
@@ -14,6 +14,9 @@ class StoreApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MainProductScreen(),
+      routes: {
+        CartWidget.routeName: (ctx) => CartWidget(),
+      },
     );
   }
 }
