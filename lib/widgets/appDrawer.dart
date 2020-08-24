@@ -23,11 +23,11 @@ class AppDrawer extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  //   Navigator.of(context).pushNamed(routeName)
+                     Navigator.of(context).pushNamed("/FavoriteScreen");
                 },
                 child: ListTile(
-                  title: Text("الرئيسيه"),
-                  leading: Icon(Icons.home,color: Colors.blue,),
+                  title: Text("Favorite"),
+                  leading: Icon(Icons.favorite,color: Colors.blue,),
                 ),
               ),
 

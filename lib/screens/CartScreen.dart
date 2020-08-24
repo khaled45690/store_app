@@ -18,13 +18,10 @@ class CartWidget extends StatelessWidget {
               childAspectRatio: (140 / 45),
               children: <Widget>[
                 ReusableCartCardWidget(),
-                ReusableCartCardWidget(),
-                ReusableCartCardWidget(),
-                ReusableCartCardWidget(),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: CustomButton(text: "purchase products", fontsize: 25,),
+                  padding: EdgeInsets.only(top: 40 , left: 100 , right: 100 ,bottom: 40),
+                  child: CustomButton(text: "purchase products", fontsize: 20,),
                 ),
               ],
             ),

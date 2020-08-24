@@ -3,7 +3,7 @@ import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 
-import 'CartWidget.dart';
+import 'CartScreen.dart';
 class MainProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,6 @@ class MainProductScreen extends StatelessWidget {
             ReusableCardWidget(),
             ReusableCardWidget(),
             ReusableCardWidget(),
-            FloatingActionButton(
-              onPressed: ()=>{
-                print("ss")
-              },
-            ),
           ],
       ),
 
