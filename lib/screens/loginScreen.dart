@@ -25,6 +25,7 @@ class LoginScreen extends StatelessWidget {
             CustomTextField(
               hint: 'Enter your email',
               icon: Icons.email,
+              
             ),
             SizedBox(height:15),
             CustomTextField(

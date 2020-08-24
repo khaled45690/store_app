@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
       case 'Confirm Password' : return 'password is empty';
       case 'Enter your email' : return 'Name is empty';
 
+
       
     }
   }
