@@ -5,6 +5,8 @@ import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 
 import 'CartScreen.dart';
 class MainProductScreen extends StatelessWidget {
+      static const routeName = '/Main';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
