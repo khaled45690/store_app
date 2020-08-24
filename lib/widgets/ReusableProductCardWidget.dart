@@ -22,7 +22,7 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
             children: <Widget>[
               Container(
                 width: 140,
-                child: Image.network("https://specs-tech.com/wp-content/uploads/2019/09/Huawei-Mate-30-Pro-5G-600x600.jpg"),
+                child: Image.network("https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg"),
               ),
               SizedBox(height: 20.0),
               Text(
