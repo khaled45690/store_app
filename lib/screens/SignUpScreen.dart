@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
 
 import 'loginScreen.dart';
@@ -40,22 +41,10 @@ class SignUp extends StatelessWidget {
             SizedBox(height:15),
                Padding(
               padding: const EdgeInsets.symmetric(horizontal: 120),
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                onPressed: (){
-                  if(_key.currentState.validate()){
-                    Navigator.of(context).pushNamed(LoginScreen.routeName);
-                  }
-                },
-                color: Colors.black,
-                 child: 
-              Text(
-                'SignUp',
-              style: TextStyle(
-                color:Colors.white
-              ),)),
+              child: CustomButton(
+                text: "Sign up",
+                fontsize: 18,
+              ),
             ),
                 Row(
               mainAxisAlignment: MainAxisAlignment.center,

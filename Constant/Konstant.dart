@@ -1,1 +1,1 @@
-String Kemail = "";
+String kEmail = "";
