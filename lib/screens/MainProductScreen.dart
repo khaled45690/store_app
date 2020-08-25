@@ -5,6 +5,7 @@ import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/ReusableCartCardWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
+import 'package:store_app/widgets/productWidget.dart';
 
 import 'CartScreen.dart';
 class MainProductScreen extends StatelessWidget {
@@ -29,31 +30,39 @@ class MainProductScreen extends StatelessWidget {
         ],
       ),
       drawer: AppDrawer(),
-      body:GridView.count(
-        // itemCount: product.length,
-        // itemBuilder: (ctx, i)=>  ReusableCartCardWidget(),
-        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //   crossAxisCount: 2,
-        //   childAspectRatio: (140/250),
-        //   crossAxisSpacing: 10,
-        //   mainAxisSpacing: 10,
-        //   ),
-         crossAxisCount: 2,
-       childAspectRatio: (140 / 250),
-          children: <Widget>[
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-            ReusableCardWidget(),
-          ],
+      body:GridView.builder(
+        itemCount: product.length,
+        itemBuilder: (ctx, i)=> ChangeNotifierProvider(
+          builder: (c) => product[i], 
+        child:  ProductWidget(
+          // product[i].id,
+          // product[i].name,
+          // product[i].imageUrl
+        ),
+        ), 
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: (2/3),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          ),
+        //  crossAxisCount: 2,
+      //  childAspectRatio: (140 / 250),
+      //     children: <Widget>[
+            
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //       ReusableCardWidget(),
+      //     ],
       ),
 
     );

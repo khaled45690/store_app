@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-class Product {
+class Product  with ChangeNotifier{
   String id;
   String name;
   double price;
@@ -19,9 +19,14 @@ class Product {
       @required   this.imageUrl,
       @required   this.category,
       @required   this.quantity,
-      @required   this.isFavorite
+      @required   this.isFavorite =true
  
       });
+      void toggleFavoritesStatus(){
+        isFavorite =!isFavorite;
+        notifyListeners();
+      
+      }
 }
 class Products with ChangeNotifier{
   List<Product> _items =[
@@ -30,14 +35,14 @@ class Products with ChangeNotifier{
     name:'t-shirt',
     price: 55,
     description: 'gamed fash5',
-    imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
+    imageUrl: "https://images.all-free-download.com/images/graphiclarge/ecommerce_background_shopping_design_elements_icons_6838055.jpg",
     category: "not now",
     quantity: 2,
     isFavorite: true
   ),
    Product(
     id:'p2',
-    name:'t-shirt',
+    name:'shoes',
     price: 55,
     description: 'gamed fash5',
     imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
@@ -46,7 +51,7 @@ class Products with ChangeNotifier{
     isFavorite: true
   ), Product(
     id:'p3',
-    name:'t-shirt',
+    name:'heels',
     price: 55,
     description: 'gamed fash5',
     imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
@@ -55,7 +60,7 @@ class Products with ChangeNotifier{
     isFavorite: true
   ), Product(
     id:'p4',
-    name:'t-shirt',
+    name:'phone',
     price: 55,
     description: 'gamed fash5',
     imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
@@ -65,10 +70,10 @@ class Products with ChangeNotifier{
   ),
    Product(
     id:'p5',
-    name:'t-shirt',
+    name:'kora',
     price: 55,
     description: 'gamed fash5',
-    imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
+    imageUrl: "https://images.all-free-download.com/images/graphiclarge/ecommerce_background_shopping_design_elements_icons_6838055.jpg",
     category: "not now",
     quantity: 2,
     isFavorite: true
