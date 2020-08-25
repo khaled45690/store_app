@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/product_model.dart';
@@ -15,6 +16,18 @@ class ProductDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40) , bottomRight: Radius.circular(40)),
+              gradient: LinearGradient(
+                colors: <Color>[
+                  Color(0xFF0D47A1),
+                  Color(0xFF1976D2),
+                  Color(0xFF42A5F5),
+                ],
+              ),
+            ),
+          ),
         title: Text(loadedProduct.name)
       ),
       body: ListView(
