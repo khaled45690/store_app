@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
-  CustomTextField({this.hint,this.icon});
+   var onchange;
+//  VoidCallback
+  CustomTextField({@required this.hint, this.icon , @required this.onchange(String value)});
   String _errorMessage(String str){
     switch(hint)
     {
@@ -12,7 +14,6 @@ class CustomTextField extends StatelessWidget {
       case 'Confirm Password' : return 'password is empty';
       case 'Enter your email' : return 'Name is empty';
       default : return null;
-      
     }
   }
 
@@ -21,6 +22,13 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
       child: TextFormField(
+        style: TextStyle(
+          fontSize: 22,
+          color: Colors.white,
+        ),
+        onChanged: (value){
+          this.onchange(value);
+        },
         validator:(value){
           if(value.isEmpty)
           {

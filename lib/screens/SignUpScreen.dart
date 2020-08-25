@@ -20,23 +20,35 @@ class SignUp extends StatelessWidget {
               CustomTextField(
               hint: 'Enter your name',
               icon: Icons.person,
+                onchange: (value){
+                print(value);
+                },
             ),
               SizedBox(height:15),
 
             CustomTextField(
               hint: 'Enter your email',
               icon: Icons.email,
+              onchange: (value){
+                print(value);
+              },
             ),
            SizedBox(height:15),
             CustomTextField(
               hint: 'Enter your Password',
               icon: Icons.lock,
+              onchange: (value){
+                print(value);
+              },
             ),
                         SizedBox(height:15),
 
             CustomTextField(
               hint: 'Confirm Password',
               icon: Icons.lock,
+              onchange: (value){
+                print(value);
+              },
             ),
             SizedBox(height:15),
                Padding(
