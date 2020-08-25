@@ -35,6 +35,7 @@ class LoginScreen extends StatelessWidget {
             child: CustomButton(
               text: "Sign in",
               fontSize: 18,
+            
             ),
           ),
           Row(

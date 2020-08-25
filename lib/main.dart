@@ -23,7 +23,7 @@ class StoreApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MainProductScreen(),
+        home: LoginScreen(),
         routes: {
           CartWidget.routeName: (ctx) => CartWidget(),
           FavoriteScreen.routeName: (ctx) => FavoriteScreen(),

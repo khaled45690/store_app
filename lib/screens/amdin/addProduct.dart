@@ -12,7 +12,7 @@ class AdminAddProduct extends StatelessWidget {
     final productData =Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
-        title:const Text('Your Products'),
+        title:const Text('all the products Products'),
         actions:<Widget>[
           IconButton(icon:Icon(Icons.add),
           onPressed:(){
@@ -28,8 +28,10 @@ class AdminAddProduct extends StatelessWidget {
         child: ListView.builder(
           itemCount: productData.items.length,
           itemBuilder:(_,i)=> Column(
+            
             children: [
               UserProductItem(
+                productData.items[i].id,
                 productData.items[i].name,
                 productData.items[i].imageUrl
                 ),
