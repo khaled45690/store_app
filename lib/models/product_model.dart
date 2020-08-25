@@ -50,15 +50,6 @@ class Products with ChangeNotifier{
     quantity: 2,
     isFavorite: true
   ), Product(
-    id:'p3',
-    name:'heels',
-    price: 505,
-    description: 'heels fe mnha kol el alwan mn mn el donia',
-    imageUrl: "https://tse2.mm.bing.net/th?id=OIP.WMfWcdzN_Y4dySgFQoXGPgHaHa&pid=Api&P=0&w=300&h=300",
-    category: "not now",
-    quantity: 2,
-    isFavorite: true
-  ), Product(
     id:'p4',
     name:'phone',
     price: 55,
