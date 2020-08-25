@@ -21,7 +21,7 @@ class CartWidget extends StatelessWidget {
 
                 Padding(
                   padding: EdgeInsets.only(top: 40 , left: 100 , right: 100 ,bottom: 40),
-                  child: CustomButton(text: "purchase products", fontsize: 20,),
+                  child: CustomButton(text: "purchase products", fontSize: 20,),
                 ),
               ],
             ),

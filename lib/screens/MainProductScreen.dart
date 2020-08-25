@@ -68,9 +68,4 @@ class MainProductScreen extends StatelessWidget {
     );
   }
 }
-//ReusableCardWidget(),
-//AppBar(
-//actions: <Widget>[
-//AppDrawer(),
-//],
-//),
+

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
-   var onchange;
-//  VoidCallback
+  final  onchange;
+
   CustomTextField({@required this.hint, this.icon , @required this.onchange(String value)});
   String _errorMessage(String str){
     switch(hint)

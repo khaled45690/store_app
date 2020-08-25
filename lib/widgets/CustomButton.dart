@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
 final String text;
-final double fontsize;
-CustomButton({@required this.text  , this.fontsize});
+final double fontSize;
+final onClick;
+CustomButton({@required this.text  , this.fontSize ,@required this.onClick});
 
 
   @override
@@ -10,12 +11,12 @@ CustomButton({@required this.text  , this.fontsize});
     return Container(
       child: Material(
         child: InkWell(
-          onTap: (){print("tapped");},
+          onTap: (){ onClick; },
           child: Container(
             child: Center(
               child: Text(
                 text,
-                style: TextStyle(color: Colors.white , fontSize: fontsize),
+                style: TextStyle(color: Colors.white , fontSize: fontSize),
               ),
             ),
             width: 100.0,

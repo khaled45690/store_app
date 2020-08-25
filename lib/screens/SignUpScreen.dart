@@ -1,13 +1,15 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
-
+import 'package:http/http.dart' as http;
 import 'loginScreen.dart';
 
 
 class SignUp extends StatelessWidget {
       static const routeName = '/SignUp';
-          final GlobalKey<FormState> _key = GlobalKey<FormState>();
+      final GlobalKey<FormState> _key = GlobalKey<FormState>();
+      String name , email , password , confirmPassword ;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class SignUp extends StatelessWidget {
               hint: 'Enter your name',
               icon: Icons.person,
                 onchange: (value){
-                print(value);
+                  name = value;
                 },
             ),
               SizedBox(height:15),
@@ -30,7 +32,7 @@ class SignUp extends StatelessWidget {
               hint: 'Enter your email',
               icon: Icons.email,
               onchange: (value){
-                print(value);
+                email = value;
               },
             ),
            SizedBox(height:15),
@@ -38,7 +40,7 @@ class SignUp extends StatelessWidget {
               hint: 'Enter your Password',
               icon: Icons.lock,
               onchange: (value){
-                print(value);
+                password = value;
               },
             ),
                         SizedBox(height:15),
@@ -48,6 +50,7 @@ class SignUp extends StatelessWidget {
               icon: Icons.lock,
               onchange: (value){
                 print(value);
+                confirmPassword = value;
               },
             ),
             SizedBox(height:15),
@@ -55,7 +58,12 @@ class SignUp extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 120),
               child: CustomButton(
                 text: "Sign up",
-                fontsize: 18,
+                fontSize: 18,
+                onClick: (name , email , password , confirmPassword)=>{
+                  if(password == confirmPassword){
+
+                  }
+                 },
               ),
             ),
                 Row(

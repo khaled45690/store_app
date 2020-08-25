@@ -50,7 +50,7 @@ class ProductDetails extends StatelessWidget {
        
             ),
                         SizedBox(height: 60.0),
-             CustomButton(text: "add to cart", fontsize: 15,),
+             CustomButton(text: "add to cart", fontSize: 15,),
         ]
       ),
       

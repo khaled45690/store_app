@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 120),
             child: CustomButton(
               text: "Sign in",
-              fontsize: 18,
+              fontSize: 18,
             ),
           ),
           Row(
@@ -64,22 +64,3 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-//FlatButton(
-//shape: RoundedRectangleBorder(
-//borderRadius: BorderRadius.circular(20)
-//),
-//onPressed: (){
-//
-//if  ( _key.currentState.validate()){
-//Navigator.of(context).pushNamed(MainProductScreen.routeName);
-//}
-//},
-//color: Colors.black,
-//child:
-//Text(
-//'login',
-//style: TextStyle(
-//color:Colors.white
-//),
-//),
-//),
