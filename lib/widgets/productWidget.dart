@@ -36,10 +36,13 @@ class ProductWidget extends StatelessWidget {
         title: Text(product.name,
         textAlign: TextAlign.center,
         ),
-        trailing: IconButton(icon: Icon(Icons.shopping_cart),
-        onPressed: (){
+      // trailing: IconButton(icon: Icon(Icons.shopping_cart),
+            trailing: Text(product.price.toString()),
 
-        },),
+        // onPressed: (){
+
+        // },
+       // ),
         ),
     );
   }

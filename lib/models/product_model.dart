@@ -33,9 +33,9 @@ class Products with ChangeNotifier{
   Product(
     id:'p1',
     name:'t-shirt',
-    price: 55,
-    description: 'gamed fash5',
-    imageUrl: "https://images.all-free-download.com/images/graphiclarge/ecommerce_background_shopping_design_elements_icons_6838055.jpg",
+    price: 30,
+    description: ' t-shirt a7mr gamed gamed fe mno alwan kter',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg',
     category: "not now",
     quantity: 2,
     isFavorite: true
@@ -43,18 +43,18 @@ class Products with ChangeNotifier{
    Product(
     id:'p2',
     name:'shoes',
-    price: 55,
+    price: 120,
     description: 'gamed fash5',
-    imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
+    imageUrl: "https://images-na.ssl-images-amazon.com/images/I/61Ez19M9BZL._AC_UY1000_.jpg",
     category: "not now",
     quantity: 2,
     isFavorite: true
   ), Product(
     id:'p3',
     name:'heels',
-    price: 55,
-    description: 'gamed fash5',
-    imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
+    price: 505,
+    description: 'heels fe mnha kol el alwan mn mn el donia',
+    imageUrl: "https://tse2.mm.bing.net/th?id=OIP.WMfWcdzN_Y4dySgFQoXGPgHaHa&pid=Api&P=0&w=300&h=300",
     category: "not now",
     quantity: 2,
     isFavorite: true
@@ -62,7 +62,7 @@ class Products with ChangeNotifier{
     id:'p4',
     name:'phone',
     price: 55,
-    description: 'gamed fash5',
+    description: 'phone fshe5 wla ram :32  gb:1000gb',
     imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
     category: "not now",
     quantity: 2,
@@ -71,8 +71,8 @@ class Products with ChangeNotifier{
    Product(
     id:'p5',
     name:'kora',
-    price: 55,
-    description: 'gamed fash5',
+    price: 75,
+    description: 'kora mdwara',
     imageUrl: "https://images.all-free-download.com/images/graphiclarge/ecommerce_background_shopping_design_elements_icons_6838055.jpg",
     category: "not now",
     quantity: 2,
@@ -86,8 +86,38 @@ class Products with ChangeNotifier{
   List<Product> get items{
     return [..._items];
   }
-  void addProduct(){
-    //_items.add(value);
+  void addProduct(Product product){
+    final newProduct =Product(
+      name:product.name,
+      description: product.description,
+    price: product.price,
+    imageUrl: product.imageUrl,
+    id: DateTime.now().toString()
+    );
+    _items.add(newProduct);
+    //_items.insert(0, newProduct);
     notifyListeners();
   }
+
+
+  void deleteProduct(String id){
+    _items.removeWhere((prod) => prod.id ==id);
+    notifyListeners();
+  }
+
+
+  void updateProduct(String id, Product newProduct){
+  final prodIndex =  _items.indexWhere((prod) => prod.id ==id);
+  if (prodIndex >0){
+    _items[prodIndex] =newProduct;
+    notifyListeners();
+
+  }else{
+
+  }
+    
+  }
+
+
+ 
 }
