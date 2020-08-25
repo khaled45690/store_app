@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
+import 'package:store_app/screens/amdin/addProduct.dart';
 import 'package:store_app/screens/loginScreen.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -23,6 +24,15 @@ class AppDrawer extends StatelessWidget {
                     color:Colors.blue
                 ),
 
+              ),
+               InkWell(
+                onTap: (){
+                 Navigator.of(context).pushNamed(AdminAddProduct.routeName);
+                },
+                child: ListTile(
+                  title: Text("ManageProduct"),
+                  leading: Icon(Icons.edit,color: Colors.blue,),
+                ),
               ),
                InkWell(
                 onTap: (){
@@ -53,6 +63,7 @@ class AppDrawer extends StatelessWidget {
                   leading: Icon(Icons.close,color: Colors.blue,),
                 ),
               ),
+              
 
             ]
         )

@@ -5,6 +5,7 @@ import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/screens/SignUpScreen.dart';
+import 'package:store_app/screens/amdin/addProduct.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
 void main() =>
@@ -29,7 +30,8 @@ class StoreApp extends StatelessWidget {
           LoginScreen.routeName: (ctx) => LoginScreen(),
           SignUp.routeName:(ctx) => SignUp(),
           MainProductScreen.routeName:(ctx) =>MainProductScreen(),
-          ProductDetails.routeName:(ctx) =>ProductDetails()
+          ProductDetails.routeName:(ctx) =>ProductDetails(),
+          AdminAddProduct.routeName:(ctx) =>AdminAddProduct()
         },
       ),
     );
