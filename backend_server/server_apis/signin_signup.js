@@ -3,9 +3,13 @@ module.exports =  (req , res , db)=>{
 if (req.url === "/Signup") {
     req.on('data', function (data) {
         var body = JSON.parse(data);
+        console.log(body);
         db.collection("users").findOne({ "email": body.email }, (err, result) => {
-          if (result === null) {
+          console.log(err);
+          if (err === null) {
             db.collection("users").insertOne(body, (err, respond) => {
+              console.log(err);
+              console.log(respond);
               let responds = { "state": "succed", "respond": "the account has been created successfully please go back and try to sign in" }
               res.end(JSON.stringify(responds));
 

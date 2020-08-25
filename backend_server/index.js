@@ -2,14 +2,20 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const registration = require('./server_apis/signin_signup');
+const tagraba = require('./server_apis/tagraba');
 let db;
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://doubleThumb:<doubleThumb>@cluster0.x2fv6.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://khaledsaad:1111111111@cluster0-p8cto.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
- console.log("u r connected to the database");
-  db = client.db("Data");
-  //   client.close();
+    if(err === null){
+    console.log("u r connected to the database");
+  db = client.db("storeApp"); 
+    }else{
+        console.log("call khaled immediatly");
+    }
+    console.log(err);
+
 });
 // set up express app
 const app = express();
@@ -18,6 +24,7 @@ app.use(cors());
 app.use('/api', (req , res) => {
     console.log(req.url);
     registration(req , res , db);
+
 
 });
 
