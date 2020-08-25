@@ -6,6 +6,7 @@ import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/screens/SignUpScreen.dart';
 import 'package:store_app/screens/loginScreen.dart';
+import 'package:store_app/screens/productDetails.dart';
 void main() =>
   runApp(StoreApp());
 
@@ -27,7 +28,8 @@ class StoreApp extends StatelessWidget {
           FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),
           SignUp.routeName:(ctx) => SignUp(),
-          MainProductScreen.routeName:(ctx) =>MainProductScreen()
+          MainProductScreen.routeName:(ctx) =>MainProductScreen(),
+          ProductDetails.routeName:(ctx) =>ProductDetails()
         },
       ),
     );
