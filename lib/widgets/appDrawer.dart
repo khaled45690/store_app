@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/screens/CartScreen.dart';
+import 'package:store_app/screens/FavoriteScreen.dart';
+import 'package:store_app/screens/amdin/addProduct.dart';
+import 'package:store_app/screens/loginScreen.dart';
 
 class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -21,25 +25,45 @@ class AppDrawer extends StatelessWidget {
                 ),
 
               ),
-              InkWell(
+               InkWell(
                 onTap: (){
-                  //   Navigator.of(context).pushNamed(routeName)
+                 Navigator.of(context).pushNamed(AdminAddProduct.routeName);
                 },
                 child: ListTile(
-                  title: Text("الرئيسيه"),
-                  leading: Icon(Icons.home,color: Colors.blue,),
+                  title: Text("ManageProduct"),
+                  leading: Icon(Icons.edit,color: Colors.blue,),
+                ),
+              ),
+               InkWell(
+                onTap: (){
+                     Navigator.of(context).pushNamed(CartWidget.routeName);
+                },
+                child: ListTile(
+                  title: Text("ShopCart"),
+                  leading: Icon(Icons.shopping_cart,color: Colors.blue,),
+                ),
+              ),
+              InkWell(
+                onTap: (){
+                     Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+                },
+                child: ListTile(
+                  title: Text("Favorite"),
+                  leading: Icon(Icons.favorite,color: Colors.blue,),
                 ),
               ),
 
+                
               InkWell(
                 onTap: (){
-//                  Navigator.of(context).pushNamed(Login.routeName);
+                 Navigator.of(context).pushNamed(LoginScreen.routeName);
                 },
                 child: ListTile(
-                  title: Text("تسجيل الدخول"),
+                  title: Text("Logout"),
                   leading: Icon(Icons.close,color: Colors.blue,),
                 ),
               ),
+              
 
             ]
         )

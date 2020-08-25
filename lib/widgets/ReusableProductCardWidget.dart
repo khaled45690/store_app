@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'CustomButton.dart';
 class ReusableCardWidget extends StatefulWidget {
   @override
   _ReusableCardWidgetState createState() => _ReusableCardWidgetState();
@@ -20,7 +22,7 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
             children: <Widget>[
               Container(
                 width: 140,
-                child: Image.network("https://specs-tech.com/wp-content/uploads/2019/09/Huawei-Mate-30-Pro-5G-600x600.jpg"),
+                child: Image.network("https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg"),
               ),
               SizedBox(height: 20.0),
               Text(
@@ -41,28 +43,7 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
                 ),
               ),
               SizedBox(height: 60.0),
-              RaisedButton(
-                onPressed: () {
-                  print("ww");
-                },
-                textColor: Colors.white,
-                padding:  EdgeInsets.all(0.0),
-                child: Container(
-                  decoration:  BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: <Color>[
-                        Color(0xFF0D47A1),
-                        Color(0xFF1976D2),
-                        Color(0xFF42A5F5),
-                      ],
-                    ),
-                  ),
-                  padding:  EdgeInsets.all(10),
-                  child:
-                  Text('Add to Cart', style: TextStyle(fontSize: 15)
-                  ),
-                ),
-              ),
+              CustomButton(text: "add to cart", fontSize: 15,),
             ],
           ),
           Column(
