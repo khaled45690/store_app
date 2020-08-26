@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
+import 'package:store_app/widgets/appBarContainer.dart';
 
 import 'CartScreen.dart';
 
@@ -10,6 +11,7 @@ class FavoriteScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
       appBar: AppBar(
+        flexibleSpace: AppBarContainer(),
           title: Text("Favorite items"),
         actions: <Widget>[
           IconButton(

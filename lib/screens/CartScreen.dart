@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/ReusableCartCardWidget.dart';
+import 'package:store_app/widgets/appBarContainer.dart';
 
 class CartWidget extends StatelessWidget {
   static const routeName = '/CartWidget';
@@ -10,6 +11,7 @@ class CartWidget extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Color(0xFFF4F3FF),
         appBar: AppBar(
+          flexibleSpace: AppBarContainer(),
           title: Text("Cart Screen"),
         ),
         body: Container(

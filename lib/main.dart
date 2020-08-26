@@ -22,7 +22,7 @@ class StoreApp extends StatelessWidget {
           child: MaterialApp(
             title: "StoreApp",
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Color(0xFFEAE8FF),
         ),
         home: MainProductScreen(),
         routes: {

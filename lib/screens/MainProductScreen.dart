@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/widgets/InputWidget.dart';
-import 'package:store_app/widgets/ReusableCartCardWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
-import 'package:store_app/widgets/ReusableProductCardWidget.dart';
+import 'package:store_app/widgets/appBarContainer.dart';
 import 'package:store_app/widgets/productWidget.dart';
 
 import 'CartScreen.dart';
@@ -18,6 +17,7 @@ class MainProductScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Color(0xFFEAE8FF),
       appBar: AppBar(
+        flexibleSpace: AppBarContainer(),
         actions: <Widget>[
           InputWidget(),
           IconButton(

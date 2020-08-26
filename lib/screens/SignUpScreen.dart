@@ -4,6 +4,7 @@ import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
 import 'package:http/http.dart' as http;
 import 'loginScreen.dart';
+import 'package:store_app/constants/kConstants.dart';
 
 
 class SignUp extends StatelessWidget {
@@ -12,10 +13,9 @@ class SignUp extends StatelessWidget {
       String name , email , password , confirmPassword ;
 
       submitForm(String name , String email ,String password ,String confirmPassword ) async {
-        String uri = "http://192.168.1.10:3001/api/Signup";
         print("entered");
         final response = await http.post(
-          uri,
+          "$kUrl Signup",
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },

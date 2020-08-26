@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/widgets/CustomButton.dart';
+import 'package:store_app/widgets/appBarContainer.dart';
 
 class ProductDetails extends StatelessWidget {
   static const routeName = '/Product-details';
@@ -14,7 +15,9 @@ class ProductDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+
         title: Text(loadedProduct.name),
+        flexibleSpace: AppBarContainer(),
         
       ),
       body: ListView(
