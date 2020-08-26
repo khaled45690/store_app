@@ -84,7 +84,7 @@ class Products with ChangeNotifier{
     price: product.price,
     quantity: product.quantity,
     category: product.category,
-    //imageUrl: product.imageUrl,
+    imageUrl: product.imageUrl,
     id: DateTime.now().toString()
     );
     _items.add(newProduct);

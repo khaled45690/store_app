@@ -18,11 +18,15 @@ class _AdminEditProductState extends State<AdminEditProduct> {
   final _descriptionFocusNode =FocusNode();
   final _quantityFocusNode =FocusNode();
   final _categortFocusNode = FocusNode();
+    final _imageFocusNode = FocusNode();
+
   final _name = TextEditingController();
     final _price =TextEditingController();
   final _description =TextEditingController();
   final _quantity=TextEditingController();
   final _categort = TextEditingController();
+    final _imageurl = TextEditingController();
+
       final  _key = GlobalKey<FormState>();
 
       var _editProduct =Product(
@@ -32,10 +36,21 @@ class _AdminEditProductState extends State<AdminEditProduct> {
       description: '',
       quantity: 0,
       category: '',
-      //imageUrl: ''
+      imageUrl: ''
       );
 
-  
+  @override
+  void initState() {
+      _imageurl.addListener(_updateImageUrl);
+    super.initState();
+  }
+  void _updateImageUrl(){
+    if(!_imageFocusNode.hasFocus){
+      setState(() {
+        
+      });
+    }
+  }
       @override
   void dispose() {
     _priceFocusNode.dispose();
@@ -99,7 +114,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: value,
                   price: _editProduct.price,
                   description: _editProduct.description,
-                  //imageUrl: null,
+                  imageUrl: _editProduct.imageUrl,
                   quantity: _editProduct.quantity,
                   category: _editProduct.category
                   );
@@ -119,7 +134,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: _editProduct.name,
                   price: _editProduct.price,
                   description: value,
-               //   imageUrl: null,
+                  imageUrl: _editProduct.imageUrl,
                   quantity: _editProduct.quantity,
                   category: _editProduct.category
                   );
@@ -144,7 +159,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: _editProduct.name,
                   price: double.parse(value),
                   description: _editProduct.description,
-                 // imageUrl: _editProduct.imageUrl,
+                  imageUrl: _editProduct.imageUrl,
                   quantity: _editProduct.quantity,
                   category: _editProduct.category
                   );
@@ -166,7 +181,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: _editProduct.name,
                   price: _editProduct.price,
                   description: _editProduct.description,
-                  //imageUrl: null,
+                  imageUrl: _editProduct.imageUrl,
                   quantity: _editProduct.quantity,
                   category: value
                   );
@@ -187,8 +202,25 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: _editProduct.name,
                   price: _editProduct.price,
                   description: _editProduct.description,
-                  //imageUrl: null,
+                  imageUrl: _editProduct.imageUrl,
                   quantity: int.parse(value),
+                  category: _editProduct.category
+                  );
+               }
+              ),
+                    CustomTextField(
+              controller: _imageurl,
+              hint: 'imageurl of product',
+              keyboardType: TextInputType.number, 
+              focusNode: _quantityFocusNode,
+                     onSaved: (value){
+                _editProduct =Product(
+                  id: null,
+                  name: _editProduct.name,
+                  price: _editProduct.price,
+                  description: _editProduct.description,
+                  imageUrl: value,
+                  quantity: _editProduct.quantity,
                   category: _editProduct.category
                   );
                }

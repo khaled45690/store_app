@@ -23,6 +23,8 @@ class CustomTextField extends StatelessWidget {
       case 'description of product' : return 'description is empty';
       case  'category of product' : return 'category is empty';
       case 'quatatiy of product' : return 'quatatiy is empty';
+      case 'imageurl of product' : return 'imageurl is empty';
+
      
 
 
@@ -39,9 +41,9 @@ class CustomTextField extends StatelessWidget {
           fontSize: 22,
           color: Colors.white,
         ),
-        onChanged: (value){
-          this.onchange(value);
-        },
+        // onChanged: (value){
+        //   this.onchange(value);
+        // },
         validator:(value){
           if(value.isEmpty)
           {

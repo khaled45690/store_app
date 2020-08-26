@@ -5,9 +5,9 @@ import 'package:store_app/screens/productDetails.dart';
 
 class UserProductItem extends StatelessWidget {
   final String id;
-  final String title;
+  final String name;
   final String imageUrl;
-  UserProductItem(this.id, this.title, 
+  UserProductItem(this.id, this.name, 
   this.imageUrl
   );
   @override
@@ -62,9 +62,9 @@ class UserProductItem extends StatelessWidget {
                       );
           },
             
-          title: Text(title),
+          title: Text(name),
           leading: CircleAvatar(
-            backgroundImage: NetworkImage( "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg"),
+            backgroundImage: NetworkImage( imageUrl),
           ),
           trailing: Container(
             width: 50,
