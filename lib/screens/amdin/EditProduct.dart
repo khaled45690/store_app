@@ -67,12 +67,11 @@ class _AdminEditProductState extends State<AdminEditProduct> {
   
 
 
-          void  _saveForm(){
+    void  _saveForm(){
      final isValid =   _key.currentState.validate();
      if(isValid){
-       
+      _key.currentState.save();
        Provider.of<Products>(context, listen: false).addProduct(_editProduct);
-        _key.currentState.save();
         Navigator.of(context).pop();
      }
        
