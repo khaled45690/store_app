@@ -7,7 +7,9 @@ class UserProductItem extends StatelessWidget {
   final String id;
   final String title;
   final String imageUrl;
-  UserProductItem(this.id, this.title, this.imageUrl);
+  UserProductItem(this.id, this.title, 
+  this.imageUrl
+  );
   @override
   Widget build(BuildContext context) {
     //   final product = Provider.of<Product>(context);
@@ -62,7 +64,7 @@ class UserProductItem extends StatelessWidget {
             
           title: Text(title),
           leading: CircleAvatar(
-            backgroundImage: NetworkImage(imageUrl),
+            backgroundImage: NetworkImage( "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg"),
           ),
           trailing: Container(
             width: 50,

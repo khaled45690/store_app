@@ -32,7 +32,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
       description: '',
       quantity: 0,
       category: '',
-      imageUrl: ''
+      //imageUrl: ''
       );
 
   
@@ -55,11 +55,13 @@ class _AdminEditProductState extends State<AdminEditProduct> {
           void  _saveForm(){
      final isValid =   _key.currentState.validate();
      if(isValid){
-       return;
-     }
+       
+       Provider.of<Products>(context, listen: false).addProduct(_editProduct);
         _key.currentState.save();
-        Provider.of<Products>(context, listen: false).addProduct(_editProduct);
         Navigator.of(context).pop();
+     }
+       
+        
         
         print(_editProduct.name);
         print(_editProduct.price);
@@ -97,7 +99,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: value,
                   price: _editProduct.price,
                   description: _editProduct.description,
-                  imageUrl: _editProduct.imageUrl,
+                  //imageUrl: null,
                   quantity: _editProduct.quantity,
                   category: _editProduct.category
                   );
@@ -117,7 +119,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: _editProduct.name,
                   price: _editProduct.price,
                   description: value,
-                  imageUrl: _editProduct.imageUrl,
+               //   imageUrl: null,
                   quantity: _editProduct.quantity,
                   category: _editProduct.category
                   );
@@ -142,7 +144,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: _editProduct.name,
                   price: double.parse(value),
                   description: _editProduct.description,
-                  imageUrl: _editProduct.imageUrl,
+                 // imageUrl: _editProduct.imageUrl,
                   quantity: _editProduct.quantity,
                   category: _editProduct.category
                   );
@@ -164,7 +166,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: _editProduct.name,
                   price: _editProduct.price,
                   description: _editProduct.description,
-                  imageUrl: _editProduct.imageUrl,
+                  //imageUrl: null,
                   quantity: _editProduct.quantity,
                   category: value
                   );
@@ -185,7 +187,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   name: _editProduct.name,
                   price: _editProduct.price,
                   description: _editProduct.description,
-                  imageUrl: _editProduct.imageUrl,
+                  //imageUrl: null,
                   quantity: int.parse(value),
                   category: _editProduct.category
                   );

@@ -6,7 +6,7 @@ class Product  with ChangeNotifier{
  final String name;
  final double price;
  final String description;
- final String imageUrl;
+  String imageUrl;
  final String category;
  final int quantity;
   bool isFavorite;
@@ -79,10 +79,12 @@ class Products with ChangeNotifier{
   }
   void addProduct(Product product){
     final newProduct =Product(
-      name:product.name,
-      description: product.description,
+    name:product.name,
+    description: product.description,
     price: product.price,
-    imageUrl: product.imageUrl,
+    quantity: product.quantity,
+    category: product.category,
+    //imageUrl: product.imageUrl,
     id: DateTime.now().toString()
     );
     _items.add(newProduct);
