@@ -5,6 +5,7 @@ import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/screens/SignUpScreen.dart';
+import 'package:store_app/screens/amdin/EditProduct.dart';
 import 'package:store_app/screens/amdin/addProduct.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
@@ -23,7 +24,7 @@ class StoreApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: LoginScreen(),
+        home: MainProductScreen(),
         routes: {
           CartWidget.routeName: (ctx) => CartWidget(),
           FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
@@ -31,7 +32,8 @@ class StoreApp extends StatelessWidget {
           SignUp.routeName:(ctx) => SignUp(),
           MainProductScreen.routeName:(ctx) =>MainProductScreen(),
           ProductDetails.routeName:(ctx) =>ProductDetails(),
-          AdminAddProduct.routeName:(ctx) =>AdminAddProduct()
+          AdminAddProduct.routeName:(ctx) =>AdminAddProduct(),
+          AdminEditProduct.routeName:(ctx)=>AdminEditProduct(),
         },
       ),
     );

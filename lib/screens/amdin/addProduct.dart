@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/widgets/addproductWidget.dart';
 
+import 'EditProduct.dart';
+
 class AdminAddProduct extends StatelessWidget {
   static const routeName ='/user-product';
   @override
@@ -16,6 +18,7 @@ class AdminAddProduct extends StatelessWidget {
         actions:<Widget>[
           IconButton(icon:Icon(Icons.add),
           onPressed:(){
+            Navigator.of(context).pushNamed(AdminEditProduct.routeName);
 
           }
           

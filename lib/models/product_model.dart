@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 class Product  with ChangeNotifier{
-  String id;
-  String name;
-  double price;
-  String description;
-  String imageUrl;
-  String category;
-  int quantity;
+ final String id;
+ final String name;
+ final double price;
+ final String description;
+ final String imageUrl;
+ final String category;
+ final int quantity;
   bool isFavorite;
   Product(
       { 
@@ -19,7 +19,7 @@ class Product  with ChangeNotifier{
       @required   this.imageUrl,
       @required   this.category,
       @required   this.quantity,
-      @required   this.isFavorite =true
+         this.isFavorite =true
  
       });
       void toggleFavoritesStatus(){

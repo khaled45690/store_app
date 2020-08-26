@@ -3,8 +3,15 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
   final  onchange;
+     FormFieldSetter<String> onSaved;
+         ValueChanged<String> onFieldSubmitted;
+         FocusNode focusNode;
+         TextInputType keyboardType;
+          TextEditingController controller;
 
-  CustomTextField({@required this.hint, this.icon , @required this.onchange(String value)});
+
+
+  CustomTextField({@required this.hint, this.icon , @required this.onchange(String value),this.onSaved,this.onFieldSubmitted,this.focusNode,this.keyboardType,this.controller});
   String _errorMessage(String str){
     switch(hint)
     {
@@ -12,7 +19,13 @@ class CustomTextField extends StatelessWidget {
       case 'Enter your email' : return 'email is empty';
       case 'Enter your Password' : return 'password is required';
       case 'Confirm Password' : return 'password is empty';
-      case 'Enter your email' : return 'Name is empty';
+      case 'name of product' : return 'Name is empty';
+      case 'description of product' : return 'description is empty';
+      case  'category of product' : return 'category is empty';
+      case 'quatatiy of product' : return 'quatatiy is empty';
+     
+
+
       default : return null;
     }
   }
@@ -46,6 +59,7 @@ class CustomTextField extends StatelessWidget {
           prefixIcon: Icon(
             icon,
             color: Colors.white,
+            
           ),
           filled: true, 
           fillColor: Colors.blue,
@@ -61,7 +75,13 @@ class CustomTextField extends StatelessWidget {
               color:Colors.white
             )
           ),
-        )
+        ),
+        onSaved: onSaved ,
+        onFieldSubmitted: onFieldSubmitted   ,
+        focusNode: focusNode,
+        keyboardType: keyboardType,
+        controller: controller,
+        
       ),
     );
   }
