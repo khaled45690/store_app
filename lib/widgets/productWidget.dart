@@ -40,16 +40,16 @@ class ProductWidget extends StatelessWidget {
          ),
         
         title: Text(product.name,
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.center,style: TextStyle(color:Colors.black,fontSize:20),
         ),
       // trailing: IconButton(icon: Icon(Icons.shopping_cart),
             trailing: IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black, ),
-            color: Colors.black,
+       //     color: Colors.black,
 
              onPressed: null),
+  //    '\$${loadedProduct.price}',
 
-
-            subtitle:Text(product.price.toString(),style: TextStyle(color:Colors.black,fontSize:20),),
+            subtitle:Text('\$${product.price.toString()}',style: TextStyle(color:Colors.black,fontSize:20),),
 
 
         // onPressed: (){
