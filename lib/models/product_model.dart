@@ -6,7 +6,7 @@ class Product  with ChangeNotifier{
  final String name;
  final double price;
  final String description;
-  String imageUrl;
+ String imageUrl;
  final String category;
  final int quantity;
   bool isFavorite;
@@ -19,7 +19,7 @@ class Product  with ChangeNotifier{
       @required   this.imageUrl,
       @required   this.category,
       @required   this.quantity,
-         this.isFavorite =true
+         this.isFavorite =false
  
       });
       void toggleFavoritesStatus(){
@@ -57,7 +57,7 @@ class Products with ChangeNotifier{
     imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
     category: "not now",
     quantity: 2,
-    isFavorite: true
+  //  isFavorite: false
   ),
    Product(
     id:'p5',
@@ -67,16 +67,32 @@ class Products with ChangeNotifier{
     imageUrl: "https://images.all-free-download.com/images/graphiclarge/ecommerce_background_shopping_design_elements_icons_6838055.jpg",
     category: "not now",
     quantity: 2,
-    isFavorite: true
+     isFavorite: true
   ),
 
 
 
   ];
-
+var _showFavoriteOnly =false;
   List<Product> get items{
+    if(_showFavoriteOnly){
+      return _items.where((prodItem) => prodItem.isFavorite).toList();
+    }
     return [..._items];
   }
+  Product findbyId(String id){
+    return _items.firstWhere((prod) => prod.id ==id);
+  }
+  void showFavoritesOnly(){
+    _showFavoriteOnly =true;
+    notifyListeners();
+  }
+  void showAll(){
+    _showFavoriteOnly =false;
+    notifyListeners();
+  }
+
+
   void addProduct(Product product){
     final newProduct =Product(
     name:product.name,

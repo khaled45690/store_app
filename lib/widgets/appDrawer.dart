@@ -1,8 +1,12 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
+import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/CartScreen.dart';
-import 'package:store_app/screens/FavoriteScreen.dart';
+
+import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/screens/amdin/addProduct.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +21,7 @@ class _AppDrawerState extends State<AppDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    final productsContainer =Provider.of<Products>(context,listen: false);
     return Drawer(
         child:ListView(
             children:<Widget>[
@@ -66,11 +71,28 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+               //   Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+               productsContainer.showFavoritesOnly();
+              // Navigator.of(context).pushNamed(MainProductScreen.routeName);
+
+
                 },
                 child: ListTile(
-                  title: Text("Favorite"),
+                  title: Text("MyFavorite"),
                   leading: Icon(Icons.favorite,color: Colors.blue,),
+                ),
+              ),
+                  InkWell(
+                onTap: (){
+               //   Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+               productsContainer.showAll();
+              // Navigator.of(context).pushNamed(MainProductScreen.routeName);
+
+
+                },
+                child: ListTile(
+                  title: Text("ShowAll Products"),
+                  leading: Icon(Icons.select_all,color: Colors.blue,),
                 ),
               ),
 
