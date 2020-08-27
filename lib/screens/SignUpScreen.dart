@@ -15,7 +15,7 @@ class SignUp extends StatelessWidget {
       submitForm(String name , String email ,String password ,String confirmPassword ) async {
         print("entered");
         final response = await http.post(
-          "$kUrl Signup",
+          "${kUrl}Signup",
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
@@ -81,7 +81,7 @@ class SignUp extends StatelessWidget {
                 text: "Sign up",
                 fontSize: 18,
                 onClick: (){
-                print("entered");
+                print("$name , $email , $password , $confirmPassword");
                 submitForm(name , email , password , confirmPassword);
 
            },
