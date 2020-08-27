@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
@@ -17,9 +18,17 @@ class StoreApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      builder: (ctx) => Products(),
+    return MultiProvider(providers: [
+      ChangeNotifierProvider.value(
+      value:  Products(),
+      )  ,
+       ChangeNotifierProvider.value(
+      value:  Cart(),
+      )  ,
+    ],
           child: MaterialApp(
+             debugShowCheckedModeBanner: false,
+
             title: "StoreApp",
         theme: ThemeData(
           primaryColor: Color(0xFFEAE8FF),
@@ -27,7 +36,7 @@ class StoreApp extends StatelessWidget {
         home: MainProductScreen(),
         routes: {
           CartWidget.routeName: (ctx) => CartWidget(),
-          FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
+       //   FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),
           SignUp.routeName:(ctx) => SignUp(),
           MainProductScreen.routeName:(ctx) =>MainProductScreen(),

@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'CustomButton.dart';
 class ReusableCardWidget extends StatefulWidget {
+  // final String id;
+  // final double price;
+  // final int quantity;
+  // final String name;
+  // ReusableCardWidget(this.id,this.price,this.quantity,this.name);
   @override
   _ReusableCardWidgetState createState() => _ReusableCardWidgetState();
 }
@@ -26,7 +31,7 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
               ),
               SizedBox(height: 20.0),
               Text(
-                "name of item",
+                "name of product",
                 style: TextStyle(
                   fontWeight:FontWeight.bold,
                   fontSize: 18,
@@ -35,7 +40,8 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
               ),
               SizedBox(height: 20.0),
               Text(
-                "price of item \$",
+              //  '\$${widget.price.toString()}',
+              "price of product",
                 style: TextStyle(
                   fontWeight:FontWeight.bold,
                   fontSize: 18,

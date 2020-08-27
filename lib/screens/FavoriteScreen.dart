@@ -18,7 +18,7 @@ class FavoriteScreen extends StatelessWidget {
             color: Colors.black,
             icon: Icon(Icons.add_shopping_cart),
             onPressed: () {
-              Navigator.of(context).pushNamed(CartWidget.routeName);
+        //      Navigator.of(context).pushNamed(CartWidget.routeName);
             },
           ),
         ],

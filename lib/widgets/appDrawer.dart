@@ -62,7 +62,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.of(context).pushNamed(CartWidget.routeName);
+                   Navigator.of(context).pushNamed(CartWidget.routeName);
                 },
                 child: ListTile(
                   title: Text("ShopCart"),

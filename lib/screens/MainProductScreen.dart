@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
@@ -22,18 +24,24 @@ class MainProductScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
       appBar: AppBar(
+        
         flexibleSpace: AppBarContainer(),
         actions: <Widget>[
           InputWidget(),
-          IconButton(
-            color: Colors.black,
-            icon: Icon(Icons.add_shopping_cart),
-            onPressed: () {
-            //  Navigator.of(context).pushNamed(CartWidget.routeName);
-       //     productData.showFavoritesOnly();
+       Consumer<Cart>(builder: (_,cart,ch)=>Badge(
+              child: ch,
+             value: cart.itemCount.toString(),
+          ),
+          child: IconButton(
+              color: Colors.black,
+              
+              icon: Icon(Icons.add_shopping_cart),
+              onPressed: () {
+                  Navigator.of(context).pushNamed(CartWidget.routeName);
 
-            },
-           ),
+              },
+             ),
+          )   
           // PopupMenuButton(
           //   onSelected: (FilterOption seletedValue) {
           //       if(seletedValue ==FilterOption.Favorites){

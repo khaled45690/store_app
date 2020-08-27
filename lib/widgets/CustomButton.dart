@@ -3,7 +3,13 @@ class CustomButton extends StatelessWidget {
 final String text;
 final double fontSize;
 var onClick;
-CustomButton({@required this.text  , this.fontSize ,@required this.onClick});
+  
+
+CustomButton({@required this.text  , this.fontSize ,
+@required this.onClick
+
+
+});
 
 
   @override

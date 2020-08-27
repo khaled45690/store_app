@@ -10,7 +10,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-       final productId = ModalRoute.of(context).settings.arguments as String;
+   final productId = ModalRoute.of(context).settings.arguments as String;
    final loadedProduct =   Provider.of<Products>(context).findbyId(productId);
    //firstWhere((prod) => prod.id ==productId);
 
@@ -55,7 +55,7 @@ class ProductDetails extends StatelessWidget {
               child: Text(loadedProduct.description,
               style: TextStyle(
                 color:Colors.black,
-                fontSize: 18
+                fontSize: 18  
               
               ), textAlign:TextAlign.center,
               ),
