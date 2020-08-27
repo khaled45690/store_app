@@ -37,10 +37,14 @@ class ProductDetails extends StatelessWidget {
               child: Text(
         
                 '\$${loadedProduct.price}',
+                
                  textAlign:TextAlign.center,
+                 
                 style: TextStyle(
-                  color:Colors.grey,
-                  fontSize:20,
+                  color:Colors.black,
+                  fontSize:24,
+                  fontWeight: FontWeight.bold
+                  
                   
                 ),
               ),
@@ -48,7 +52,12 @@ class ProductDetails extends StatelessWidget {
             SizedBox(height:10),
             Container(
               padding: EdgeInsets.symmetric(horizontal:10),
-              child: Text(loadedProduct.description, textAlign:TextAlign.center,
+              child: Text(loadedProduct.description,
+              style: TextStyle(
+                color:Colors.black,
+                fontSize: 18
+              
+              ), textAlign:TextAlign.center,
               ),
            
        
