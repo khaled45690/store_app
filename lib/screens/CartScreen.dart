@@ -12,7 +12,7 @@ class CartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
        final cart = Provider.of<Cart>(context);
     //final product = Provider.of<Product>(context,listen: false);
-   //final cart = Provider.of<Cart>(context,listen: false);
+
     return Container(
       child: Scaffold(
         backgroundColor: Color(0xFFF4F3FF),

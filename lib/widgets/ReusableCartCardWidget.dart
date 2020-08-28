@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
+import 'package:store_app/models/product_model.dart';
+import 'package:store_app/models/producttt.dart';
 class ReusableCartCardWidget extends StatefulWidget {
-    final String id;
-  final double price;
+     String id;
+   double price;
   int quantity;
-  final String name;
-  final String imageUrl;
+   String name;
+   String imageUrl;
   ReusableCartCardWidget(this.id,this.price,this.quantity,this.name,this.imageUrl);
 
   @override
@@ -16,7 +18,9 @@ class ReusableCartCardWidget extends StatefulWidget {
 class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
   @override
   Widget build(BuildContext context) {
-           final cart = Provider.of<Cart>(context);
+         //  final cart = Provider.of<Cart>(context);
+         final product = Provider.of<Product>(context,listen: false);
+   final cart = Provider.of<Cart>(context,listen: false);
 
     return  Card(
           child: Padding(
@@ -30,13 +34,15 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                 Container(
                   width: 100,
                 color: Color(0xFFE8E6FE),
-                child: 
- 
-                Image.network
+                  
+                  child:
+                
+                Image.network(
                 (
                   widget.imageUrl
                  // '\$$imageUrl'
                   ),
+                )
                 ),
                 Container(
                   height: 110,

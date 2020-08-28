@@ -26,6 +26,7 @@ class Cart with ChangeNotifier {
     return  _items.length;
   }
 
+
   double get totalAmout{
     var total =0.0;
     _items.forEach((key, cartItem) {
@@ -34,30 +35,30 @@ class Cart with ChangeNotifier {
      });
      return total;
   }
-   double get subtract
-  {
-    var ff;
-    _items.forEach((key, caart) { 
- if(caart.quantity >= 0)
-    {
-         ff =  caart.quantity - 1;
-    }
-    });
-    return ff;
+//    double get subtract
+//   {
+//     var ff;
+//     _items.forEach((key, caart) { 
+//  if(caart.quantity >= 0)
+//     {
+//          ff =  caart.quantity - 1;
+//     }
+//     });
+//     return ff;
    
-  }
-    double get add
-  {
+//   }
+//     double get add
+//   {
     
-    _items.forEach((key, caart) { 
- if(caart.quantity >= 0)
-    {
-         return  caart.quantity + 1;
-    }
-    });
+//     _items.forEach((key, caart) { 
+//  if(caart.quantity >= 0)
+//     {
+//          return  caart.quantity + 1;
+//     }
+//     });
     
    
-  }
+//   }
 
 
    void addItem(String productId, double price, String name, String imageUrl){
@@ -66,7 +67,7 @@ class Cart with ChangeNotifier {
             id:existingCartItem.id,
             name:existingCartItem.name,
             price:  existingCartItem.price,
-            quantity: existingCartItem.quantity +1
+             quantity: existingCartItem.quantity +1
 
             ));
 

@@ -42,27 +42,13 @@ class MainProductScreen extends StatelessWidget {
               },
              ),
           )   
-          // PopupMenuButton(
-          //   onSelected: (FilterOption seletedValue) {
-          //       if(seletedValue ==FilterOption.Favorites){
-          //             productData.showFavoritesOnly();
-          //       }else{
-          //           productData.showAll();
-          //       }
-          //   },
-          //   icon: Icon(Icons.more_vert),
-          //   itemBuilder: (_) => [
-          //     PopupMenuItem(
-          //         child: Text('Only Favotite'), value: FilterOption.Favorites),
-          //     PopupMenuItem(child: Text('Show All'), value: FilterOption.All)
-          //   ],
-          // )
         ],
       ),
       drawer: AppDrawer(),
       body: GridView.builder(
         itemCount: product.length,
-        itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+        itemBuilder: (ctx, i) =>
+         ChangeNotifierProvider.value(
        //   builder: (c) => product[i],
        value: product[i],
           child: ProductWidget(

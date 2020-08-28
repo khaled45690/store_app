@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/models/producttt.dart';
 import 'package:store_app/widgets/CustomButton.dart';
+import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
-import 'package:store_app/widgets/detailsWidget.dart';
+import 'package:store_app/widgets/cartConnection.dart';
+
 
 import 'CartScreen.dart';
 
@@ -16,12 +20,31 @@ class ProductDetails extends StatelessWidget {
    final productId = ModalRoute.of(context).settings.arguments as String;
    final loadedProduct =   Provider.of<Products>(context).findbyId(productId);
    //firstWhere((prod) => prod.id ==productId);
+      final product = Provider.of<Product>(context,listen: false);
+  final cart = Provider.of<Cart>(context,listen: false);
 
     return Scaffold(
       appBar: AppBar(
 
         title: Text(loadedProduct.name),
         flexibleSpace: AppBarContainer(),
+             actions: <Widget>[
+          InputWidget(),
+       Consumer<Cart>(builder: (_,cart,ch)=>Badge(
+              child: ch,
+             value: cart.itemCount.toString(),
+          ),
+          child: IconButton(
+              color: Colors.black,
+              
+              icon: Icon(Icons.add_shopping_cart),
+              onPressed: () {
+                  Navigator.of(context).pushNamed(CartWidget.routeName);
+
+              },
+             ),
+          )   
+        ],
         
       ),
       body: ListView(
@@ -67,13 +90,20 @@ class ProductDetails extends StatelessWidget {
             ),
                         SizedBox(height: 60.0),
                      //  DetailsWidget()
-             CustomButton(
-               
-               text: "add to cart",
-              fontSize: 15,onClick: (){
-                  Navigator.of(context).pushNamed(CartWidget.routeName);
+             //ChangeNotifierProvider.value(
+              // value: product,
+             //   child:
+                CustomButton(
+                 
+                 text: "add to cart",
+                fontSize: 15,onClick: (){
+                  cart.addItem(loadedProduct.id, loadedProduct.price, loadedProduct.name, loadedProduct.imageUrl);
 
-             },),
+                  Navigator.of(context).pushNamed(CartWidget.routeName,);
+
+               },
+               ),
+            // ),
         ]
       ),
       

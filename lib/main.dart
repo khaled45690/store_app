@@ -10,6 +10,8 @@ import 'package:store_app/screens/amdin/EditProduct.dart';
 import 'package:store_app/screens/amdin/addProduct.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
+
+import 'models/producttt.dart';
 void main() =>
   runApp(StoreApp());
 
@@ -24,6 +26,9 @@ class StoreApp extends StatelessWidget {
       )  ,
        ChangeNotifierProvider.value(
       value:  Cart(),
+      )  ,
+      ChangeNotifierProvider.value(
+      value:  Product(),
       )  ,
     ],
           child: MaterialApp(
