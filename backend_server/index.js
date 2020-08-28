@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/api', (req , res) => {
     console.log(req.url);
     if (req.url === "/Signup" || req.url === "/Signin" ) {
-        registration(req , res , db);
+        registration(req , res);
      }
      else if (req.url === "/SaveImage") {
         Save_Image(req , res);
