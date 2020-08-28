@@ -11,8 +11,6 @@ import 'package:store_app/widgets/productWidget.dart';
 
 import 'CartScreen.dart';
 
-//enum FilterOption { Favorites, All }
-
 class MainProductScreen extends StatelessWidget {
   static const routeName = '/Main';
 
@@ -20,7 +18,7 @@ class MainProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Products productData = Provider.of<Products>(context);
     final List<Product> product = productData.items;
-    //     final productsContainer =Provider.of<Products>(context,listen: false);
+    final productsContainer =Provider.of<Products>(context,listen: false);
 
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),

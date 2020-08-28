@@ -12,19 +12,18 @@ import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
 import 'package:store_app/models/producttt.dart';
 import 'models/UserData.dart';
-void main() =>
 
-  runApp(   MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => Products()),
-      ChangeNotifierProvider(create: (_) => UserData()),
-      ChangeNotifierProvider(create: (_) => Cart()),
-    ],
-    child:  StoreApp(),
-  ),
-
-  );
-
+void main() => runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => Cart()),
+          ChangeNotifierProvider(create: (_) => Products()),
+          ChangeNotifierProvider(create: (_) => UserData()),
+          ChangeNotifierProvider(create: (_) => Product()),
+        ],
+        child: StoreApp(),
+      ),
+    );
 
 class StoreApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -32,20 +31,20 @@ class StoreApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "StoreApp",
-        theme: ThemeData(
-    primaryColor: Color(0xFFEAE8FF),
-        ),
-        home: MainProductScreen(),
-        routes: {
-    CartWidget.routeName: (ctx) => CartWidget(),
-    LoginScreen.routeName: (ctx) => LoginScreen(),
-    SignUp.routeName:(ctx) => SignUp(),
-    MainProductScreen.routeName:(ctx) =>MainProductScreen(),
-    ProductDetails.routeName:(ctx) =>ProductDetails(),
-    AdminAddProduct.routeName:(ctx) =>AdminAddProduct(),
-    AdminEditProduct.routeName:(ctx)=>AdminEditProduct(),
-    FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
-        },
-      );
+      theme: ThemeData(
+        primaryColor: Color(0xFFEAE8FF),
+      ),
+      home: MainProductScreen(),
+      routes: {
+        CartWidget.routeName: (ctx) => CartWidget(),
+        LoginScreen.routeName: (ctx) => LoginScreen(),
+        SignUp.routeName: (ctx) => SignUp(),
+        MainProductScreen.routeName: (ctx) => MainProductScreen(),
+        ProductDetails.routeName: (ctx) => ProductDetails(),
+        AdminAddProduct.routeName: (ctx) => AdminAddProduct(),
+        AdminEditProduct.routeName: (ctx) => AdminEditProduct(),
+        FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
+      },
+    );
   }
 }
