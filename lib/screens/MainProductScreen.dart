@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/models/producttt.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
@@ -17,8 +18,8 @@ class MainProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productData = Provider.of<Products>(context);
-    final product = productData.items;
+    final Products productData = Provider.of<Products>(context);
+    final List<Product> product = productData.items;
     //     final productsContainer =Provider.of<Products>(context,listen: false);
 
     return Scaffold(
@@ -38,7 +39,6 @@ class MainProductScreen extends StatelessWidget {
               icon: Icon(Icons.add_shopping_cart),
               onPressed: () {
                   Navigator.of(context).pushNamed(CartWidget.routeName);
-
               },
              ),
           )   

@@ -43,7 +43,8 @@ class ProductWidget extends StatelessWidget {
          ),
         
         title: Text(product.name,
-        textAlign: TextAlign.center,style: TextStyle(color:Colors.black,fontSize:20),
+        textAlign: TextAlign.center,
+          style: TextStyle(color:Colors.black,fontSize:20),
         ),
   
             trailing: IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black, ),

@@ -3,24 +3,25 @@ module.exports =  (req , res , db)=>{
 if (req.url === "/Signup") {
     req.on('data', function (data) {
         var body = JSON.parse(data);
-        res.end(JSON.stringify({ "state": "succed", "respond": "the account has been created successfully please go back and try to sign in" }));
+        res.setHeader('Content-Type', 'application/json');
+        res.send(data);
         console.log(body);
-        db.collection("users").findOne({ "email": body.email }, (err, result) => {
-          console.log(err);
-          if (err === null) {
-            db.collection("users").insertOne(body, (err, respond) => {
-              console.log(err);
-              console.log(respond);
-              let responds = { "state": "succed", "respond": "the account has been created successfully please go back and try to sign in" }
-              res.end(JSON.stringify(responds));
+        // db.collection("users").findOne({ "email": body.email }, (err, result) => {
+        //   console.log(err);
+        //   if (err === null) {
+        //     db.collection("users").insertOne(body, (err, respond) => {
+        //       console.log(err);
+        //       console.log(respond);
+        //       let responds = { "state": "succed", "respond": "the account has been created successfully please go back and try to sign in" }
+        //       res.end(JSON.stringify(responds));
 
-            });
+        //     });
 
-          } else {
-            let responds = { "state": "failed", "respond": "your account is used before" }
-            res.end(JSON.stringify(responds));
-          }
-        });
+        //   } else {
+        //     let responds = { "state": "failed", "respond": "your account is used before" }
+        //     res.end(JSON.stringify(responds));
+        //   }
+        // });
       });
 } else if (req.url === "/Signin") {
 

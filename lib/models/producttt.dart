@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-class Product  with ChangeNotifier{
+class Product  extends ChangeNotifier{
  final String id;
  final String name;
  final double price;

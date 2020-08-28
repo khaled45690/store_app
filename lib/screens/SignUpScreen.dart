@@ -1,19 +1,26 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/models/UserData.dart';
 import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
 import 'package:http/http.dart' as http;
+import 'MainProductScreen.dart';
 import 'loginScreen.dart';
 import 'package:store_app/constants/kConstants.dart';
 
 
 class SignUp extends StatelessWidget {
+  UserData userData = new UserData();
       static const routeName = '/SignUp';
+
       final GlobalKey<FormState> _key = GlobalKey<FormState>();
       String name , email , password , confirmPassword ;
 
-      submitForm(String name , String email ,String password ,String confirmPassword ) async {
-        print("entered");
+      submitForm(String name , String email ,String password ,String confirmPassword , context ) async {
+        UserData userDataContext = Provider.of<UserData>(context ,listen: false);
+        print("${kUrl}Signup");
         final response = await http.post(
           "${kUrl}Signup",
           headers: <String, String>{
@@ -28,13 +35,21 @@ class SignUp extends StatelessWidget {
         );
 
 
-        final responseJson = json.decode(response.body);
-
+        final Map responseJson = json.decode(response.body);
         print(responseJson);
+        userDataContext.userDataSetter(responseJson);
       }
 
   @override
   Widget build(BuildContext context) {
+     UserData userDataContext = Provider.of<UserData>(context);
+     print(userDataContext.isUserDataLoaded);
+    if(userDataContext.isUserDataLoaded){
+      Timer(const Duration(milliseconds: 1000), () {
+        Navigator.of(context).pushNamed(MainProductScreen.routeName);
+      });
+
+    }
     return Scaffold(
       body:  Form(
         key: _key,
@@ -81,9 +96,7 @@ class SignUp extends StatelessWidget {
                 text: "Sign up",
                 fontSize: 18,
                 onClick: (){
-                print("$name , $email , $password , $confirmPassword");
-                submitForm(name , email , password , confirmPassword);
-
+                    submitForm(name , email , password , confirmPassword , context);
            },
               ),
             ),

@@ -10,46 +10,42 @@ import 'package:store_app/screens/amdin/EditProduct.dart';
 import 'package:store_app/screens/amdin/addProduct.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
-
-import 'models/producttt.dart';
+import 'package:store_app/models/producttt.dart';
+import 'models/UserData.dart';
 void main() =>
-  runApp(StoreApp());
+
+  runApp(   MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => Products()),
+      ChangeNotifierProvider(create: (_) => UserData()),
+      ChangeNotifierProvider(create: (_) => Cart()),
+    ],
+    child:  StoreApp(),
+  ),
+
+  );
 
 
 class StoreApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider.value(
-      value:  Products(),
-      )  ,
-       ChangeNotifierProvider.value(
-      value:  Cart(),
-      )  ,
-      ChangeNotifierProvider.value(
-      value:  Product(),
-      )  ,
-    ],
-          child: MaterialApp(
-             debugShowCheckedModeBanner: false,
-
-            title: "StoreApp",
+    return MaterialApp(
+      title: "StoreApp",
         theme: ThemeData(
-          primaryColor: Color(0xFFEAE8FF),
+    primaryColor: Color(0xFFEAE8FF),
         ),
         home: MainProductScreen(),
         routes: {
-          CartWidget.routeName: (ctx) => CartWidget(),
-       //   FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
-          LoginScreen.routeName: (ctx) => LoginScreen(),
-          SignUp.routeName:(ctx) => SignUp(),
-          MainProductScreen.routeName:(ctx) =>MainProductScreen(),
-          ProductDetails.routeName:(ctx) =>ProductDetails(),
-          AdminAddProduct.routeName:(ctx) =>AdminAddProduct(),
-          AdminEditProduct.routeName:(ctx)=>AdminEditProduct(),
+    CartWidget.routeName: (ctx) => CartWidget(),
+    LoginScreen.routeName: (ctx) => LoginScreen(),
+    SignUp.routeName:(ctx) => SignUp(),
+    MainProductScreen.routeName:(ctx) =>MainProductScreen(),
+    ProductDetails.routeName:(ctx) =>ProductDetails(),
+    AdminAddProduct.routeName:(ctx) =>AdminAddProduct(),
+    AdminEditProduct.routeName:(ctx)=>AdminEditProduct(),
+    FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
         },
-      ),
-    );
+      );
   }
 }

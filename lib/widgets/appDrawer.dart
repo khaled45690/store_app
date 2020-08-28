@@ -21,7 +21,7 @@ class _AppDrawerState extends State<AppDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final productsContainer =Provider.of<Products>(context,listen: false);
+    final productsContainer = Provider.of<Products>(context,listen: false);
     return Drawer(
         child:ListView(
             children:<Widget>[

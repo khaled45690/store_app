@@ -1,6 +1,9 @@
+
  import 'package:flutter/cupertino.dart';
  import './producttt.dart';
-
+ import 'package:flutter/cupertino.dart';
+ import 'package:provider/provider.dart';
+ import 'package:flutter/material.dart';
 // import 'package:flutter/material.dart';
 // class Product  with ChangeNotifier{
 //  final String id;
@@ -21,15 +24,35 @@
 //       @required   this.category,
 //       @required   this.quantity,
 //          this.isFavorite =false
- 
-//       });
-//       void toggleFavoritesStatus(){
-//         isFavorite =!isFavorite;
-//         notifyListeners();
-      
-//       }
-// }
-class Products with ChangeNotifier{
+
+//class Product  extends ChangeNotifier{
+// final String id;
+// final String name;
+// final double price;
+// final String description;
+// final String imageUrl;
+// final String category;
+// final int quantity;
+//  bool isFavorite;
+//  Product(
+//      {
+//      @required  this.id,
+//      @required   this.name,
+//      @required   this.price,
+//      @required   this.description,
+//      @required   this.imageUrl,
+//      @required   this.category,
+//      @required   this.quantity,
+//         this.isFavorite =false
+//
+////       });
+////       void toggleFavoritesStatus(){
+////         isFavorite =!isFavorite;
+////         notifyListeners();
+//
+////       }
+//    }
+class Products extends ChangeNotifier{
   List<Product> _items =[
   Product(
     id:'p1',
@@ -125,9 +148,7 @@ var _showFavoriteOnly =false;
   }else{
 
   }
-    
+
   }
 
-
- 
-}
+  }

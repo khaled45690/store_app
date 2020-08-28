@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
-  final  onchange;
-     FormFieldSetter<String> onSaved;
-         ValueChanged<String> onFieldSubmitted;
-         FocusNode focusNode;
-         TextInputType keyboardType;
-          TextEditingController controller;
+  final ValueChanged<String> onchange;
+  final FormFieldSetter<String> onSaved;
+  final ValueChanged<String> onFieldSubmitted;
+  final FocusNode focusNode;
+  final TextInputType keyboardType;
+  final TextEditingController controller;
 
 
 
@@ -78,6 +78,7 @@ class CustomTextField extends StatelessWidget {
             )
           ),
         ),
+        onChanged: (value){onchange(value);},
         onSaved: onSaved ,
         onFieldSubmitted: onFieldSubmitted   ,
         focusNode: focusNode,
