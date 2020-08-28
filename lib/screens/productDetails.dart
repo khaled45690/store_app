@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
+import 'package:store_app/widgets/detailsWidget.dart';
+
+import 'CartScreen.dart';
 
 class ProductDetails extends StatelessWidget {
   static const routeName = '/Product-details';
@@ -63,7 +66,14 @@ class ProductDetails extends StatelessWidget {
        
             ),
                         SizedBox(height: 60.0),
-             CustomButton(text: "add to cart", fontSize: 15,),
+                     //  DetailsWidget()
+             CustomButton(
+               
+               text: "add to cart",
+              fontSize: 15,onClick: (){
+                  Navigator.of(context).pushNamed(CartWidget.routeName);
+
+             },),
         ]
       ),
       

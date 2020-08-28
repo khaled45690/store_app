@@ -18,16 +18,14 @@ class _AdminEditProductState extends State<AdminEditProduct> {
   final _descriptionFocusNode =FocusNode();
   final _quantityFocusNode =FocusNode();
   final _categortFocusNode = FocusNode();
-    final _imageFocusNode = FocusNode();
-
+  final _imageFocusNode = FocusNode();
   final _name = TextEditingController();
-    final _price =TextEditingController();
+  final _price =TextEditingController();
   final _description =TextEditingController();
   final _quantity=TextEditingController();
   final _categort = TextEditingController();
-    final _imageurl = TextEditingController();
-
-      final  _key = GlobalKey<FormState>();
+  final _imageurl = TextEditingController();
+  final  _key = GlobalKey<FormState>();
 
       var _editProduct =Product(
       id: null,
@@ -74,9 +72,6 @@ class _AdminEditProductState extends State<AdminEditProduct> {
        Provider.of<Products>(context, listen: false).addProduct(_editProduct);
         Navigator.of(context).pop();
      }
-       
-        
-        
         print(_editProduct.name);
         print(_editProduct.price);
         print(_editProduct.description);

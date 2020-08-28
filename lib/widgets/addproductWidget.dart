@@ -7,8 +7,11 @@ class UserProductItem extends StatelessWidget {
   final String id;
   final String name;
   final String imageUrl;
+    final String price;
+
   UserProductItem(this.id, this.name, 
-  this.imageUrl
+  this.imageUrl,
+  this.price
   );
   @override
   Widget build(BuildContext context) {
@@ -70,11 +73,12 @@ class UserProductItem extends StatelessWidget {
             width: 50,
             child: Row(
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.edit),
-                  color: Colors.blue,
-                  onPressed: () {},
-                ),
+                // IconButton(
+                //   icon: Icon(Icons.edit),
+                //   color: Colors.blue,
+                //   onPressed: () {},
+                // ),
+                Text(price.toString())
               
                 //  IconButton(icon: Icon(Icons.delete),
                 // onPressed: (){

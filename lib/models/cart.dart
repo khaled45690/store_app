@@ -34,6 +34,30 @@ class Cart with ChangeNotifier {
      });
      return total;
   }
+   double get subtract
+  {
+    var ff;
+    _items.forEach((key, caart) { 
+ if(caart.quantity >= 0)
+    {
+         ff =  caart.quantity - 1;
+    }
+    });
+    return ff;
+   
+  }
+    double get add
+  {
+    
+    _items.forEach((key, caart) { 
+ if(caart.quantity >= 0)
+    {
+         return  caart.quantity + 1;
+    }
+    });
+    
+   
+  }
 
 
    void addItem(String productId, double price, String name, String imageUrl){

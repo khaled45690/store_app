@@ -36,7 +36,9 @@ class AdminAddProduct extends StatelessWidget {
               UserProductItem(
                 productData.items[i].id,
                 productData.items[i].name,
-                productData.items[i].imageUrl
+                productData.items[i].imageUrl,
+                productData.items[i].price.toString()
+                              
                 ),
                 Divider(),
             ],
