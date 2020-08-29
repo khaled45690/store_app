@@ -22,26 +22,28 @@ class MainProductScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
-      appBar: AppBar(
-        
-        flexibleSpace: AppBarContainer(),
-        actions: <Widget>[
+      appBar: 
+      AppBar(
+          flexibleSpace: AppBarContainer(),
+          
+          
+          actions: <Widget>[
           InputWidget(),
-       Consumer<Cart>(builder: (_,cart,ch)=>Badge(
-              child: ch,
-             value: cart.itemCount.toString(),
-          ),
-          child: IconButton(
-              color: Colors.black,
-              
-              icon: Icon(Icons.add_shopping_cart),
-              onPressed: () {
-                  Navigator.of(context).pushNamed(CartWidget.routeName);
-              },
-             ),
-          )   
-        ],
-      ),
+         Consumer<Cart>(builder: (_,cart,ch)=>Badge(
+        child: ch,
+       value: cart.itemCount.toString(),
+            ),
+            child: IconButton(
+        color: Colors.black,
+        
+        icon: Icon(Icons.add_shopping_cart),
+        onPressed: () {
+            Navigator.of(context).pushNamed(CartWidget.routeName);
+        },
+       ),
+            )   
+          ],
+        ),
       drawer: AppDrawer(),
       body: GridView.builder(
         itemCount: product.length,

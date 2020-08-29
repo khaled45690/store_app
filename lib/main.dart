@@ -30,6 +30,8 @@ class StoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+       debugShowCheckedModeBanner: false,
+
       title: "StoreApp",
       theme: ThemeData(
         primaryColor: Color(0xFFEAE8FF),

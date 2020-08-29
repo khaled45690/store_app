@@ -41,15 +41,14 @@ class _AppDrawerState extends State<AppDrawer> {
                 final picked =
                 await ImagePicker.pickImage(source: ImageSource.gallery);
                 if(picked != null){
+                  saveImage(picked);
                   userDataClone["profileImage"] = basename(picked.path);
 
                   print(userData.userData);
                   setState(() {
                     _imageFile = picked;
                   });
-                  if(saveImage(picked)){
                     userData.userData = userDataClone;
-                  }
                 }
 
               }else {
