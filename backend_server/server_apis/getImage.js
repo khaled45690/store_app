@@ -1,10 +1,14 @@
 const fs = require('fs')
-const byline = require('byline')
 module.exports =  (req,res)=>{  
-    req.url.substring(10);
-    console.log(req.url.substring(10));
-    let stream = fs.createReadStream('./images/'+req.url.substring(10));
-    stream = byline.createStream(stream);
-    stream.pipe(res);
-    stream.on('end', res.end);
+  if (req.url.split('.').pop() === 'png') {
+    res.writeHead(200, { 'Content-Type': 'image/png' });
+    var RS = fs.createReadStream(__dirname + '../images/'+req.url.substring(10));
+    RS.pipe(res);
+}
+if (req.url.split('.').pop() === 'jpg') {
+    res.writeHead(200, { 'Content-Type': 'image/jpg' });
+    var RS = fs.createReadStream(__dirname + '../images/'+req.url.substring(10));
+    RS.pipe(res);
+}
+
   }
