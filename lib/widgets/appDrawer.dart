@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/constants/deleteImageFunction.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
 import 'package:store_app/models/UserData.dart';
@@ -36,18 +37,22 @@ class _AppDrawerState extends State<AppDrawer> {
           currentAccountPicture: GestureDetector(
             onTap: () async {
               Map userDataClone = userData.userData;
+              if(userDataClone["profileImage"] == null){
+                final picked =
+                await ImagePicker.pickImage(source: ImageSource.gallery);
+                userDataClone["profileImage"] = basename(picked.path);
 
-              final picked =
-                  await ImagePicker.pickImage(source: ImageSource.gallery);
-              userDataClone["profileImage"] = basename(picked.path);
-
-              print(userData.userData);
-              setState(() {
-                _imageFile = picked;
-              });
-              if(saveImage(picked)){
-                userData.userData = userDataClone;
+                print(userData.userData);
+                setState(() {
+                  _imageFile = picked;
+                });
+                if(saveImage(picked)){
+                  userData.userData = userDataClone;
+                }
+              }else {
+                deleteImage(userDataClone["profileImage"]);
               }
+
             },
             child: userData.userData["profileImage"] == null
                 ? CircleAvatar(
