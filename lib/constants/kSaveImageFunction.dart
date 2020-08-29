@@ -17,7 +17,9 @@ saveImage(File imageFile) async {
   request.files.add(multipartFile);
   var response = await request.send();
   print(response.statusCode);
+
   response.stream.transform(utf8.decoder).listen((value) {
     print(value);
+    return true;
   });
 }

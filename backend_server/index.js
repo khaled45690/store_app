@@ -1,11 +1,9 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
 const registration = require('./server_apis/signin_signup');
-const db = require('./server_apis/DataBase_Connection');
 const Save_Image = require('./server_apis/Save_Image');
+const getImage = require('./server_apis/getImage');
 
 // set up express app
 const app = express();
@@ -20,18 +18,13 @@ app.use('/api', (req , res) => {
      }
      else if (req.url === "/SaveImage") {
         Save_Image(req , res);
-    } 
+    }else if (req.url.substring(0,9) == "/getImage") {
+        getImage(req , res);
+    }
     
 });
 
 // listen to the local server
 app.listen(process.env.PORT || 3001, () => {
     console.log("you are connected to the Server");
-    // console.log("please wait will starting the server");
-    // setTimeout(() => {
-    //    console.log("connecting to server ------>");
-    // }, 2000);
-    // setTimeout(() => {
-    //     console.log("you are connected to the Server");
-    //  }, 5000);
 });

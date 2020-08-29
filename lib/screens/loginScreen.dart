@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
     if (responseJson["state"] != null) {
       print(responseJson);
     } else {
-      userDataContext.userDataSetter(responseJson);
+      userDataContext.userData = responseJson;
     }
   }
 
@@ -48,6 +48,7 @@ class LoginScreen extends StatelessWidget {
     print(userDataContext.isUserDataLoaded);
     if (userDataContext.isUserDataLoaded) {
       Timer(const Duration(milliseconds: 200), () {
+        Navigator.of(context).pop();
         Navigator.of(context).pop();
       });
     }

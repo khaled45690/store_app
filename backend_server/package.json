@@ -9,6 +9,8 @@
   "author": "Khaled Saad Abbas",
   "license": "MIT",
   "dependencies": {
+    "busboy": "^0.3.1",
+    "byline": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.6.0"

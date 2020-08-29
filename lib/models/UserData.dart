@@ -9,10 +9,6 @@ class UserData  extends ChangeNotifier{
    bool _isUserDataLoaded = false;
    bool get isUserDataLoaded => _isUserDataLoaded;
 
-   void userDataSetter(Map userDataParameter) {
-     userData = userDataParameter;
-   }
-
    set userData(Map userDataParameter){
      _userData = userDataParameter;
      _isUserDataLoaded = true;

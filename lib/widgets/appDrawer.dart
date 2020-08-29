@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
 import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/product_model.dart';
@@ -33,20 +35,26 @@ class _AppDrawerState extends State<AppDrawer> {
           accountEmail: Text(userData.userData["email"]),
           currentAccountPicture: GestureDetector(
             onTap: () async {
+              Map userDataClone = userData.userData;
+
               final picked =
                   await ImagePicker.pickImage(source: ImageSource.gallery);
+              userDataClone["profileImage"] = basename(picked.path);
+
+              print(userData.userData);
               setState(() {
                 _imageFile = picked;
               });
-              saveImage(picked);
-              print(picked);
+              if(saveImage(picked)){
+                userData.userData = userDataClone;
+              }
             },
-            child: _imageFile == null
+            child: userData.userData["profileImage"] == null
                 ? CircleAvatar(
                     backgroundColor: Colors.white,
                     child: Icon(Icons.person, color: Colors.blue))
                 : CircleAvatar(
-                    backgroundImage: Image.file(_imageFile).image,
+                    backgroundImage: Image.network("${kUrl}getImage/${userData.userData["profileImage"]}").image,
                   ),
           ),
           decoration: BoxDecoration(color: Colors.blue),
