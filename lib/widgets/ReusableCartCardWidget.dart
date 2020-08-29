@@ -35,14 +35,14 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                   width: 100,
                 color: Color(0xFFE8E6FE),
                   
-                  child:
+                //   child:
                 
-                Image.network(
-                (
-                  widget.imageUrl
-                 // '\$$imageUrl'
-                  ),
-                )
+                // Image.network(
+                // (
+                //   widget.imageUrl
+                //  // '\$$imageUrl'
+                //   ),
+                // )
                 ),
                 Container(
                   height: 110,
@@ -74,6 +74,7 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                         add();
                       }),
                       IconButton(icon: Icon(Icons.keyboard_arrow_down),iconSize: 20, onPressed: (){
+                       // cart.subtract;
                           subtract();
                       }),
                     ],

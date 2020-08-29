@@ -97,7 +97,10 @@ class SignUp extends StatelessWidget {
               text: "Sign up",
               fontSize: 18,
               onClick: () {
-                submitForm(name, email, password, confirmPassword, context);
+                if(_key.currentState.validate()){
+                    submitForm(name, email, password, confirmPassword, context);
+                }
+               
               },
             ),
           ),

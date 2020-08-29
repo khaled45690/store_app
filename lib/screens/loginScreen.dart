@@ -85,7 +85,10 @@ class LoginScreen extends StatelessWidget {
               text: "Sign in",
               fontSize: 18,
               onClick: () {
-                submitForm(email, password, context);
+                if(_key.currentState.validate()){
+                  submitForm(email, password, context);
+                }
+                
               },
             
             ),

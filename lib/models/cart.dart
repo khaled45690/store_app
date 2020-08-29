@@ -35,18 +35,16 @@ class Cart with ChangeNotifier {
      });
      return total;
   }
-//    double get subtract
-//   {
-//     var ff;
-//     _items.forEach((key, caart) { 
-//  if(caart.quantity >= 0)
-//     {
-//          ff =  caart.quantity - 1;
-//     }
-//     });
-//     return ff;
-   
-//   }
+
+
+
+   int get subtract{
+     var mm;
+     _items.forEach((key, value) {
+       mm = value.quantity - 1;
+     });
+     return mm;
+   }
 //     double get add
 //   {
     
