@@ -12,8 +12,6 @@ saveImage(File imageFile) async {
   var request = new http.MultipartRequest("POST", Uri.parse("${kUrl}SaveImage"));
   var multipartFile = new http.MultipartFile('file', stream, length,
       filename: basename(imageFile.path));
-  //contentType: new MediaType('image', 'png'));
-
   request.files.add(multipartFile);
   var response = await request.send();
   print(response.statusCode);
