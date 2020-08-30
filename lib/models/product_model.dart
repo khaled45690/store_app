@@ -93,6 +93,16 @@ class Products extends ChangeNotifier{
     quantity: 2,
      isFavorite: false
   ),
+  Product(
+    id:'p5',
+    name:'phone',
+    price: 55,
+    description: 'phone fshe5 wla ram :32  gb:1000gb',
+    imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
+    category: "not now",
+    quantity: 2,
+    isFavorite: false
+  ),
 
 
 
