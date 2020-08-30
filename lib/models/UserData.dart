@@ -14,6 +14,10 @@ class UserData  extends ChangeNotifier{
      _isUserDataLoaded = true;
        notifyListeners();
    }
+   set isUserDataLoaded(bool isUserDataLoadedParameter){
+     _isUserDataLoaded = isUserDataLoadedParameter;
+     notifyListeners();
+   }
 
    }
 

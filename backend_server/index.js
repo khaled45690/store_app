@@ -4,7 +4,8 @@ const cors = require('cors');
 const registration = require('./server_apis/signin_signup');
 const Save_Image = require('./server_apis/Save_Image');
 const getImage = require('./server_apis/getImage');
-const deleteImage = require('./server_apis/delete_Image')
+const deleteImage = require('./server_apis/delete_Image');
+const updateUserData = require('./server_apis/updateUserData');
 
 // set up express app
 const app = express();
@@ -23,6 +24,8 @@ app.use('/api', (req , res) => {
         getImage(req , res);
     }else if (req.url === "/deleteImage"){
         deleteImage(req , res);
+    }else if (req.url === "/updateUserData"){
+        updateUserData(req , res);
     }
     
 });

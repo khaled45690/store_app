@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/constants/deleteImageFunction.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
+import 'package:store_app/constants/updateUserData.dart';
 import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/models/product_model.dart';
@@ -30,7 +31,6 @@ class _AppDrawerState extends State<AppDrawer> {
     final UserData userData = Provider.of<UserData>(context, listen: false);
     if (userData.userData != null) {
       print(userData.userData["profileImage"]);
-      File _imageFile;
       return Drawer(
           child: ListView(children: <Widget>[
         UserAccountsDrawerHeader(
@@ -47,14 +47,21 @@ class _AppDrawerState extends State<AppDrawer> {
                   userDataClone["profileImage"] = basename(picked.path);
 
                   print(userData.userData);
-                  setState(() {
-                    _imageFile = picked;
-                  });
                     userData.userData = userDataClone;
                 }
 
               }else {
-                deleteImage(userDataClone["profileImage"]);
+
+                final picked =
+                await ImagePicker.pickImage(source: ImageSource.gallery);
+                if(picked != null){
+                  deleteImage(userDataClone["profileImage"]);
+                  saveImage(picked);
+                  userDataClone["profileImage"] = basename(picked.path);
+                  updateUserData(userDataClone);
+                  print(userData.userData);
+                  userData.userData = userDataClone;
+                }
               }
 
             },
@@ -125,6 +132,8 @@ class _AppDrawerState extends State<AppDrawer> {
         InkWell(
           onTap: () {
             userData.userData = null;
+            userData.isUserDataLoaded = false ;
+            Navigator.of(context).pop();
           },
           child: ListTile(
             title: Text("Logout"),

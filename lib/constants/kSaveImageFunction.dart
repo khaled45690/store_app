@@ -8,7 +8,7 @@ import 'package:async/async.dart';
 saveImage(File imageFile) async {
   var stream = new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
   var length = await imageFile.length();
-  print(Uri.parse("$kUrl SaveImage"));
+  print(Uri.parse("${kUrl}SaveImage"));
   var request = new http.MultipartRequest("POST", Uri.parse("${kUrl}SaveImage"));
   var multipartFile = new http.MultipartFile('file', stream, length,
       filename: basename(imageFile.path));
