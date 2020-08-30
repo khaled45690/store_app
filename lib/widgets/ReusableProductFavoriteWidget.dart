@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
+import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/models/producttt.dart';
-class ReusableCartCardWidget extends StatefulWidget {
+import 'package:store_app/screens/CartScreen.dart';
+
+import 'CustomButton.dart';
+class ResuableProductFavorite extends StatefulWidget {
      String id;
    double price;
   int quantity;
    String name;
    String imageUrl;
-  ReusableCartCardWidget(this.id,this.price,this.quantity,this.name,this.imageUrl);
+  ResuableProductFavorite(this.id,this.price,this.quantity,this.name,this.imageUrl);
 
   @override
-  _ReusableCartCardWidgetState createState() => _ReusableCartCardWidgetState();
+  _ResuableProductFavoriteState createState() => _ResuableProductFavoriteState();
 }
 
-class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
+class _ResuableProductFavoriteState extends State<ResuableProductFavorite> {
   @override
   Widget build(BuildContext context) {
          //  final cart = Provider.of<Cart>(context);
          final product = Provider.of<Product>(context,listen: false);
    final cart = Provider.of<Cart>(context,listen: false);
+    final favo = Provider.of<Favorite>(context);
+
 
     return  Card(
           child: Padding(
@@ -49,6 +55,7 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                   child: Column(
                     children: <Widget>[
                       Text(
+                      //  't-shirt',
                           widget.name,
                         style: TextStyle(
                           fontSize: 20
@@ -56,6 +63,8 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                       ),
                       SizedBox(height: 50,),
                       Text(
+                      
+                    
                         '\$${widget.price.toString()}',
                         style: TextStyle(
                             fontSize: 20
@@ -65,43 +74,32 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 20),
+                  margin: EdgeInsets.only(left: 90,top:50,bottom: 5),
                   height: 110,
                   child: Column(
                     children: <Widget>[
-                      IconButton(icon: Icon(Icons.keyboard_arrow_up), iconSize: 20 , onPressed: (){
-                     //   cart.add;
-                        add();
-                      }),
-                      IconButton(icon: Icon(Icons.keyboard_arrow_down),iconSize: 20, onPressed: (){
-                       // cart.subtract;
-                          subtract();
-                      }),
+                //     IconButton(icon: Icon(Icons.add_shopping_cart), iconSize: 20 , onPressed: (){
+                     //  cart.add;
+                      
+                  //   }),
+                   CustomButton(
+          text: "add to cart",
+          fontSize: 15,
+          onClick: () {
+            cart.addItem(
+             widget.id, widget.price,
+                widget.name, widget.imageUrl);
+
+            Navigator.of(context).pushNamed(
+              CartWidget.routeName,
+            );
+          },
+        ),
+                     
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  child: Text(
-                  //  quantity.toString(),
-                  ('${widget.quantity} number'),
-                    style: TextStyle(
-                        fontSize: 20
-                    ),
-                  ),
-                ),
-                //  Container(
-                //   margin: EdgeInsets.only(top: 40),
-                //   child: Text(
-                // cart.totalAmout.toString(),
-                //   //  quantity.toString(),
-                // //  ('${widget.quantity} number'),
-                
-                //     style: TextStyle(
-                //         fontSize: 20
-                //     ),
-                //   ),
-                // ),
+        
                
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
+import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/models/producttt.dart';
 import 'package:store_app/screens/productDetails.dart';
@@ -14,6 +15,7 @@ class ProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
    final product = Provider.of<Product>(context,listen: false);
    final cart = Provider.of<Cart>(context,listen: false);
+   final favo =Provider.of<Favorite>(context,listen: false);
    print('object');
     return GridTile(
       child: GestureDetector(
@@ -24,7 +26,8 @@ class ProductWidget extends StatelessWidget {
           );
         }
       ,
-      child: Image.network(product.imageUrl,
+      child: Image.network(
+        product.imageUrl,
       fit:BoxFit.cover
       )
       ),
@@ -37,6 +40,7 @@ class ProductWidget extends StatelessWidget {
             ),
           color: Colors.redAccent,
           onPressed: (){
+            favo.addItem(product.id, product.price, product.name, product.imageUrl);
             product.toggleFavoritesStatus();
           },
          ) 

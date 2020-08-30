@@ -7,8 +7,10 @@ import 'package:store_app/constants/deleteImageFunction.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
 import 'package:store_app/models/UserData.dart';
+import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/CartScreen.dart';
+import 'package:store_app/screens/FavoriteScreen.dart';
 
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/screens/amdin/addProduct.dart';
@@ -94,8 +96,8 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         InkWell(
           onTap: () {
-            //   Navigator.of(context).pushNamed(FavoriteScreen.routeName);
-            productsContainer.showFavoritesOnly();
+              Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+         //   productsContainer.showFavoritesOnly();
             // Navigator.of(context).pushNamed(MainProductScreen.routeName);
           },
           child: ListTile(
@@ -108,9 +110,9 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         InkWell(
           onTap: () {
-            //   Navigator.of(context).pushNamed(FavoriteScreen.routeName);
-            productsContainer.showAll();
-            // Navigator.of(context).pushNamed(MainProductScreen.routeName);
+           
+         //   productsContainer.showAll();
+              Navigator.of(context).pushNamed(FavoriteScreen.routeName);
           },
           child: ListTile(
             title: Text("ShowAll Products"),
@@ -146,6 +148,22 @@ class _AppDrawerState extends State<AppDrawer> {
           child: ListTile(
             title: Text(
               "Sign in",
+              style: TextStyle(fontSize: 18),
+            ),
+            leading: Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+              size: 40,
+            ),
+          ),
+        ),
+             InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+          },
+          child: ListTile(
+            title: Text(
+              "wishlist",
               style: TextStyle(fontSize: 18),
             ),
             leading: Icon(

@@ -12,6 +12,7 @@ import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
 import 'package:store_app/models/producttt.dart';
 import 'models/UserData.dart';
+import 'models/favorite_model.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -20,6 +21,7 @@ void main() => runApp(
           ChangeNotifierProvider(create: (_) => Products()),
           ChangeNotifierProvider(create: (_) => UserData()),
           ChangeNotifierProvider(create: (_) => Product()),
+          ChangeNotifierProvider(create: (_)=>Favorite(),),
         ],
         child: StoreApp(),
       ),

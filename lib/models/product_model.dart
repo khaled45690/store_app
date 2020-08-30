@@ -62,7 +62,7 @@ class Products extends ChangeNotifier{
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg',
     category: "not now",
     quantity: 2,
-    isFavorite: true
+    isFavorite: false
   ),
    Product(
     id:'p2',
@@ -72,7 +72,7 @@ class Products extends ChangeNotifier{
     imageUrl: "https://images-na.ssl-images-amazon.com/images/I/61Ez19M9BZL._AC_UY1000_.jpg",
     category: "not now",
     quantity: 2,
-    isFavorite: true
+    isFavorite: false
   ), Product(
     id:'p4',
     name:'phone',
@@ -81,7 +81,7 @@ class Products extends ChangeNotifier{
     imageUrl: "https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg",
     category: "not now",
     quantity: 2,
-  //  isFavorite: false
+    isFavorite: false
   ),
    Product(
     id:'p5',
@@ -91,7 +91,7 @@ class Products extends ChangeNotifier{
     imageUrl: "https://images.all-free-download.com/images/graphiclarge/ecommerce_background_shopping_design_elements_icons_6838055.jpg",
     category: "not now",
     quantity: 2,
-     isFavorite: true
+     isFavorite: false
   ),
 
 
