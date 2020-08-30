@@ -74,33 +74,25 @@ class MainProductScreen extends StatelessWidget {
         ),
       drawer: AppDrawer(),
       body: 
-      ListView(
-              children:<Widget>[ 
-                image_carousel,
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-          child: GridView.builder(
-            itemCount: product.length,
-            itemBuilder: (ctx, i) =>
-             ChangeNotifierProvider.value(
-           //   builder: (c) => product[i],
-           value: product[i],
-              child: ProductWidget(
-                  // product[i].id,
-                  // product[i].name,//
-                  // product[i].imageUrl
-                  ),
-            ),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: (2 / 3),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
+      GridView.builder(
+       itemCount: product.length,
+       itemBuilder: (ctx, i) =>
+        ChangeNotifierProvider.value(
+      //   builder: (c) => product[i],
+      value: product[i],
+         child: ProductWidget(
+             // product[i].id,
+             // product[i].name,//
+             // product[i].imageUrl
+             ),
+       ),
+       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+         crossAxisCount: 2,
+         childAspectRatio: (2 / 3),
+         crossAxisSpacing: 10,
+         mainAxisSpacing: 10,
+       ),
           ),
-        ),]
-      ),
     );
   }
 }

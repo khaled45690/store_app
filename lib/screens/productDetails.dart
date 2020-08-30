@@ -1,3 +1,4 @@
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
@@ -20,6 +21,34 @@ class ProductDetails extends StatelessWidget {
 //    firstWhere((prod) => prod.id ==productId);
     final Product product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
+     Widget image_carousel =new Container(
+      height: 200,
+      child: new Carousel(
+        boxFit: BoxFit.cover,
+        images:[
+          NetworkImage(
+            'https://ae01.alicdn.com/kf/HTB1FNX1SpXXXXXZXXXXq6xXFXXXs/Hot-Sale-Spring-Autumn-New-Fashion-Brand-Men-Jacket-Coats-Thin-Overcoat-Cotton-Jackets-Mens-Outerwear.jpg_960x960.jpg'
+          ),
+           NetworkImage(
+            'https://i.pinimg.com/originals/c8/c8/f6/c8c8f6a67b4f3402de8c43739a158683.jpg'
+          ),
+           NetworkImage(
+            'https://ph-test-11.slatic.net/p/c1184852190620363e075fd428ee315e.jpg_340x340q80.jpg_.webp'
+          ),
+
+        ],
+        autoplay: true,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds:100),
+        indicatorBgPadding: 15.0,
+        
+        
+        dotColor: Colors.white,
+        dotBgColor: Colors.black87,
+        dotSpacing: 80,
+        
+      ),
+    );
 
    return Scaffold(
       appBar: AppBar(
@@ -42,14 +71,41 @@ class ProductDetails extends StatelessWidget {
           )
         ],
       ),
-      body: ListView(children: <Widget>[
+      body: ListView(
+        children: <Widget>[
+        //  image_carousel,
         Container(
           height: 300,
           width: double.infinity,
-          child: Image.network(
-            loadedProduct.imageUrl,
-            fit: BoxFit.cover,
+          child: Carousel(
+        boxFit: BoxFit.cover,
+        images:[
+          NetworkImage(
+            loadedProduct.imageUrl
           ),
+           NetworkImage(
+loadedProduct.imageUrl
+          ),
+           NetworkImage(
+loadedProduct.imageUrl
+          ),
+
+        ],
+        autoplay: true,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds:100),
+        indicatorBgPadding: 5.0,
+        
+        
+        dotColor: Colors.white,
+        dotBgColor: Colors.black87,
+        dotSpacing: 15,
+        
+      ),
+          // Image.network(
+          //   loadedProduct.imageUrl,
+          //   fit: BoxFit.cover,
+          // ),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),

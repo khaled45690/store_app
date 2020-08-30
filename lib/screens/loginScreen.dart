@@ -76,7 +76,9 @@ class LoginScreen extends StatelessWidget {
             icon: Icons.lock,
               onchange: (value){
                 password = value;
-              }
+              },
+                keyboardType: TextInputType.visiblePassword,
+
           ),
           SizedBox(height: 20),
           Padding(
