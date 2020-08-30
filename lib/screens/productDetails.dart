@@ -73,7 +73,7 @@ class ProductDetails extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-        //  image_carousel,
+    
         Container(
           height: 300,
           width: double.infinity,
@@ -98,7 +98,7 @@ loadedProduct.imageUrl
         
         
         dotColor: Colors.white,
-        dotBgColor: Colors.black87,
+       // dotBgColor: Colors.black87,
         dotSpacing: 15,
         
       ),
