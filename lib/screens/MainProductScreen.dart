@@ -21,7 +21,7 @@ class MainProductScreen extends StatelessWidget {
     final productsContainer =Provider.of<Products>(context,listen: false);
     Widget image_carousel =new Container(
       height: 200,
-      child: new Carousel(
+      child: Carousel(
         boxFit: BoxFit.cover,
         images:[
           NetworkImage(

@@ -6,6 +6,7 @@ const Save_Image = require('./server_apis/Save_Image');
 const getImage = require('./server_apis/getImage');
 const deleteImage = require('./server_apis/delete_Image');
 const updateUserData = require('./server_apis/updateUserData');
+const uploadAssetImages = require('./server_apis/saveAssetImages')
 
 // set up express app
 const app = express();
@@ -26,6 +27,8 @@ app.use('/api', (req , res) => {
         deleteImage(req , res);
     }else if (req.url === "/updateUserData"){
         updateUserData(req , res);
+    }else if (req.url === "/uploadAssetImages"){
+        uploadAssetImages(req , res);
     }
     
 });

@@ -28,6 +28,7 @@ dependencies:
   provider: ^4.3.2+1
   image_picker: ^0.6.7+4
   carousel_pro: ^0.0.13
+  multi_image_picker: ^4.7.12
     
 
 

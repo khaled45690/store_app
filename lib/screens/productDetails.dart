@@ -21,9 +21,9 @@ class ProductDetails extends StatelessWidget {
 //    firstWhere((prod) => prod.id ==productId);
     final Product product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
-     Widget image_carousel =new Container(
+     Widget image_carousel = Container(
       height: 200,
-      child: new Carousel(
+      child: Carousel(
         boxFit: BoxFit.cover,
         images:[
           NetworkImage(

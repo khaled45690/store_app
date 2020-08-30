@@ -1,10 +1,12 @@
-
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/models/product_model.dart';
-import 'package:store_app/models/producttt.dart';
+import 'package:store_app/constants/uploadAssetImages.dart';
+import 'package:store_app/models/addProduct.dart';
+import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 
 class AdminEditProduct extends StatefulWidget {
@@ -15,80 +17,16 @@ class AdminEditProduct extends StatefulWidget {
 }
 
 class _AdminEditProductState extends State<AdminEditProduct> {
-  final _priceFocusNode =FocusNode();
-  final _descriptionFocusNode =FocusNode();
-  final _quantityFocusNode =FocusNode();
-  final _categortFocusNode = FocusNode();
-  final _imageFocusNode = FocusNode();
-  final _name = TextEditingController();
-  final _price =TextEditingController();
-  final _description =TextEditingController();
-  final _quantity=TextEditingController();
-  final _categort = TextEditingController();
-  final _imageurl = TextEditingController();
-  final  _key = GlobalKey<FormState>();
 
-      var _editProduct =Product(
-      id: null,
-      name: '',
-      price: 0,
-      description: '',
-      quantity: 0,
-      category: '',
-      imageUrl: ''
-      );
+  String nameOfProduct , description , price , quantity ;
 
-  @override
-  void initState() {
-      _imageurl.addListener(_updateImageUrl);
-    super.initState();
-  }
-  void _updateImageUrl(){
-    if(!_imageFocusNode.hasFocus){
-      setState(() {
-        
-      });
-    }
-  }
-      @override
-  void dispose() {
-    _priceFocusNode.dispose();
-    _descriptionFocusNode.dispose();
-    _categortFocusNode.dispose();
-    _quantityFocusNode.dispose();
-    _price.dispose();
-    _description.dispose();
-    _categort.dispose();
-    _quantity.dispose();
-
-    super.dispose();
-  }
-  
-
-
-    void  _saveForm(){
-     final isValid =   _key.currentState.validate();
-     if(isValid){
-      _key.currentState.save();
-       Provider.of<Products>(context, listen: false).addProduct(_editProduct);
-        Navigator.of(context).pop();
-     }
-        print(_editProduct.name);
-        print(_editProduct.price);
-        print(_editProduct.description);
-        print(_editProduct.quantity);
-        print(_editProduct.category);
-      }
-      @override
   Widget build(BuildContext context) {
-
-
+    AddProduct addProduct = Provider.of<AddProduct>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title:Text("Edit Product"),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.save),
-           onPressed: _saveForm
            )
 
            
@@ -97,131 +35,75 @@ class _AdminEditProductState extends State<AdminEditProduct> {
       body: Padding(
         padding: const EdgeInsets.only(top:75),
         child: Form(
-          key: _key,
           child: ListView(children: <Widget>[
 
             CustomTextField(
               hint: 'name of product',
-              controller: _name,
-              onSaved: (value){
-                _editProduct =Product(
-                  id: null,
-                  name: value,
-                  price: _editProduct.price,
-                  description: _editProduct.description,
-                  imageUrl: _editProduct.imageUrl,
-                  quantity: _editProduct.quantity,
-                  category: _editProduct.category
-                  );
-              },
-              onFieldSubmitted: (_){
-                FocusScope.of(context).requestFocus(_descriptionFocusNode);
+              onchange: (value){
+                nameOfProduct = value;
               },
               ),
               SizedBox(height:20),
                CustomTextField(
               hint: 'description of product',
-              controller: _description,
-              focusNode:  _descriptionFocusNode,
-               onSaved: (value){
-                _editProduct =Product(
-                  id: null,
-                  name: _editProduct.name,
-                  price: _editProduct.price,
-                  description: value,
-                  imageUrl: _editProduct.imageUrl,
-                  quantity: _editProduct.quantity,
-                  category: _editProduct.category
-                  );
-                
-               },
-                   onFieldSubmitted: (_){
-                FocusScope.of(context).requestFocus(_priceFocusNode);
-               }
-              
+                 onchange: (value){
+                   description = value;
+                 },
               ),
                             SizedBox(height:20),
 
                CustomTextField(
               hint: 'price of product',
-              controller: _price,
-              keyboardType: TextInputType.number,
-              focusNode: _priceFocusNode,
-              
-                     onSaved: (value){
-                _editProduct =Product(
-                  id: null,
-                  name: _editProduct.name,
-                  price: double.parse(value),
-                  description: _editProduct.description,
-                  imageUrl: _editProduct.imageUrl,
-                  quantity: _editProduct.quantity,
-                  category: _editProduct.category
-                  );
-               },
-                 onFieldSubmitted: (_){
-                FocusScope.of(context).requestFocus(_categortFocusNode);
-              },
-               
+                 onchange: (value){
+                   price = value;
+                 },
               ),
                             SizedBox(height:20),
 
                CustomTextField(
-              hint: 'category of product',
-              controller: _categort,
-              focusNode: _categortFocusNode,
-                     onSaved: (value){
-                _editProduct =Product(
-                  id: null,
-                  name: _editProduct.name,
-                  price: _editProduct.price,
-                  description: _editProduct.description,
-                  imageUrl: _editProduct.imageUrl,
-                  quantity: _editProduct.quantity,
-                  category: value
-                  );
-               } , onFieldSubmitted: (_){
-                FocusScope.of(context).requestFocus(_quantityFocusNode);
-              },
+              hint: 'quantity of product',
+                 onchange: (value){
+                   quantity = value;
+                 },
               ),
-                             SizedBox(height:20),
+            SizedBox(height:40),
+            Container(
+              margin: EdgeInsets.only(left: 50, right: 50,bottom: 5),
+              height: 60,
+              child: CustomButton(
+                text: "add product images",
+                fontSize: 20,
+                onClick: ()async{
+                  List<Asset> images = List<Asset>();
+                  List<Asset> resultList = List<Asset>();
 
-               CustomTextField(
-              controller: _quantity,
-              hint: 'quatatiy of product',
-              keyboardType: TextInputType.number, 
-              focusNode: _quantityFocusNode,
-                     onSaved: (value){
-                _editProduct =Product(
-                  id: null,
-                  name: _editProduct.name,
-                  price: _editProduct.price,
-                  description: _editProduct.description,
-                  imageUrl: _editProduct.imageUrl,
-                  quantity: int.parse(value),
-                  category: _editProduct.category
+                  resultList = await MultiImagePicker.pickImages(
+                    maxImages: 300,
+                    enableCamera: true,
+                    selectedAssets: images,
+                    cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
+                    materialOptions: MaterialOptions(
+                      actionBarColor: "#abcdef",
+                      actionBarTitle: "Example App",
+                      allViewTitle: "All Photos",
+                      useDetailsView: false,
+                      selectCircleStrokeColor: "#000000",
+                    ),
                   );
-               }
-              ),
-                    CustomTextField(
-              controller: _imageurl,
-              hint: 'imageurl of product',
-              keyboardType: TextInputType.number, 
-              focusNode: _quantityFocusNode,
-                     onSaved: (value){
-                _editProduct =Product(
-                  id: null,
-                  name: _editProduct.name,
-                  price: _editProduct.price,
-                  description: _editProduct.description,
-                  imageUrl: value,
-                  quantity: _editProduct.quantity,
-                  category: _editProduct.category
-                  );
-               }
-              ),
+                  resultList.forEach((element) async{
+                    uploadAssetImages(element);
+                  });
+                  Timer(const Duration(milliseconds: 1000), () {
+                    print(addProduct.productImages);
+                  });
+                },
 
-        ],)),
+              ),
+            ),
+
+        ],
+          ),
+        ),
       ),
       
     );
