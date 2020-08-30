@@ -45,7 +45,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 if(picked != null){
                   saveImage(picked);
                   userDataClone["profileImage"] = basename(picked.path);
-
+                  updateUserData(userDataClone);
                   print(userData.userData);
                     userData.userData = userDataClone;
                 }
