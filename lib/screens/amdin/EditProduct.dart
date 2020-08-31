@@ -1,12 +1,15 @@
-import 'dart:async';
-
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:store_app/constants/uploadAssetImages.dart';
+import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/addProduct.dart';
+import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
+
+import '../MainProductScreen.dart';
 
 
 class AdminEditProduct extends StatefulWidget {
@@ -19,17 +22,71 @@ class AdminEditProduct extends StatefulWidget {
 class _AdminEditProductState extends State<AdminEditProduct> {
 
   String nameOfProduct , description , price , quantity ;
+  List<String> images = [];
+
+  uploadAssetImages(Asset image) async {
+    AddProduct addproductimage = new AddProduct();
+    String imageName;
+    print("${kUrl}uploadAssetImages");
+    Uri uri = Uri.parse("${kUrl}uploadAssetImages");
+    http.MultipartRequest request = http.MultipartRequest("POST", uri);
+    ByteData byteData = await image.getByteData();
+    List<int> imageData = byteData.buffer.asUint8List();
+    http.MultipartFile multipartFile = http.MultipartFile.fromBytes(
+      'image',
+      imageData,
+    );
+    request.files.add(multipartFile);
+// send
+    var response = await request.send();
+    print(response.statusCode);
+    response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
+      setState(() {
+        images.add(value);
+        print(images);
+      });
+
+    });
+
+  }
 
   Widget build(BuildContext context) {
-    AddProduct addProduct = Provider.of<AddProduct>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title:Text("Edit Product"),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.save),
+            onPressed: () async{
+              final response = await http.post(
+                "${kUrl}addProduct",
+                headers: <String, String>{
+                  'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: jsonEncode(<dynamic, dynamic>{
+                  "nameOfProduct": nameOfProduct,
+                  "description": description,
+                  "price": price,
+                  "quantity": quantity,
+                  "images": images,
+                }),
+              );
+
+              final Map responseJson = json.decode(response.body);
+              print(responseJson);
+              if (responseJson["state"] != null) {
+                print(responseJson);
+              } else {
+                print("--------------------------------------------------------------------");
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              }
+            },
            )
 
-           
+
         ],
       ),
       body: Padding(
@@ -93,9 +150,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                   resultList.forEach((element) async{
                     uploadAssetImages(element);
                   });
-                  Timer(const Duration(milliseconds: 1000), () {
-                    print(addProduct.productImages);
-                  });
+
                 },
 
               ),
@@ -105,9 +160,9 @@ class _AdminEditProductState extends State<AdminEditProduct> {
           ),
         ),
       ),
-      
+
     );
-    
+
   }
   
 }
