@@ -1,3 +1,6 @@
+
+
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
@@ -26,7 +29,10 @@ void main() => runApp(
           ChangeNotifierProvider(create: (_) => AddProduct()),
           ChangeNotifierProvider(create: (_)=>Favorite(),),
         ],
-        child: StoreApp(),
+        child: DevicePreview(
+        //  enabled: !kReleaseMode,
+          builder:(context)=> StoreApp()),
+        
       ),
     );
 
@@ -35,6 +41,7 @@ class StoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: DevicePreview.appBuilder,
        debugShowCheckedModeBanner: false,
 
       title: "StoreApp",

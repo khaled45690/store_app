@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
+import 'package:store_app/ui/views/home_view.dart';
 
 
 class SpashScreenWidget extends StatelessWidget {

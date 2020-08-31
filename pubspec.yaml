@@ -30,6 +30,7 @@ dependencies:
   carousel_pro: ^0.0.13
   multi_image_picker: ^4.7.12
   splashscreen: ^1.2.0
+  device_preview:  ^0.4.8
     
 
 

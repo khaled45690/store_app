@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/models/producttt.dart';
+import 'package:store_app/ui/base_widget.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
@@ -21,8 +23,8 @@ class MainProductScreen extends StatelessWidget {
     final List<Product> product = productData.items;
     final productsContainer =Provider.of<Products>(context,listen: false);
   
-    return 
-    
+
+    return
     Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
       appBar: 
@@ -73,5 +75,6 @@ class MainProductScreen extends StatelessWidget {
             ),
       ),
     );
+   
   }
 }
