@@ -11,6 +11,7 @@ import 'package:store_app/screens/amdin/addProduct.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
 import 'package:store_app/models/producttt.dart';
+import 'package:store_app/widgets/spalshScreenWidget.dart';
 import 'models/UserData.dart';
 import 'models/addProduct.dart';
 import 'models/favorite_model.dart';
@@ -40,7 +41,8 @@ class StoreApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFFEAE8FF),
       ),
-      home: MainProductScreen(),
+      home:     SpashScreenWidget(),
+
       routes: {
         CartWidget.routeName: (ctx) => CartWidget(),
         LoginScreen.routeName: (ctx) => LoginScreen(),

@@ -9,6 +9,7 @@ import 'package:store_app/widgets/appDrawer.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
 import 'package:store_app/widgets/productWidget.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:store_app/widgets/spalshScreenWidget.dart';
 import 'CartScreen.dart';
 
 class MainProductScreen extends StatelessWidget {
@@ -20,7 +21,9 @@ class MainProductScreen extends StatelessWidget {
     final List<Product> product = productData.items;
     final productsContainer =Provider.of<Products>(context,listen: false);
   
-    return Scaffold(
+    return 
+    
+    Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
       appBar: 
       AppBar(

@@ -88,7 +88,8 @@ class _ResuableProductFavoriteState extends State<ResuableProductFavorite> {
           onClick: () {
             cart.addItem(
              widget.id, widget.price,
-                widget.name, widget.imageUrl);
+                widget.name, widget.imageUrl,
+                widget.quantity);
 
             Navigator.of(context).pushNamed(
               CartWidget.routeName,

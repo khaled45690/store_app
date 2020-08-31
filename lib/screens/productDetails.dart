@@ -135,7 +135,7 @@ loadedProduct.imageUrl
           fontSize: 15,
           onClick: () {
             cart.addItem(loadedProduct.id, loadedProduct.price,
-                loadedProduct.name, loadedProduct.imageUrl);
+                loadedProduct.name, loadedProduct.imageUrl,loadedProduct.quantity);
 
             Navigator.of(context).pushNamed(
               CartWidget.routeName,

@@ -66,7 +66,8 @@ notifyListeners();
        return ;
      }
      if(_items[productId].quantity>1){
-       _items.update(productId, (exsitingFavItem) => FavoriteItem(id: exsitingFavItem.id,
+       _items.update(productId, (exsitingFavItem) => FavoriteItem
+       (id: exsitingFavItem.id,
        name: exsitingFavItem.name,
        price: exsitingFavItem.price,
        quantity: exsitingFavItem.quantity - 1
