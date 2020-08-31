@@ -18,9 +18,7 @@ class ProductWidget extends StatelessWidget {
    final favo =Provider.of<Favorite>(context,listen: false);
    print('object');
     return GridTile(
-      
       child: GestureDetector(
-        
         onTap: (){
           Navigator.of(context).pushNamed(
             ProductDetails.routeName,
@@ -45,14 +43,14 @@ class ProductWidget extends StatelessWidget {
             ),
          color: Colors.red,
           onPressed: (){
-            favo.removeItem(product.id,);
+            favo.removeSingleItem(product.id,);
             product.toggleFavoritesStatus();
           },
          ) 
          : IconButton(
           icon: Icon(
              Icons.favorite_border 
-            //  Icons.favorite 
+             
             ),
           color: Colors.white,
           onPressed: (){
@@ -72,6 +70,12 @@ class ProductWidget extends StatelessWidget {
 
              onPressed: (){
              cart.addItem(product.id, product.price, product.name, product.imageUrl);
+             Scaffold.of(context).showSnackBar(SnackBar(content: Text('Added item to cart',textAlign:  TextAlign.center),
+             duration: Duration(seconds: 2),
+             action: SnackBarAction(label: "UNDO", onPressed: (){
+               cart.removeSingleItem(product.id);
+             })
+             ));
              
              }
              ),

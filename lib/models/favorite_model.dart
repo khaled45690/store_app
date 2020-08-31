@@ -57,14 +57,32 @@ notifyListeners();
    }
 
      void removeItem(String productId){
-      if(_items.containsKey(productId)){
-          _items.remove( (existingCartItem) => existingCartItem.name == productId
-            );
-      }
-notifyListeners();
+      _items.containsKey(productId);
+        notifyListeners();
+   }
+
+   void removeSingleItem(String productId){
+     if(!_items.containsKey(productId)){
+       return ;
+     }
+     if(_items[productId].quantity>1){
+       _items.update(productId, (exsitingFavItem) => FavoriteItem(id: exsitingFavItem.id,
+       name: exsitingFavItem.name,
+       price: exsitingFavItem.price,
+       quantity: exsitingFavItem.quantity - 1
+       ));
+     }
+     else{
+       _items.remove(productId);
+     }
+     notifyListeners();
+
+     
    }
 
 
-
+void clear(){
+  _items ={};
+}
 
 }

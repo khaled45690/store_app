@@ -19,7 +19,7 @@ class Product  extends ChangeNotifier{
       @required   this.imageUrl,
       @required   this.category,
       @required   this.quantity,
-         this.isFavorite =false
+      this.isFavorite =false
  
       });
       void toggleFavoritesStatus(){
