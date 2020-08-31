@@ -56,5 +56,15 @@ class Favorite with ChangeNotifier {
 notifyListeners();
    }
 
+     void removeItem(String productId){
+      if(_items.containsKey(productId)){
+          _items.remove( (existingCartItem) => existingCartItem.name == productId
+            );
+      }
+notifyListeners();
+   }
+
+
+
 
 }

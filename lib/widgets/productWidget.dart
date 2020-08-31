@@ -18,7 +18,9 @@ class ProductWidget extends StatelessWidget {
    final favo =Provider.of<Favorite>(context,listen: false);
    print('object');
     return GridTile(
+      
       child: GestureDetector(
+        
         onTap: (){
           Navigator.of(context).pushNamed(
             ProductDetails.routeName,
@@ -32,13 +34,27 @@ class ProductWidget extends StatelessWidget {
       )
       ),
       footer: GridTileBar(
+        
         backgroundColor: Colors.white24,
         leading: Consumer<Product> (
-         builder:(ctx, product,_) => IconButton(
+         builder:(ctx, product,_) => 
+         product.isFavorite ?
+         IconButton(
           icon: Icon(
-            product.isFavorite ? Icons.favorite :Icons.favorite_border
+             Icons.favorite
             ),
-          color: Colors.redAccent,
+         color: Colors.red,
+          onPressed: (){
+            favo.removeItem(product.id,);
+            product.toggleFavoritesStatus();
+          },
+         ) 
+         : IconButton(
+          icon: Icon(
+             Icons.favorite_border 
+            //  Icons.favorite 
+            ),
+          color: Colors.white,
           onPressed: (){
             favo.addItem(product.id, product.price, product.name, product.imageUrl);
             product.toggleFavoritesStatus();
@@ -51,7 +67,7 @@ class ProductWidget extends StatelessWidget {
           style: TextStyle(color:Colors.black,fontSize:20),
         ),
   
-            trailing: IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black, ),
+            trailing: IconButton(icon: Icon(Icons.add_shopping_cart,color: Colors.black, ),
 
 
              onPressed: (){

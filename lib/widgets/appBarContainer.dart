@@ -3,6 +3,9 @@ class AppBarContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       decoration:  BoxDecoration(
        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20) , bottomRight: Radius.circular(20)),
         gradient: LinearGradient(

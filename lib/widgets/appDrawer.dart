@@ -32,7 +32,9 @@ class _AppDrawerState extends State<AppDrawer> {
     if (userData.userData != null) {
       print(userData.userData["profileImage"]);
       return Drawer(
+        
           child: ListView(children: <Widget>[
+  
         UserAccountsDrawerHeader(
           accountName: Text(userData.userData["name"]),
           accountEmail: Text(userData.userData["email"]),
@@ -115,20 +117,20 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ),
         ),
-        InkWell(
-          onTap: () {
+        // InkWell(
+        //   onTap: () {
            
-         //   productsContainer.showAll();
-              Navigator.of(context).pushNamed(FavoriteScreen.routeName);
-          },
-          child: ListTile(
-            title: Text("ShowAll Products"),
-            leading: Icon(
-              Icons.select_all,
-              color: Colors.blue,
-            ),
-          ),
-        ),
+        //  //   productsContainer.showAll();
+        //       Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+        //   },
+        //   child: ListTile(
+        //     title: Text("ShowAll Products"),
+        //     leading: Icon(
+        //       Icons.select_all,
+        //       color: Colors.blue,
+        //     ),
+        //   ),
+        // ),
         InkWell(
           onTap: () {
             userData.userData = null;

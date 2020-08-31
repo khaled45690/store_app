@@ -6,14 +6,14 @@ class Product  extends ChangeNotifier{
  final String name;
  final double price;
  final String description;
- String imageUrl;
+       String imageUrl;
  final String category;
  final int quantity;
   bool isFavorite;
   Product(
       { 
       @required  this.id,
-      @required   this.name,
+      @required   this.name, 
       @required   this.price,
       @required   this.description,
       @required   this.imageUrl,

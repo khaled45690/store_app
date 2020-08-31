@@ -19,35 +19,7 @@ class MainProductScreen extends StatelessWidget {
     final Products productData = Provider.of<Products>(context);
     final List<Product> product = productData.items;
     final productsContainer =Provider.of<Products>(context,listen: false);
-    Widget image_carousel =new Container(
-      height: 200,
-      child: Carousel(
-        boxFit: BoxFit.cover,
-        images:[
-          NetworkImage(
-            'https://ae01.alicdn.com/kf/HTB1FNX1SpXXXXXZXXXXq6xXFXXXs/Hot-Sale-Spring-Autumn-New-Fashion-Brand-Men-Jacket-Coats-Thin-Overcoat-Cotton-Jackets-Mens-Outerwear.jpg_960x960.jpg'
-          ),
-           NetworkImage(
-            'https://i.pinimg.com/originals/c8/c8/f6/c8c8f6a67b4f3402de8c43739a158683.jpg'
-          ),
-           NetworkImage(
-            'https://ph-test-11.slatic.net/p/c1184852190620363e075fd428ee315e.jpg_340x340q80.jpg_.webp'
-          ),
-
-        ],
-        autoplay: true,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds:100),
-        indicatorBgPadding: 15.0,
-        
-        
-        dotColor: Colors.white,
-        dotBgColor: Colors.black87,
-        dotSpacing: 80,
-        
-      ),
-    );
-
+  
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
       appBar: 
@@ -62,9 +34,9 @@ class MainProductScreen extends StatelessWidget {
        value: cart.itemCount.toString(),
             ),
             child: IconButton(
-        color: Colors.black,
+        color: Colors.white,
         
-        icon: Icon(Icons.add_shopping_cart),
+        icon: Icon(Icons.shopping_cart),
         onPressed: () {
             Navigator.of(context).pushNamed(CartWidget.routeName);
         },

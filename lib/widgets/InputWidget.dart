@@ -4,6 +4,7 @@ class InputWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       width: 300,
+    
       child: Center(
         child: TextFormField(
           style: TextStyle(
@@ -19,14 +20,14 @@ class InputWidget extends StatelessWidget {
           },
           onSaved:(ss){},
           obscureText: false,
-          cursorColor: Colors.black,
+          cursorColor: Colors.grey,
           decoration: InputDecoration(
             hintText: "Search",
             contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0.0),
             prefixIcon: Icon(
               Icons.search,
               size: 20,
-              color: Colors.black,
+              color: Colors.white,
             ),
             filled: true,
             fillColor: Colors.white60,

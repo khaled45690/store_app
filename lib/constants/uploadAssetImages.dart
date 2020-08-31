@@ -21,6 +21,8 @@ uploadAssetImages(Asset image) async {
 // send
   var response = await request.send();
   print(response.statusCode);
+
+
 response.stream.transform(utf8.decoder).listen((value) {
     print(value);
     addproductimage.addProductImages(value);

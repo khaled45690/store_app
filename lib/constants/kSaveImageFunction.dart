@@ -18,6 +18,6 @@ saveImage(File imageFile) async {
 
   response.stream.transform(utf8.decoder).listen((value) {
     print(value);
-    return true;
+    
   });
 }
