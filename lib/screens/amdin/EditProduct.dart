@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:store_app/constants/kConstants.dart';
-import 'package:store_app/models/addProduct.dart';
+import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
@@ -25,7 +25,6 @@ class _AdminEditProductState extends State<AdminEditProduct> {
   List<String> images = [];
 
   uploadAssetImages(Asset image) async {
-    AddProduct addproductimage = new AddProduct();
     String imageName;
     print("${kUrl}uploadAssetImages");
     Uri uri = Uri.parse("${kUrl}uploadAssetImages");

@@ -1,5 +1,3 @@
-
-
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +14,7 @@ import 'package:store_app/screens/productDetails.dart';
 import 'package:store_app/models/producttt.dart';
 import 'package:store_app/widgets/spalshScreenWidget.dart';
 import 'models/UserData.dart';
-import 'models/addProduct.dart';
+import 'models/MainProductModel.dart';
 import 'models/favorite_model.dart';
 
 void main() => runApp(
@@ -24,17 +22,12 @@ void main() => runApp(
         providers: [
           ChangeNotifierProvider(create: (_) => Cart()),
           ChangeNotifierProvider(create: (_) => Products()),
+          ChangeNotifierProvider(create: (_) => MainProductModel()),
           ChangeNotifierProvider(create: (_) => UserData()),
           ChangeNotifierProvider(create: (_) => Product()),
-          ChangeNotifierProvider(create: (_) => AddProduct()),
           ChangeNotifierProvider(create: (_)=>Favorite(),),
         ],
-    //    child: DevicePreview(
-        //  enabled: !kReleaseMode,
-          //builder:(context)=> 
-         child: StoreApp()
-         // ),
-        
+        child: StoreApp(),
       ),
     );
 
@@ -43,7 +36,6 @@ class StoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    //  builder: DevicePreview.appBuilder,
        debugShowCheckedModeBanner: false,
 
       title: "StoreApp",

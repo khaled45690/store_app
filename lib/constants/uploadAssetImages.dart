@@ -3,10 +3,9 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:store_app/constants/kConstants.dart';
-import 'package:store_app/models/addProduct.dart';
+import 'package:store_app/models/MainProductModel.dart';
 
 uploadAssetImages(Asset image) async {
-  AddProduct addproductimage = new AddProduct();
   String imageName;
   print("${kUrl}uploadAssetImages");
   Uri uri = Uri.parse("${kUrl}uploadAssetImages");
@@ -25,7 +24,6 @@ uploadAssetImages(Asset image) async {
 
 response.stream.transform(utf8.decoder).listen((value) {
     print(value);
-    addproductimage.addProductImages(value);
   });
 
 }

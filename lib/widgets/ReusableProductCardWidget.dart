@@ -1,20 +1,26 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:store_app/constants/kConstants.dart';
 
 import 'CustomButton.dart';
 class ReusableCardWidget extends StatefulWidget {
-  // final String id;
-  // final double price;
-  // final int quantity;
-  // final String name;
-  // ReusableCardWidget(this.id,this.price,this.quantity,this.name);
+   final Map product;
+
+   ReusableCardWidget(this.product);
   @override
-  _ReusableCardWidgetState createState() => _ReusableCardWidgetState();
+  _ReusableCardWidgetState createState() => _ReusableCardWidgetState(productMap : product);
 }
 
 class _ReusableCardWidgetState extends State<ReusableCardWidget> {
+   Map productMap;
+
+   _ReusableCardWidgetState({this.productMap});
+
   @override
   Widget build(BuildContext context) {
+    List images = productMap["images"];
+    print("$kUrl${jsonDecode(images[0])}");
     return Container(
       padding: EdgeInsets.only(bottom:10),
       margin: EdgeInsets.all(8),
@@ -27,11 +33,13 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
             children: <Widget>[
               Container(
                 width: 140,
-                child: Image.network("https://specs1.com/wp-content/uploads/2018/10/HUAWEI-Mate-20-Pro-600x600.jpg"),
+                height: 200,
+                margin: EdgeInsets.only(top: 30),
+                child: Image.network("${kUrl}getImage/${jsonDecode(images[0])}"),
               ),
               SizedBox(height: 20.0),
               Text(
-                "name of product",
+                productMap["nameOfProduct"],
                 style: TextStyle(
                   fontWeight:FontWeight.bold,
                   fontSize: 18,
@@ -41,21 +49,21 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
               SizedBox(height: 20.0),
               Text(
               //  '\$${widget.price.toString()}',
-              "price of product",
+              "${ productMap["price"]} \$",
                 style: TextStyle(
                   fontWeight:FontWeight.bold,
                   fontSize: 18,
 
                 ),
               ),
-              SizedBox(height: 60.0),
+              SizedBox(height: 20.0),
               CustomButton(text: "add to cart", fontSize: 15,),
             ],
           ),
           Column(
             children: <Widget>[
               IconButton(
-                padding: EdgeInsets.only(bottom: 260),
+                padding: EdgeInsets.only(bottom: 290 , top: 20),
                 color: Colors.red,
                 icon: Icon(Icons.favorite),
                 onPressed: () {},
