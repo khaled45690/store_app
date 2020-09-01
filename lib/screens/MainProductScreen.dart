@@ -24,10 +24,14 @@ class _MainProductScreenState extends State<MainProductScreen> {
     super.initState();
     MainProductModel mainProductModel = Provider.of<MainProductModel>(context, listen: false);
     mainProductModel.getMainProduct();
+    Timer(const Duration(milliseconds: 500), () {
+      mainProductModel.printoo();
+    });
+
   }
   @override
   Widget build(BuildContext context) {
-    MainProductModel mainProductModel = Provider.of<MainProductModel>(context, listen: false);
+    MainProductModel mainProductModel = Provider.of<MainProductModel>(context);
 
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
@@ -63,6 +67,7 @@ class _MainProductScreenState extends State<MainProductScreen> {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: (1 / 2),
+
             crossAxisSpacing: 0,
             mainAxisSpacing: 0,
           ),

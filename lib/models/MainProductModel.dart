@@ -9,14 +9,16 @@ class MainProductModel extends ChangeNotifier {
 
   set products(List productsParameter){
     _products = productsParameter;
-//    print(_products);
+    print(_products);
     notifyListeners();
 }
 getMainProduct() async{
-  print("${kUrl}Signin");
+  print("${kUrl}getMainProduct");
   final response = await http.get("${kUrl}getMainProduct");
-  final List responseJson = json.decode(response.body);
   products =  json.decode(response.body);
+}
+printoo(){
+    print(_products);
 }
 
 }
