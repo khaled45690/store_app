@@ -18,20 +18,25 @@ class ProductWidget extends StatelessWidget {
    final favo =Provider.of<Favorite>(context,listen: false);
    print('object');
     return GridTile(
-      child: GestureDetector(
-        onTap: (){
-          Navigator.of(context).pushNamed(
-            ProductDetails.routeName,
-            arguments: product.id
-          );
-        }
-      ,
-      child: Image.network(
-        product.imageUrl,
-      fit:BoxFit.cover
-      )
+      child: Container(
+              width: MediaQuery.of(context).size.width,
+
+        child: GestureDetector(
+          onTap: (){
+            Navigator.of(context).pushNamed(
+              ProductDetails.routeName,
+              arguments: product.id
+            );
+          }
+        ,
+        child: Image.network(
+          product.imageUrl,
+        fit:BoxFit.cover
+        )
+        ),
       ),
       footer: GridTileBar(
+        
         
         backgroundColor: Colors.white24,
         leading: Consumer<Product> (
@@ -60,9 +65,14 @@ class ProductWidget extends StatelessWidget {
          ) 
          ),
         
-        title: Text(product.name,
-        textAlign: TextAlign.center,
-          style: TextStyle(color:Colors.black,fontSize:20),
+        title: Container(
+          width: 50,
+      //    height: MediaQuery.of(context).size.height,
+
+          child: Text(product.name,
+          textAlign: TextAlign.center,
+            style: TextStyle(color:Colors.black,fontSize:15),
+          ),
         ),
   
             trailing: IconButton(icon: Icon(Icons.add_shopping_cart,color: Colors.black, ),
@@ -73,7 +83,7 @@ class ProductWidget extends StatelessWidget {
              Scaffold.of(context).hideCurrentSnackBar();
              Scaffold.of(context).showSnackBar(
                SnackBar(
-               content: Text('Added ${product.name} to cart',textAlign:  TextAlign.center),
+               content: Text('Added ${product.name} to cart',textAlign:  TextAlign.center,),
              duration: Duration(seconds: 2),
              //action: 
            //  SnackBarAction(label: "UNDO", onPressed: (){cart.removeSingleItem(product.id);}
@@ -85,7 +95,7 @@ class ProductWidget extends StatelessWidget {
              ),
 
 
-            subtitle:Text('\$${product.price.toString()}',style: TextStyle(color:Colors.black,fontSize:20),),
+            subtitle:Text('\$${product.price.toString()}',style: TextStyle(color:Colors.black,fontSize:15),),
 
 
         // onPressed: (){

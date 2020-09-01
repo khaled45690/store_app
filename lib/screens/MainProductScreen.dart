@@ -1,4 +1,6 @@
 
+
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
@@ -16,14 +18,19 @@ import 'CartScreen.dart';
 
 class MainProductScreen extends StatelessWidget {
   static const routeName = '/Main';
-
+void tagraba(){
+  print("tagraba");
+  }
   @override
   Widget build(BuildContext context) {
+    tagraba();
     final Products productData = Provider.of<Products>(context);
     final List<Product> product = productData.items;
     final productsContainer =Provider.of<Products>(context,listen: false);
   
-
+  return BaseWidget(
+    builder: (context,sizingInformation){
+  
     return
     Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
@@ -53,6 +60,7 @@ class MainProductScreen extends StatelessWidget {
       body: 
       Container(
          width: MediaQuery.of(context).size.width,
+      
       height: MediaQuery.of(context).size.height,
         child: GridView.builder(
          itemCount: product.length,
@@ -74,6 +82,8 @@ class MainProductScreen extends StatelessWidget {
          ),
             ),
       ),
+    );
+    }
     );
    
   }

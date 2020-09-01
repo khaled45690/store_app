@@ -3,7 +3,7 @@ class InputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      width: 300,
+      width: 230,
     
       child: Center(
         child: TextFormField(

@@ -13,15 +13,17 @@ class BaseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuery =MediaQuery.of(context); 
   
-    return
-    LayoutBuilder(builder: ( context, boxConstraints) { 
+    return LayoutBuilder(builder: ( context, boxConstraints) { 
        var sizingInformation =SizingInformation(
      orientation: mediaQuery.orientation,
      devicesScreenType: getDeviceType(mediaQuery),
      screenSize: mediaQuery.size,
      localWidgetSize: 
-     Size(boxConstraints.maxWidth, boxConstraints.minHeight)
+    // Size(boxConstraints.maxWidth, boxConstraints.minHeight)
+          Size(320, 378.7)
+
    );
+   return
     builder(context,sizingInformation);
     
      });

@@ -29,9 +29,11 @@ void main() => runApp(
           ChangeNotifierProvider(create: (_) => AddProduct()),
           ChangeNotifierProvider(create: (_)=>Favorite(),),
         ],
-        child: DevicePreview(
+    //    child: DevicePreview(
         //  enabled: !kReleaseMode,
-          builder:(context)=> StoreApp()),
+          //builder:(context)=> 
+         child: StoreApp()
+         // ),
         
       ),
     );
@@ -41,7 +43,7 @@ class StoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      builder: DevicePreview.appBuilder,
+    //  builder: DevicePreview.appBuilder,
        debugShowCheckedModeBanner: false,
 
       title: "StoreApp",
