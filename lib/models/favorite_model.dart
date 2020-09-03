@@ -1,89 +1,33 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+import 'dart:convert';
 
-class FavoriteItem {
-  final String id;
-  final String name;
-  final String imageUrl;
-  final int quantity;
-  final double price;
-  FavoriteItem({
-     @required this.id,
-     @required this.name,
-     @required this.imageUrl,
-     @required this.quantity,
-     @required this.price});
-}
+import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Favorite with ChangeNotifier {
-  Map<String,FavoriteItem>_items ={};
+  List _favorite = List();
+  bool _isTrue = false;
 
+  List get favorite => _favorite;
+  bool get isTrue => _isTrue;
 
-  Map<String,FavoriteItem> get items{
-    return{..._items};
+  set favorite(List favoriteParameter){
+    _favorite = favoriteParameter;
+    notifyListeners();
   }
-   
-  int get itemCount{
-    return  _items.length;
+
+  set isTrue(bool isTrueParameter){
+    _isTrue = isTrueParameter;
+    Timer(const Duration(milliseconds: 100), () {
+      notifyListeners();
+    });
+
   }
 
 
+  void removeItem(String productId) {}
 
+  void removeSingleItem(String productId) {}
 
-
-   void addItem(String productId, double price, String name, String imageUrl){
-      if(_items.containsKey(productId)){
-          _items.update(productId, (existingCartItem) => FavoriteItem(
-            id:existingCartItem.id,
-            name:existingCartItem.name,
-            price:  existingCartItem.price,
-             quantity: existingCartItem.quantity +1,
-             imageUrl: existingCartItem.imageUrl
-             
-
-            ));
-      }else{
-          _items.putIfAbsent(productId,()=>
-           FavoriteItem(
-            id: DateTime.now().toString(),
-           name: name,
-            imageUrl: imageUrl,
-             quantity: 1,
-              price: price
-              )
-               );
-
-      }
-notifyListeners();
-   }
-
-     void removeItem(String productId){
-      _items.containsKey(productId);
-        notifyListeners();
-   }
-
-   void removeSingleItem(String productId){
-     if(!_items.containsKey(productId)){
-       return ;
-     }
-     if(_items[productId].quantity>1){
-       _items.update(productId, (exsitingFavItem) => FavoriteItem
-       (id: exsitingFavItem.id,
-       name: exsitingFavItem.name,
-       price: exsitingFavItem.price,
-       quantity: exsitingFavItem.quantity - 1
-       ));
-     }
-     else{
-       _items.remove(productId);
-     }
-     notifyListeners();
-
-     
-   }
-
-
-void clear(){
-  _items ={};
-}
-
+  void clear() {}
 }

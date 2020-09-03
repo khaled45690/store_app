@@ -170,7 +170,7 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
              InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+            Navigator.of(context).popAndPushNamed(FavoriteScreen.routeName);
           },
           child: ListTile(
             title: Text(

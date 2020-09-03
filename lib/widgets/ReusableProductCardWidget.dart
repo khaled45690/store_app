@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:store_app/constants/kConstants.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:store_app/models/favorite_model.dart';
 import 'CustomButton.dart';
 class ReusableCardWidget extends StatefulWidget {
    final Map product;
@@ -13,14 +16,79 @@ class ReusableCardWidget extends StatefulWidget {
 }
 
 class _ReusableCardWidgetState extends State<ReusableCardWidget> {
+List favorite = [];
+  bool isFavorite = false;
    Map productMap;
-
    _ReusableCardWidgetState({this.productMap});
+
+@override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    Favorite favoriteModel = Provider.of<Favorite>(context);
+    Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
+    _prefs.then((SharedPreferences prefs) {
+      setState(() {
+        favorite.addAll(jsonDecode(prefs.get("favorite")));
+        isFavorite = favorite.any((element) => element["_id"] == productMap["_id"]);
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    Favorite favoriteModel = Provider.of<Favorite>(context);
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+    if(favoriteModel.isTrue){
+      _prefs.then((SharedPreferences prefs) {
+
+          setState(() {
+            favorite = jsonDecode(prefs.get("favorite"));
+            isFavorite = favorite.any((element) => element["_id"] == productMap["_id"]);
+          });
+        });
+        favoriteModel.isTrue = false;
+
+    }
     List images = productMap["images"];
     print("$kUrl${jsonDecode(images[0])}");
+
+    void addAndRemoveFavoriteItems() {
+      if(isFavorite){
+        setState(() {
+          isFavorite = false;
+        });
+
+        _prefs.then((SharedPreferences prefs) {
+          favorite = jsonDecode(prefs.get("favorite"));
+          List filter = [];
+          favorite.forEach((e) => {
+            print(e["_id"] == productMap["_id"]),
+            if(e["_id"] == productMap["_id"]){
+
+            }else{
+              filter.add(e)
+            }
+          });
+          print(filter);
+          prefs.setString("favorite" , jsonEncode(filter));
+        });
+        print(favorite);
+      }else{
+        _prefs.then((SharedPreferences prefs) {
+          favorite = jsonDecode(prefs.get("favorite"));
+          favorite.add(productMap);
+          prefs.setString("favorite" , jsonEncode(favorite));
+        });
+        setState(() {
+          isFavorite = true;
+        });
+
+      }
+    }
+
     return Container(
       padding: EdgeInsets.only(bottom:10),
       margin: EdgeInsets.all(3),
@@ -68,8 +136,10 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
               IconButton(
                 padding: EdgeInsets.only(bottom: 280 , top: 20),
                 color: Colors.red,
-                icon: Icon(Icons.favorite),
-                onPressed: () {},
+                icon:  isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+                onPressed: () {
+                  addAndRemoveFavoriteItems();
+                },
               ),
               IconButton(
                 color: Colors.black,

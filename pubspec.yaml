@@ -31,7 +31,7 @@ dependencies:
   multi_image_picker: ^4.7.12
   splashscreen: ^1.2.0
   device_preview:  ^0.4.8
-    
+  shared_preferences: ^0.5.10
 
 
 

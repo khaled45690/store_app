@@ -59,7 +59,7 @@ class ProductWidget extends StatelessWidget {
             ),
           color: Colors.white,
           onPressed: (){
-            favo.addItem(product.id, product.price, product.name, product.imageUrl);
+//            favo.addItem(product.id, product.price, product.name, product.imageUrl);
             product.toggleFavoritesStatus();
           },
          ) 

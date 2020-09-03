@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/MainProductModel.dart';
@@ -18,6 +17,8 @@ class MainProductScreen extends StatefulWidget {
 
 class _MainProductScreenState extends State<MainProductScreen> {
   List products = [];
+
+
   @override
   void initState() {
     // TODO: implement initState
