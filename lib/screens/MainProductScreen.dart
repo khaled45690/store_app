@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/cart.dart';
+import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
@@ -33,7 +34,15 @@ class _MainProductScreenState extends State<MainProductScreen> {
   @override
   Widget build(BuildContext context) {
     MainProductModel mainProductModel = Provider.of<MainProductModel>(context);
+    Favorite favoriteModel = Provider.of<Favorite>(context);
+    if( favoriteModel.isTrue){
+      Timer(const Duration(milliseconds: 50), () {
+        Navigator.of(context).pushReplacementNamed(MainProductScreen.routeName);
+      });
 
+      print("entered");
+      favoriteModel.isTrue = false;
+    }
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
       appBar:

@@ -13,6 +13,7 @@ import 'package:store_app/widgets/appBarContainer.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 
 import 'CartScreen.dart';
+import 'MainProductScreen.dart';
 class FavoriteScreen extends StatefulWidget {
   static const routeName = '/FavoriteScreen';
   @override
@@ -33,27 +34,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     });
 
   }
-@override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
+
   @override
   void deactivate() {
     super.deactivate();
     Favorite favoriteModel = Provider.of<Favorite>(context , listen: false);
       favoriteModel.isTrue = true;
 
-  }
 
-//  void dispose() {
-//    // TODO: implement dispose
-//    super.dispose();
-//    Favorite favoriteModel = Provider.of<Favorite>(context , listen: false);
-//    favoriteModel.isTrue = true;
-//
-//  }
-  @override
+  }
   Widget build(BuildContext context) {
 
     return Scaffold(

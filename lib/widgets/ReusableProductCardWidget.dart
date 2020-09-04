@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/favorite_model.dart';
 import 'CustomButton.dart';
 class ReusableCardWidget extends StatefulWidget {
@@ -40,18 +41,6 @@ List favorite = [];
   Widget build(BuildContext context) {
     Favorite favoriteModel = Provider.of<Favorite>(context);
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
-    if(favoriteModel.isTrue){
-      _prefs.then((SharedPreferences prefs) {
-
-          setState(() {
-            favorite = jsonDecode(prefs.get("favorite"));
-            isFavorite = favorite.any((element) => element["_id"] == productMap["_id"]);
-          });
-        });
-        favoriteModel.isTrue = false;
-
-    }
     List images = productMap["images"];
     print("$kUrl${jsonDecode(images[0])}");
 
