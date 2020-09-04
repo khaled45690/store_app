@@ -24,14 +24,7 @@ class CartWidget extends StatelessWidget {
                   children:[ Container(
               child:ListView.builder(
                 itemCount:cart.items.length ,
-                itemBuilder:(ctx, i)=> ReusableCartCardWidget(
-                  cart.items.values.toList()[i].id,
-                  cart.items.values.toList()[i].price,
-                  cart.items.values.toList()[i].quantity,
-                  cart.items.values.toList()[i].name,
-                  cart.items.values.toList()[i].imageUrl
-
-                ),
+//                itemBuilder:(ctx, i)=> ReusableCartCardWidget(),
                 
 
 
@@ -56,7 +49,7 @@ class CartWidget extends StatelessWidget {
                           child: ListTile(
                             leading: Text("Total price:",style:TextStyle(color: Colors.black,fontSize: 30)
                             ,),
-                            trailing: Text('\$${cart.totalAmout}',style:TextStyle(color: Colors.black,fontSize: 30)),
+//                            trailing: Text('\$${cart.totalAmout}',style:TextStyle(color: Colors.black,fontSize: 30)),
                           )
                           
                           ),

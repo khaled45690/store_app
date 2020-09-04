@@ -53,7 +53,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         actions: <Widget>[
           Consumer<Cart>(builder: (_,cart,ch)=>Badge(
             child: ch,
-            value: cart.itemCount.toString(),
+            value: cart.items.length.toString(),
           ),
             child: IconButton(
               color: Colors.black,

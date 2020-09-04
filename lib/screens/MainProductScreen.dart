@@ -52,7 +52,7 @@ class _MainProductScreenState extends State<MainProductScreen> {
           InputWidget(),
           Consumer<Cart>(builder: (_,cart,ch)=>Badge(
             child: ch,
-            value: cart.itemCount.toString(),
+            value: cart.items.length.toString(),
           ),
             child: IconButton(
               color: Colors.white,

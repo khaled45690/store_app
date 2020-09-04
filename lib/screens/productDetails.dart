@@ -59,7 +59,7 @@ class ProductDetails extends StatelessWidget {
           Consumer<Cart>(
             builder: (_, cart, ch) => Badge(
               child: ch,
-              value: cart.itemCount.toString(),
+//              value: cart.itemCount.toString(),
             ),
             child: IconButton(
               color: Colors.black,
@@ -134,12 +134,12 @@ loadedProduct.imageUrl
           text: "add to cart",
           fontSize: 15,
           onClick: () {
-            cart.addItem(loadedProduct.id, loadedProduct.price,
-                loadedProduct.name, loadedProduct.imageUrl,loadedProduct.quantity);
-
-            Navigator.of(context).pushNamed(
-              CartWidget.routeName,
-            );
+//            cart.addItem(loadedProduct.id, loadedProduct.price,
+//                loadedProduct.name, loadedProduct.imageUrl,loadedProduct.quantity);
+//
+//            Navigator.of(context).pushNamed(
+//              CartWidget.routeName,
+//            );
           },
         ),
         // ),

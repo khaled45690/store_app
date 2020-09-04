@@ -79,7 +79,7 @@ class ProductWidget extends StatelessWidget {
 
 
              onPressed: (){
-             cart.addItem(product.id, product.price, product.name, product.imageUrl,product.quantity);
+//             cart.addItem(product.id, product.price, product.name, product.imageUrl,product.quantity);
              Scaffold.of(context).hideCurrentSnackBar();
              Scaffold.of(context).showSnackBar(
                SnackBar(

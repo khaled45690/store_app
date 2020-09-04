@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:store_app/models/MainProductModel.dart';
+import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
 import 'CustomButton.dart';
 class ReusableCardWidget extends StatefulWidget {
@@ -22,11 +22,10 @@ List favorite = [];
    Map productMap;
    _ReusableCardWidgetState({this.productMap});
 
-@override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    Favorite favoriteModel = Provider.of<Favorite>(context);
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
     Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
     _prefs.then((SharedPreferences prefs) {
       setState(() {
@@ -34,12 +33,13 @@ List favorite = [];
         isFavorite = favorite.any((element) => element["_id"] == productMap["_id"]);
       });
     });
+
   }
 
 
   @override
   Widget build(BuildContext context) {
-    Favorite favoriteModel = Provider.of<Favorite>(context);
+    Cart cart = Provider.of<Cart>(context);
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     List images = productMap["images"];
     print("$kUrl${jsonDecode(images[0])}");
@@ -116,7 +116,10 @@ List favorite = [];
                   ),
                 ),
                 SizedBox(height: 20.0),
-                CustomButton(text: "add to cart", fontSize: 15,),
+                CustomButton(
+                  text: "add to cart",
+                  fontSize: 15,
+                  onClick: (){},),
               ],
             ),
           ),
@@ -133,7 +136,7 @@ List favorite = [];
               IconButton(
                 color: Colors.black,
                 icon: Icon(Icons.add_shopping_cart),
-                onPressed: () {},
+                onPressed: () {cart.addItemToCart(productMap);},
               ),
             ],
           ),
