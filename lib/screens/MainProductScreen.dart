@@ -5,7 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/cart.dart';
+<<<<<<< Updated upstream
 import 'package:store_app/models/favorite_model.dart';
+=======
+import 'package:store_app/models/product_model.dart';
+>>>>>>> Stashed changes
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
@@ -26,6 +30,7 @@ class _MainProductScreenState extends State<MainProductScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    
     MainProductModel mainProductModel = Provider.of<MainProductModel>(context, listen: false);
     mainProductModel.getMainProduct();
     Timer(const Duration(milliseconds: 500), () {
@@ -42,11 +47,15 @@ class _MainProductScreenState extends State<MainProductScreen> {
 
     // });
     MainProductModel mainProductModel = Provider.of<MainProductModel>(context);
+<<<<<<< Updated upstream
     Favorite favoriteModel = Provider.of<Favorite>(context);
     if( favoriteModel.isTrue){
       Timer(const Duration(milliseconds: 50), () {
         Navigator.of(context).pushReplacementNamed(MainProductScreen.routeName);
       });
+=======
+    Products products = Provider.of<Products>(context);
+>>>>>>> Stashed changes
 
       print("entered");
       favoriteModel.isTrue = false;
