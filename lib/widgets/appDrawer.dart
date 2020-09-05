@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
@@ -8,14 +6,11 @@ import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
 import 'package:store_app/constants/updateUserData.dart';
 import 'package:store_app/models/UserData.dart';
-import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
-
-import 'package:store_app/screens/MainProductScreen.dart';
+import 'package:store_app/screens/LoginNew.dart';
 import 'package:store_app/screens/amdin/addProduct.dart';
-import 'package:store_app/screens/loginScreen.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -32,31 +27,27 @@ class _AppDrawerState extends State<AppDrawer> {
     if (userData.userData != null) {
       print(userData.userData["profileImage"]);
       return Drawer(
-        
           child: ListView(children: <Widget>[
-  
         UserAccountsDrawerHeader(
           accountName: Text(userData.userData["name"]),
           accountEmail: Text(userData.userData["email"]),
           currentAccountPicture: GestureDetector(
             onTap: () async {
               Map userDataClone = userData.userData;
-              if(userDataClone["profileImage"] == null){
+              if (userDataClone["profileImage"] == null) {
                 final picked =
-                await ImagePicker.pickImage(source: ImageSource.gallery);
-                if(picked != null){
+                    await ImagePicker.pickImage(source: ImageSource.gallery);
+                if (picked != null) {
                   saveImage(picked);
                   userDataClone["profileImage"] = basename(picked.path);
                   updateUserData(userDataClone);
                   print(userData.userData);
-                    userData.userData = userDataClone;
+                  userData.userData = userDataClone;
                 }
-
-              }else {
-
+              } else {
                 final picked =
-                await ImagePicker.pickImage(source: ImageSource.gallery);
-                if(picked != null){
+                    await ImagePicker.pickImage(source: ImageSource.gallery);
+                if (picked != null) {
                   deleteImage(userDataClone["profileImage"]);
                   saveImage(picked);
                   userDataClone["profileImage"] = basename(picked.path);
@@ -65,14 +56,15 @@ class _AppDrawerState extends State<AppDrawer> {
                   userData.userData = userDataClone;
                 }
               }
-
             },
             child: userData.userData["profileImage"] == null
                 ? CircleAvatar(
                     backgroundColor: Colors.white,
                     child: Icon(Icons.person, color: Colors.blue))
                 : CircleAvatar(
-                    backgroundImage: Image.network("${kUrl}getImage/${userData.userData["profileImage"]}").image,
+                    backgroundImage: Image.network(
+                            "${kUrl}getImage/${userData.userData["profileImage"]}")
+                        .image,
                   ),
           ),
           decoration: BoxDecoration(color: Colors.blue),
@@ -80,7 +72,7 @@ class _AppDrawerState extends State<AppDrawer> {
         userData.userData["isAdmin"]
             ? InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed(AdminAddProduct.routeName);
+                  Navigator.of(context).popAndPushNamed(AdminAddProduct.routeName);
                 },
                 child: ListTile(
                   title: Text("ManageProduct"),
@@ -93,7 +85,7 @@ class _AppDrawerState extends State<AppDrawer> {
             : Container(),
         InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(CartWidget.routeName);
+            Navigator.of(context).popAndPushNamed(CartWidget.routeName);
           },
           child: ListTile(
             title: Text("ShopCart"),
@@ -105,8 +97,8 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         InkWell(
           onTap: () {
-              Navigator.of(context).pushNamed(FavoriteScreen.routeName);
-         //   productsContainer.showFavoritesOnly();
+            Navigator.of(context).popAndPushNamed(FavoriteScreen.routeName);
+            //   productsContainer.showFavoritesOnly();
             // Navigator.of(context).pushNamed(MainProductScreen.routeName);
           },
           child: ListTile(
@@ -119,7 +111,7 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         // InkWell(
         //   onTap: () {
-           
+
         //  //   productsContainer.showAll();
         //       Navigator.of(context).pushNamed(FavoriteScreen.routeName);
         //   },
@@ -134,7 +126,7 @@ class _AppDrawerState extends State<AppDrawer> {
         InkWell(
           onTap: () {
             userData.userData = null;
-            userData.isUserDataLoaded = false ;
+            userData.isUserDataLoaded = false;
             Navigator.of(context).pop();
           },
           child: ListTile(
@@ -154,7 +146,7 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(LoginScreen.routeName);
+            Navigator.of(context).popAndPushNamed(LoginPage.routeName);
           },
           child: ListTile(
             title: Text(
@@ -168,7 +160,7 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ),
         ),
-             InkWell(
+        InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(FavoriteScreen.routeName);
           },

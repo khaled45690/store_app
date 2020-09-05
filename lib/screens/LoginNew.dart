@@ -1,31 +1,24 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-
 import 'package:provider/provider.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/core/viewmodels/home_model.dart';
 import 'package:store_app/models/UserData.dart';
-import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/shared/globals.dart';
 import 'package:store_app/widgets/button_widget.dart';
 import 'package:store_app/widgets/textfield_widget.dart';
 import 'package:store_app/widgets/wave_widget.dart';
 import 'package:http/http.dart' as http;
-
-
 import 'SignUpNew.dart';
-import 'SignUpScreen.dart';
 
 class LoginPage extends StatelessWidget {
-    static const routeName = '/LoginPage';
-    String email , password ;
-      final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  static const routeName = '/LoginPage';
+  String email, password;
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
-      submitForm(String email, String password, context) async {
+  submitForm(String email, String password, context) async {
     UserData userDataContext = Provider.of<UserData>(context, listen: false);
     print("${kUrl}Signin");
     final response = await http.post(
@@ -38,7 +31,7 @@ class LoginPage extends StatelessWidget {
         "password": password,
       }),
     );
-      final Map responseJson = json.decode(response.body);
+    final Map responseJson = json.decode(response.body);
     print(responseJson);
     if (responseJson["state"] != null) {
       print(responseJson);
@@ -47,16 +40,14 @@ class LoginPage extends StatelessWidget {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-      UserData userDataContext = Provider.of<UserData>(context);
+    UserData userDataContext = Provider.of<UserData>(context);
     print(userDataContext.isUserDataLoaded);
     if (userDataContext.isUserDataLoaded) {
       Timer(const Duration(milliseconds: 200), () {
         Navigator.of(context).pop();
-        Navigator.of(context).pop();
+        userDataContext.isUserDataLoaded = false;
       });
     }
     final size = MediaQuery.of(context).size;
@@ -99,19 +90,19 @@ class LoginPage extends StatelessWidget {
           ),
           Form(
             key: _key,
-                      child: Padding(
+            child: Padding(
               padding: const EdgeInsets.all(30.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   TextFieldWidget(
-                    onChanged:(value){
-                email = value;
-              },
-                     validator: (x){
-                          if(x.isEmpty) return "please enter x";
-                          return null;
-                        },
+                    onChanged: (value) {
+                      email = value;
+                    },
+                    validator: (x) {
+                      if (x.isEmpty) return "please enter x";
+                      return null;
+                    },
                     hintText: 'Email',
                     obscureText: false,
                     prefixIconData: Icons.mail_outline,
@@ -127,11 +118,11 @@ class LoginPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       TextFieldWidget(
-                        onChanged:(value){
-                password = value;
-              } ,
-                        validator: (x){
-                          if(x.isEmpty) return "please enter x";
+                        onChanged: (value) {
+                          password = value;
+                        },
+                        validator: (x) {
+                          if (x.isEmpty) return "please enter x";
                           return null;
                         },
                         hintText: 'Password',
@@ -158,14 +149,11 @@ class LoginPage extends StatelessWidget {
                   ButtonWidget(
                     title: 'Login',
                     hasBorder: false,
-                    onClick: (){
-
-                            if(_key.currentState.validate()){
-                  submitForm(email, password, context);
-         
-                }
-                   //  Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
-
+                    onClick: () {
+                      if (_key.currentState.validate()) {
+                        submitForm(email, password, context);
+                      }
+                      //  Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
                     },
                   ),
                   SizedBox(
@@ -174,9 +162,9 @@ class LoginPage extends StatelessWidget {
                   ButtonWidget(
                     title: 'Sign Up',
                     hasBorder: true,
-                    onClick: (){
-                
-                    Navigator.of(context).popAndPushNamed(SignUpNew.routeName);
+                    onClick: () {
+                      Navigator.of(context)
+                          .popAndPushNamed(SignUpNew.routeName);
                     },
                   ),
                 ],

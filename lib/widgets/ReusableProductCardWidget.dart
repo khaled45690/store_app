@@ -137,14 +137,9 @@ List favorite = [];
                 color: Colors.black,
                 icon: Icon(Icons.add_shopping_cart),
                 onPressed: () {
-                  
-                  
-                  
                   cart.addItemToCart(productMap);
-                  
-                  
-                     Scaffold.of(context).hideCurrentSnackBar();
-             Scaffold.of(context).showSnackBar(
+                  Scaffold.of(context).hideCurrentSnackBar();
+                  Scaffold.of(context).showSnackBar(
                SnackBar(
                content: Text('Added  ${ productMap["nameOfProduct"]}` to cart',textAlign:  TextAlign.center,),
              duration: Duration(seconds: 2),

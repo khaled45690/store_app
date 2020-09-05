@@ -47,13 +47,13 @@ class StoreApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFFEAE8FF),
       ),
-      home:     LoginPage(),
+      home:MainProductScreen(),
 
       routes: {
+        MainProductScreen.routeName: (ctx) => MainProductScreen(),
         CartWidget.routeName: (ctx) => CartWidget(),
         LoginScreen.routeName: (ctx) => LoginScreen(),
         SignUp.routeName: (ctx) => SignUp(),
-        MainProductScreen.routeName: (ctx) => MainProductScreen(),
         ProductDetails.routeName: (ctx) => ProductDetails(),
         AdminAddProduct.routeName: (ctx) => AdminAddProduct(),
         AdminEditProduct.routeName: (ctx) => AdminEditProduct(),

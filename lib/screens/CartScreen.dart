@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart.dart';
-import 'package:store_app/models/product_model.dart';
-import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/ReusableCartCardWidget.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
 
@@ -26,16 +24,7 @@ class CartWidget extends StatelessWidget {
               child:ListView.builder(
                 itemCount:cart.items.length ,
                 itemBuilder:(ctx, i)=> ReusableCartCardWidget(cart.items[i]),
-                
-
-
-
-
-       
               ),
-              
-              
-              
                   ),
                   // SizedBox(height:1),
                   Padding(
@@ -48,7 +37,7 @@ class CartWidget extends StatelessWidget {
                         Padding(
                          padding: EdgeInsets.all(20),
                           child: ListTile(
-                            leading: Text("Total price:",style:TextStyle(color: Colors.black,fontSize: 30)
+                            leading: Text("Total price: ${cart.totalPrice} \$",style:TextStyle(color: Colors.black,fontSize: 30)
                             ,),
 //                            trailing: Text('\$${cart.totalAmout}',style:TextStyle(color: Colors.black,fontSize: 30)),
                           )

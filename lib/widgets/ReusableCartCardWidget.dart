@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:store_app/models/product_model.dart';
 import 'package:store_app/models/producttt.dart';
 class ReusableCartCardWidget extends StatefulWidget {
      
-   Map product;
+   final Map product;
   ReusableCartCardWidget(this.product);
 
   @override
@@ -17,15 +18,21 @@ class ReusableCartCardWidget extends StatefulWidget {
 
 class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
   Map productMap;
+  int quantity = 1;
    _ReusableCartCardWidgetState({this.productMap});
   @override
+  void initState(){
+    super.initState();
+    Cart cart = Provider.of<Cart>(context, listen: false);
+    Timer(const Duration(milliseconds: 500), () {
+       cart.totalPriceFunction({productMap["_id"] : int.parse(productMap["price"]) * quantity} , productMap["_id"]);
+    });
+  }
+
   Widget build(BuildContext context) {
-         //  final cart = Provider.of<Cart>(context);
          final product = Provider.of<Product>(context,listen: false);
-   final cart = Provider.of<Cart>(context,listen: false);
+   final cart = Provider.of<Cart>(context);
 List images = productMap["images"];
-int quantity = 1;
-print(images);
     return  Card(
           child: Padding(
           padding: const EdgeInsets.all(0),
@@ -60,8 +67,7 @@ print(images);
                       ),
                       SizedBox(height: 50,),
                       Text(
-                      productMap["price"]*quantity,
-                      //  '\$${widget.price.toString()}',
+                    "${int.parse(productMap["price"]) * quantity} \$",
                         style: TextStyle(
                             fontSize: 20
                         ),
@@ -77,14 +83,17 @@ print(images);
                       IconButton(icon: Icon(Icons.keyboard_arrow_up), iconSize: 20 , onPressed: (){
                         setState(() {
                           quantity ++;
-                              cart.totalPriceFunction(productMap["price"]*quantity);
+                          cart.totalPriceFunction({productMap["_id"] :  int.parse(productMap["price"]) * quantity} , productMap["_id"]);
                         });
+
                     
                        
                       }),
                       IconButton(icon: Icon(Icons.keyboard_arrow_down),iconSize: 20, onPressed: (){
-                       // cart.subtract;
-                         
+                        setState(() {
+                          quantity --;
+                          cart.totalPriceFunction({productMap["_id"] :  int.parse(productMap["price"]) *quantity} , productMap["_id"]);
+                        });
                       }),
                     ],
                   ),
@@ -103,10 +112,7 @@ print(images);
                 //  Container(
                 //   margin: EdgeInsets.only(top: 40),
                 //   child: Text(
-                // cart.totalAmout.toString(),
-                //   //  quantity.toString(),
-                // //  ('${widget.quantity} number'),
-                
+                // cart.totalPrice.toString(),
                 //     style: TextStyle(
                 //         fontSize: 20
                 //     ),
