@@ -10,6 +10,7 @@ class CartWidget extends StatelessWidget {
   static const routeName = '/CartWidget';
   @override
   Widget build(BuildContext context) {
+
        final cart = Provider.of<Cart>(context);
     //final product = Provider.of<Product>(context,listen: false);
 
@@ -24,7 +25,7 @@ class CartWidget extends StatelessWidget {
                   children:[ Container(
               child:ListView.builder(
                 itemCount:cart.items.length ,
-//                itemBuilder:(ctx, i)=> ReusableCartCardWidget(),
+                itemBuilder:(ctx, i)=> ReusableCartCardWidget(cart.items[i]),
                 
 
 

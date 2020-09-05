@@ -56,7 +56,7 @@ List favorite = [];
           favorite.forEach((e) => {
             print(e["_id"] == productMap["_id"]),
             if(e["_id"] == productMap["_id"]){
-
+                  
             }else{
               filter.add(e)
             }
@@ -136,7 +136,24 @@ List favorite = [];
               IconButton(
                 color: Colors.black,
                 icon: Icon(Icons.add_shopping_cart),
-                onPressed: () {cart.addItemToCart(productMap);},
+                onPressed: () {
+                  
+                  
+                  
+                  cart.addItemToCart(productMap);
+                  
+                  
+                     Scaffold.of(context).hideCurrentSnackBar();
+             Scaffold.of(context).showSnackBar(
+               SnackBar(
+               content: Text('Added  ${ productMap["nameOfProduct"]}` to cart',textAlign:  TextAlign.center,),
+             duration: Duration(seconds: 2),
+             //action: 
+           //  SnackBarAction(label: "UNDO", onPressed: (){cart.removeSingleItem(product.id);}
+            // )
+             ));
+                  
+                  },
               ),
             ],
           ),

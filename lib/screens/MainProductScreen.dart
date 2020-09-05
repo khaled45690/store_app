@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
@@ -33,6 +35,12 @@ class _MainProductScreenState extends State<MainProductScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    // Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    //     _prefs.then((SharedPreferences prefs) {
+  
+    //   prefs.setString("favorite" , jsonEncode([]));
+
+    // });
     MainProductModel mainProductModel = Provider.of<MainProductModel>(context);
     Favorite favoriteModel = Provider.of<Favorite>(context);
     if( favoriteModel.isTrue){

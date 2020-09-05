@@ -1,27 +1,31 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/models/producttt.dart';
 class ReusableCartCardWidget extends StatefulWidget {
-     String id;
-   double price;
-  int quantity;
-   String name;
-   String imageUrl;
-  ReusableCartCardWidget(this.id,this.price,this.quantity,this.name,this.imageUrl);
+     
+   Map product;
+  ReusableCartCardWidget(this.product);
 
   @override
-  _ReusableCartCardWidgetState createState() => _ReusableCartCardWidgetState();
+  _ReusableCartCardWidgetState createState() => _ReusableCartCardWidgetState(productMap : this.product);
 }
 
 class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
+  Map productMap;
+   _ReusableCartCardWidgetState({this.productMap});
   @override
   Widget build(BuildContext context) {
          //  final cart = Provider.of<Cart>(context);
          final product = Provider.of<Product>(context,listen: false);
    final cart = Provider.of<Cart>(context,listen: false);
-
+List images = productMap["images"];
+int quantity = 1;
+print(images);
     return  Card(
           child: Padding(
           padding: const EdgeInsets.all(0),
@@ -39,7 +43,7 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                 
                 Image.network(
                 (
-                  widget.imageUrl
+      "${kUrl}getImage/${jsonDecode(images[0])}"
                
                   ),
                 )
@@ -49,14 +53,15 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                   child: Column(
                     children: <Widget>[
                       Text(
-                          widget.name,
+                  productMap["nameOfProduct"],
                         style: TextStyle(
                           fontSize: 20
                         ),
                       ),
                       SizedBox(height: 50,),
                       Text(
-                        '\$${widget.price.toString()}',
+                      productMap["price"]*quantity,
+                      //  '\$${widget.price.toString()}',
                         style: TextStyle(
                             fontSize: 20
                         ),
@@ -70,12 +75,16 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                   child: Column(
                     children: <Widget>[
                       IconButton(icon: Icon(Icons.keyboard_arrow_up), iconSize: 20 , onPressed: (){
-                     //   cart.add;
-                        add();
+                        setState(() {
+                          quantity ++;
+                              cart.totalPriceFunction(productMap["price"]*quantity);
+                        });
+                    
+                       
                       }),
                       IconButton(icon: Icon(Icons.keyboard_arrow_down),iconSize: 20, onPressed: (){
                        // cart.subtract;
-                          subtract();
+                         
                       }),
                     ],
                   ),
@@ -84,7 +93,8 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
                   margin: EdgeInsets.only(bottom: 20),
                   child: Text(
                   //  quantity.toString(),
-                  ('${widget.quantity} number'),
+                //  ('${widget.quantity} number'),
+                 quantity.toString(),
                     style: TextStyle(
                         fontSize: 20
                     ),
@@ -116,27 +126,8 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
     
   }
 
-  void subtract()
-  {
-    if(widget.quantity >= 0)
-    {
-    setState(() {
-            widget.quantity = widget.quantity - 1;
 
-        });
 
-    }
-  }
-
-  void add(){
-
-    if(widget.quantity >= 0){
-      setState(() {
-        widget.quantity = widget.quantity +1;
-      });
-    }
-
-  }
 }
 
 
