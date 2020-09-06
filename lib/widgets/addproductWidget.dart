@@ -1,24 +1,40 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/productDetails.dart';
 
-class UserProductItem extends StatelessWidget {
-  final String id;
-  final String name;
-  final String imageUrl;
-    final String price;
+class UserProductItem extends StatefulWidget {
+  // final String id;
+  // final String name;
+  // final String imageUrl;
+  //   final String price;
+     final Map product;
+  UserProductItem(this.product);
 
-  UserProductItem(this.id, this.name, 
-  this.imageUrl,
-  this.price
-  );
+  // UserProductItem(this.id, this.name, 
+  // this.imageUrl,
+  // this.price
+  // );
+
+  @override
+  _UserProductItemState createState() => _UserProductItemState(productMap : this.product);
+}
+
+class _UserProductItemState extends State<UserProductItem> {
+    Map productMap;
+  int quantity = 1;
+   _UserProductItemState({this.productMap});
   @override
   Widget build(BuildContext context) {
     //   final product = Provider.of<Product>(context);
+        List images = productMap["images"];
+
 
     return Dismissible(
-      key: ValueKey(id),
+      key: ValueKey(productMap["_id"]),
       background: Container(
         color: Colors.red,
         child: Icon(Icons.delete, color: Colors.white
@@ -53,7 +69,7 @@ class UserProductItem extends StatelessWidget {
                           );
             },
             onDismissed:(direction){
-                 Provider.of<Products>(context,listen: false).deleteProduct(id);
+                 Provider.of<Products>(context,listen: false).deleteProduct(productMap["_id"]);
             },
       child: Card(
         
@@ -61,13 +77,15 @@ class UserProductItem extends StatelessWidget {
           onTap: (){
                       Navigator.of(context).pushNamed(
             ProductDetails.routeName,
-            arguments: id
+            arguments: productMap["_id"]
                       );
           },
             
-          title: Text(name),
+          title: Text(productMap["nameOfProduct"]),
           leading: CircleAvatar(
-            backgroundImage: NetworkImage( imageUrl),
+            backgroundImage: NetworkImage(
+              "${kUrl}getImage/${jsonDecode(images[0])}"
+            ),
           ),
           trailing: Container(
             width: 50,
@@ -78,7 +96,8 @@ class UserProductItem extends StatelessWidget {
                 //   color: Colors.blue,
                 //   onPressed: () {},
                 // ),
-                Text(price.toString())
+                Text(productMap["price"])
+             
               
                 //  IconButton(icon: Icon(Icons.delete),
                 // onPressed: (){

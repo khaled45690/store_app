@@ -8,11 +8,12 @@ class SpashScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds:2,
+      seconds:7,
       backgroundColor: Colors.white,
-      title: Text("yabny zabat el UI yab2a responsive we ba3deen mnzal package 3shan ta3mal 7aga zy keda 25s 3leeeeeeeeeek  bs 7lwa bardo ",style: TextStyle(fontSize:24,fontWeight:FontWeight.bold,color: Colors.blue),),
-      image: Image.network('https://scontent.faly2-1.fna.fbcdn.net/v/t1.0-9/95945567_3178758682182826_597523516736143360_o.jpg?_nc_cat=111&_nc_sid=09cbfe&_nc_ohc=aMoNQW5sb5gAX8dFvZr&_nc_ht=scontent.faly2-1.fna&oh=97143d52f2d7cfc8119e05870d71fda5&oe=5F711785'),
+      title: Text("Store App",style: TextStyle(fontSize:24,fontWeight:FontWeight.bold,color: Colors.blue),),
+      image: Image.network('https://scontent.faly2-1.fna.fbcdn.net/v/t1.0-9/67513432_507802676695843_138928972116262912_o.png?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=B1SYUYFTo9kAX8wz8oQ&_nc_ht=scontent.faly2-1.fna&oh=0c25a3e5810669bcbea0876696199903&oe=5F7A8BBA'),
       loaderColor: Colors.black,
+      //onClick: ,
       photoSize: 150,
       navigateAfterSeconds: MainProductScreen(),
       

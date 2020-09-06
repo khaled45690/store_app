@@ -54,7 +54,7 @@ class _AdminEditProductState extends State<AdminEditProduct> {
 
     return Scaffold(
       appBar: AppBar(
-        title:Text("Edit Product"),
+        title:Text("Add Product"),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.save),
             onPressed: () async{

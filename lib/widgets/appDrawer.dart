@@ -10,7 +10,7 @@ import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/LoginNew.dart';
-import 'package:store_app/screens/amdin/addProduct.dart';
+import 'package:store_app/screens/amdin/ShowProduct.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -72,7 +72,7 @@ class _AppDrawerState extends State<AppDrawer> {
         userData.userData["isAdmin"]
             ? InkWell(
                 onTap: () {
-                  Navigator.of(context).popAndPushNamed(AdminAddProduct.routeName);
+                  Navigator.of(context).popAndPushNamed(ShowProducts.routeName);
                 },
                 child: ListTile(
                   title: Text("ManageProduct"),

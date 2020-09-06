@@ -9,8 +9,9 @@ import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/screens/SignUpNew.dart';
 import 'package:store_app/screens/SignUpScreen.dart';
+import 'package:store_app/screens/amdin/AddItem.dart';
 import 'package:store_app/screens/amdin/EditProduct.dart';
-import 'package:store_app/screens/amdin/addProduct.dart';
+import 'package:store_app/screens/amdin/ShowProduct.dart';
 import 'package:store_app/screens/LoginNew.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
@@ -47,7 +48,7 @@ class StoreApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFFEAE8FF),
       ),
-      home:MainProductScreen(),
+      home:ShowProducts(),
 
       routes: {
         MainProductScreen.routeName: (ctx) => MainProductScreen(),
@@ -55,11 +56,12 @@ class StoreApp extends StatelessWidget {
         LoginScreen.routeName: (ctx) => LoginScreen(),
         SignUp.routeName: (ctx) => SignUp(),
         ProductDetails.routeName: (ctx) => ProductDetails(),
-        AdminAddProduct.routeName: (ctx) => AdminAddProduct(),
+        ShowProducts.routeName: (ctx) => ShowProducts(),
         AdminEditProduct.routeName: (ctx) => AdminEditProduct(),
         FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
         LoginPage.routeName:(ctx)=>LoginPage(),
-        SignUpNew.routeName:(ctx) =>SignUpNew()
+        SignUpNew.routeName:(ctx) =>SignUpNew(),
+        AddItem.routeName:(ctx) => AddItem()
       },
     );
   }

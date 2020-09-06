@@ -29,13 +29,17 @@ class TextFieldWidget extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       obscureText: obscureText,
-      cursorColor: Global.mediumBlue,
+      //cursorColor: Global.mediumBlue,
       style: TextStyle(
-        color: Global.mediumBlue,
+       // color: 
+        //Global.mediumBlue,
         fontSize: 14.0,
       ),
       decoration: InputDecoration(
-        labelStyle: TextStyle(color: Global.mediumBlue),
+        labelStyle: TextStyle(
+          //color: 
+        //Global.mediumBlue
+        ),
         focusColor: Global.mediumBlue,
         filled: true,
         enabledBorder: UnderlineInputBorder(
@@ -50,7 +54,7 @@ class TextFieldWidget extends StatelessWidget {
         prefixIcon: Icon(
           prefixIconData,
           size: 18,
-          color: Global.mediumBlue,
+        //  color: Global.mediumBlue,
         ),
         suffixIcon: GestureDetector(
           onTap: () {
@@ -59,7 +63,7 @@ class TextFieldWidget extends StatelessWidget {
           child: Icon(
             suffixIconData,
             size: 18,
-            color: Global.mediumBlue,
+           // color: Global.mediumBlue,
           ),
         ),
       ),

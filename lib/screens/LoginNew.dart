@@ -11,6 +11,7 @@ import 'package:store_app/widgets/button_widget.dart';
 import 'package:store_app/widgets/textfield_widget.dart';
 import 'package:store_app/widgets/wave_widget.dart';
 import 'package:http/http.dart' as http;
+import 'MainProductScreen.dart';
 import 'SignUpNew.dart';
 
 class LoginPage extends StatelessWidget {
@@ -29,8 +30,24 @@ class LoginPage extends StatelessWidget {
       body: jsonEncode(<dynamic, dynamic>{
         "email": email,
         "password": password,
-      }),
+      })
     );
+  //   .catchError((error){
+  //     showDialog(context: context,
+  //     builder:(ctx) =>AlertDialog(
+  //       title: Text("An error occurred"),
+  //       content: Text("SomeThinge went wrong"),
+  //       actions: <Widget>[
+  //         FlatButton(child: Text("okay"),
+  //         onPressed: (){
+  //           Navigator.of(context).pop();
+  //         },
+  //         )
+  //       ],
+  //     )
+      
+  //     );
+  //  });
     final Map responseJson = json.decode(response.body);
     print(responseJson);
     if (responseJson["state"] != null) {
@@ -126,6 +143,7 @@ class LoginPage extends StatelessWidget {
                           return null;
                         },
                         hintText: 'Password',
+                        
                         obscureText: model.isVisible ? false : true,
                         prefixIconData: Icons.lock_outline,
                         suffixIconData: model.isVisible
@@ -152,6 +170,7 @@ class LoginPage extends StatelessWidget {
                     onClick: () {
                       if (_key.currentState.validate()) {
                         submitForm(email, password, context);
+                           // Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
                       }
                       //  Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
                     },

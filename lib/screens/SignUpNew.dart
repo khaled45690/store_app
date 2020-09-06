@@ -8,6 +8,7 @@ import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/UserData.dart';
 import 'package:store_app/screens/LoginNew.dart';
 import 'package:http/http.dart' as http;
+import 'package:store_app/shared/globals.dart';
 
 
 import 'loginScreen.dart';
@@ -68,21 +69,23 @@ class _SignUpNewState extends State<SignUpNew> {
     return Scaffold(
       body: SafeArea(
         child: Stack(children: <Widget>[
+          ListView(
+            children:<Widget>[
           Padding(
-            padding: const EdgeInsets.only(top:8.0),
+            padding: const EdgeInsets.only(top:0.0),
             child: Text("Login By:",style: TextStyle(fontSize:20,fontWeight:FontWeight.bold),),
           ),
          // SizedBox(height:15),
           Container(
-            padding: const EdgeInsets.only(top:30.0),
+            padding: const EdgeInsets.only(top:23.0),
             child: Transform.rotate(
               angle: 0,
               origin: Offset(-300,30),
                         child: Container(
-                          color: Colors.blue,
+                          color: Global.mediumBlue,
                           
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -229,7 +232,7 @@ class _SignUpNewState extends State<SignUpNew> {
                           width: double.infinity,
                           child: RaisedButton(
                             
-                            color: Colors.blue,
+                            color:Global.mediumBlue,
                             onPressed: (){
                               if(widget._key.currentState.validate()){
                             widget.submitForm(widget.name, widget.email, widget.password, widget.confirmPassword, context);
@@ -240,7 +243,7 @@ class _SignUpNewState extends State<SignUpNew> {
                             },
                             
                           child: Text("SignUp",style: TextStyle(
-                            fontWeight:FontWeight.bold
+                            fontWeight:FontWeight.bold,color: Colors.white
                           ),),
                           
                           
@@ -272,8 +275,10 @@ class _SignUpNewState extends State<SignUpNew> {
                 ),
               ),
             ),
-          ),
-        ]),
+            )]  ),
+        ]
+        
+        ),
       ),
     );
   }
