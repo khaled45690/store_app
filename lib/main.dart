@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:splashscreen/splashscreen.dart';
 import 'package:store_app/core/viewmodels/home_model.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
@@ -48,7 +49,11 @@ class StoreApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFFEAE8FF),
       ),
+<<<<<<< Updated upstream
       home:ShowProducts(),
+=======
+      home:     SpashScreenWidget(),
+>>>>>>> Stashed changes
 
       routes: {
         MainProductScreen.routeName: (ctx) => MainProductScreen(),

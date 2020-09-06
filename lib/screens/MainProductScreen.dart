@@ -6,12 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
+<<<<<<< Updated upstream
 import 'package:store_app/models/product_model.dart';
+=======
+>>>>>>> Stashed changes
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
+import 'package:store_app/widgets/productWidget.dart';
 import 'CartScreen.dart';
 class MainProductScreen extends StatefulWidget {
   static const routeName = '/MainProductScreen';
@@ -27,7 +31,6 @@ class _MainProductScreenState extends State<MainProductScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    
     MainProductModel mainProductModel = Provider.of<MainProductModel>(context, listen: false);
     mainProductModel.getMainProduct();
     Timer(const Duration(milliseconds: 500), () {
@@ -49,7 +52,11 @@ class _MainProductScreenState extends State<MainProductScreen> {
       Timer(const Duration(milliseconds: 50), () {
         Navigator.of(context).pushReplacementNamed(MainProductScreen.routeName);
       });
+<<<<<<< Updated upstream
     Products products = Provider.of<Products>(context);
+=======
+
+>>>>>>> Stashed changes
       print("entered");
       favoriteModel.isTrue = false;
     }
@@ -83,13 +90,13 @@ class _MainProductScreenState extends State<MainProductScreen> {
         child: GridView.builder(
           itemCount: mainProductModel.products.length,
           itemBuilder: (ctx, i) =>
-              ReusableCardWidget(mainProductModel.products[i]),
+              ProductWidget(mainProductModel.products[i]),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: (1 / 2),
+            childAspectRatio: (120 / 120) ,
 
-            crossAxisSpacing: 0,
-            mainAxisSpacing: 0,
+     //       crossAxisSpacing: 0,
+        //    mainAxisSpacing: 0,
           ),
         ),
       ),

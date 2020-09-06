@@ -90,7 +90,9 @@ class _ProductWidgetState extends State<ProductWidget> {
     return GridTile(
       
       
+      
       child: GestureDetector(
+        
         
 
         onTap: (){
