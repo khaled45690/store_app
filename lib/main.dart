@@ -49,11 +49,10 @@ class StoreApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFFEAE8FF),
       ),
-<<<<<<< Updated upstream
-      home:ShowProducts(),
-=======
+
+
       home:     SpashScreenWidget(),
->>>>>>> Stashed changes
+
 
       routes: {
         MainProductScreen.routeName: (ctx) => MainProductScreen(),
