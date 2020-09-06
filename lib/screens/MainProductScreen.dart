@@ -6,10 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
-<<<<<<< Updated upstream
+
 import 'package:store_app/models/product_model.dart';
-=======
->>>>>>> Stashed changes
+
+
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
@@ -52,11 +52,11 @@ class _MainProductScreenState extends State<MainProductScreen> {
       Timer(const Duration(milliseconds: 50), () {
         Navigator.of(context).pushReplacementNamed(MainProductScreen.routeName);
       });
-<<<<<<< Updated upstream
-    Products products = Provider.of<Products>(context);
-=======
 
->>>>>>> Stashed changes
+    Products products = Provider.of<Products>(context);
+// =======
+
+// >>>>>>> Stashed changes
       print("entered");
       favoriteModel.isTrue = false;
     }
@@ -90,10 +90,10 @@ class _MainProductScreenState extends State<MainProductScreen> {
         child: GridView.builder(
           itemCount: mainProductModel.products.length,
           itemBuilder: (ctx, i) =>
-              ProductWidget(mainProductModel.products[i]),
+              ReusableCardWidget(mainProductModel.products[i]),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: (120 / 120) ,
+            childAspectRatio: (1 / 2) ,
 
      //       crossAxisSpacing: 0,
         //    mainAxisSpacing: 0,
