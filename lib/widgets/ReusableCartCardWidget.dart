@@ -103,7 +103,7 @@ List images = productMap["images"];
                   child: Text(
                   //  quantity.toString(),
                 //  ('${widget.quantity} number'),
-                 quantity.toString(),
+              "*" +  quantity.toString() ,
                     style: TextStyle(
                         fontSize: 20
                     ),

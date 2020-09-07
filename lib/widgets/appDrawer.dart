@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/constants/deleteImageFunction.dart';
@@ -132,7 +133,8 @@ class _AppDrawerState extends State<AppDrawer> {
           child: ListTile(
             title: Text("Logout"),
             leading: Icon(
-              Icons.close,
+                                  FontAwesomeIcons.signOutAlt,
+
               color: Colors.blue,
             ),
           ),

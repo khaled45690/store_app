@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/widgets/ReusableCartCardWidget.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
@@ -50,6 +51,10 @@ class CartWidget extends StatelessWidget {
                                 backgroundColor: Colors.green,
                                 child: FlatButton(
                                   onPressed: (){
+                                        final UserData userData = Provider.of<UserData>(context, listen: false);
+            //     userData.userData["isAdmin"] ? Navigator.of(context).pop() : 
+             if (userData.userData == null) {
+
                                     showDialog(context: context,
                                     builder: (context) => AlertDialog(
                                       content: Text('you have to sign in first'),
@@ -68,8 +73,14 @@ class CartWidget extends StatelessWidget {
                                     
                                     
                                     );
-                                  },
-                                
+                                  }
+                                  else{
+                                     Navigator.of(context).pop();
+                                  }
+                                  }
+                                  
+                                  ,
+                                  
                                 
                                  child: Text("buy it ",style: TextStyle(color:Colors.white,fontWeight:FontWeight.bold),))))
                           )

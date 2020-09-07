@@ -178,6 +178,9 @@ class _AddItemState extends State<AddItem> {
               // ),
             SizedBox(height:40),
             Container(
+              
+              child: Text("you have to add at least 3 images for the product",style:TextStyle(fontSize:20, color: Colors.black))),
+            Container(
               margin: EdgeInsets.only(left: 50, right: 50,bottom: 5),
               height: 60,
               child: RaisedButton(
@@ -213,8 +216,10 @@ class _AddItemState extends State<AddItem> {
                           
                           ),
                           
+                          
           
             ),
+
                         SizedBox(height:80),
                             CustomButton(
                               

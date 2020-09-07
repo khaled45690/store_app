@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/constants/kConstants.dart';
+import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/models/producttt.dart';
@@ -17,8 +21,15 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context).settings.arguments as String;
-    final loadedProduct = Provider.of<Products>(context).findbyId(productId);
+
+   // final loadedProduct = Provider.of<Products>(context).findbyId(productId);
 //    firstWhere((prod) => prod.id ==productId);
+
+    final loadedProduct = Provider.of<MainProductModel>(context).products.
+   firstWhere(( productMap) =>  productMap["_id"] ==productId);
+
+       List images = loadedProduct["images"];
+
     final Product product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
      Widget image_carousel = Container(
@@ -52,18 +63,18 @@ class ProductDetails extends StatelessWidget {
 
    return Scaffold(
       appBar: AppBar(
-        title: Text(loadedProduct.name),
+        title: Text(  loadedProduct["nameOfProduct"] , ),
         flexibleSpace: AppBarContainer(),
         actions: <Widget>[
-          InputWidget(),
-          Consumer<Cart>(
-            builder: (_, cart, ch) => Badge(
-              child: ch,
-//              value: cart.itemCount.toString(),
-            ),
+
+  Consumer<Cart>(builder: (_,cart,ch)=>Badge(
+            child: ch,
+            value: cart.items.length.toString(),
+          ),
             child: IconButton(
-              color: Colors.black,
-              icon: Icon(Icons.add_shopping_cart),
+              color: Colors.white,
+
+              icon: Icon(Icons.shopping_cart),
               onPressed: () {
                 Navigator.of(context).pushNamed(CartWidget.routeName);
               },
@@ -81,17 +92,18 @@ class ProductDetails extends StatelessWidget {
         boxFit: BoxFit.cover,
         images:[
           NetworkImage(
-            loadedProduct.imageUrl
+       //     loadedProduct.imageUrl
+      " ${kUrl}getImage/${jsonDecode(images[0])}"
           ),
            NetworkImage(
-loadedProduct.imageUrl
+      " ${kUrl}getImage/${jsonDecode(images[1])}"
           ),
            NetworkImage(
-loadedProduct.imageUrl
+      " ${kUrl}getImage/${jsonDecode(images[2])}"
           ),
 
         ],
-        autoplay: true,
+        autoplay: false,
         animationCurve: Curves.fastOutSlowIn,
         animationDuration: Duration(milliseconds:100),
         indicatorBgPadding: 5.0,
@@ -110,7 +122,8 @@ loadedProduct.imageUrl
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            '\$${loadedProduct.price}',
+       loadedProduct["price"] + "€" ,
+         //   '\$${loadedProduct.price}',
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
@@ -120,7 +133,7 @@ loadedProduct.imageUrl
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            loadedProduct.description,
+         loadedProduct['description'],
             style: TextStyle(color: Colors.black, fontSize: 18),
             textAlign: TextAlign.center,
           ),

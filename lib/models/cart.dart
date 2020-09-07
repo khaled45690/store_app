@@ -14,6 +14,7 @@ class Cart with ChangeNotifier {
     print(_items);
     notifyListeners();
   }
+  
 
   set totalPrice(int totalPriceParameter) {
     _totalPrice = totalPriceParameter;
