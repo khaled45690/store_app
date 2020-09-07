@@ -86,15 +86,16 @@ class ProductDetails extends StatelessWidget {
         children: <Widget>[
     
         Container(
+          
           height: 300,
           width: double.infinity,
           child: Carousel(
         boxFit: BoxFit.cover,
         images:[
-          NetworkImage(
+            NetworkImage(
        //     loadedProduct.imageUrl
       " ${kUrl}getImage/${jsonDecode(images[0])}"
-          ),
+                   ),
            NetworkImage(
       " ${kUrl}getImage/${jsonDecode(images[1])}"
           ),
@@ -149,7 +150,8 @@ class ProductDetails extends StatelessWidget {
           onClick: () {
 //            cart.addItem(loadedProduct.id, loadedProduct.price,
 //                loadedProduct.name, loadedProduct.imageUrl,loadedProduct.quantity);
-//
+                    cart.addItemToCart(loadedProduct);
+
 //            Navigator.of(context).pushNamed(
 //              CartWidget.routeName,
 //            );

@@ -184,10 +184,12 @@ class _SignUpNewState extends State<SignUpNew> {
                              onChanged: (value) {
                               widget.password = value;
                                },
+                               obscureText:true,
                             decoration: InputDecoration(
                                 contentPadding:
                                     EdgeInsets.symmetric(horizontal: 16),
                                 hintText: "Password",
+                                
                                 border: OutlineInputBorder()),
                           ),
                         ),
@@ -202,6 +204,7 @@ class _SignUpNewState extends State<SignUpNew> {
                              onChanged: (value) {
                               widget.confirmPassword = value;
                                },
+                                obscureText:true,
                             decoration: InputDecoration(
                                 contentPadding:
                                     EdgeInsets.symmetric(horizontal: 16),

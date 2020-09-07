@@ -54,6 +54,8 @@ class _AdminEditProductState extends State<AdminEditProduct> {
 
     return Scaffold(
       appBar: AppBar(
+              backgroundColor: Colors.white10,
+
         title:Text("Add Product"),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.save),

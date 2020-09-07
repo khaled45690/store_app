@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/cart.dart';
+import 'package:store_app/shared/globals.dart';
 import 'package:store_app/widgets/ReusableCartCardWidget.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
 
@@ -19,6 +20,7 @@ class CartWidget extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Color(0xFFF4F3FF),
         appBar: AppBar(
+          backgroundColor: Global.mediumBlue,
           flexibleSpace: AppBarContainer(),
           title: Text("Cart Screen"),
         ),
@@ -31,16 +33,16 @@ class CartWidget extends StatelessWidget {
                   ),
                   // SizedBox(height:1),
                   Padding(
-                    padding: const EdgeInsets.only(top:500.0),
+                    padding: const EdgeInsets.only(top:600.0),
                     child:
                       Card(
                         
-                        color: Colors.white10,
+                        color: Colors.black,
                         child: 
                         Padding(
                          padding: EdgeInsets.all(20),
                           child: ListTile(
-                            leading: Text("Total price: ${cart.totalPrice} \$",style:TextStyle(color: Colors.black,fontSize: 20)
+                            leading: Text("Sub Total: ${cart.totalPrice} \$",style:TextStyle(color: Colors.white,fontSize: 20)
                             ,),
                             trailing: Container(
                               
@@ -75,7 +77,26 @@ class CartWidget extends StatelessWidget {
                                     );
                                   }
                                   else{
-                                     Navigator.of(context).pop();
+                                  return        showDialog(context: context,
+                                    builder: (context) => AlertDialog(
+                                      content: Text('do u want to pay via credit card'),
+                                      actions: <Widget>[
+                                          FlatButton(
+                                            onPressed: (){
+                                              Navigator.of(context).pop();
+                                            }, 
+                                            child: Text("yes"),
+                                            ),
+                                            FlatButton(onPressed:() {
+                                              Navigator.of(context).pop();
+                                              },
+                                             child: Text("Cancel"))
+
+                                      ],
+                                    )
+                                    
+                                    
+                                    );
                                   }
                                   }
                                   

@@ -79,8 +79,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             crossAxisCount: 2,
             childAspectRatio: (1 / 2),
 
-            crossAxisSpacing: 0,
-            mainAxisSpacing: 0,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
           ),
         ),
       ),

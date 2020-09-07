@@ -40,6 +40,7 @@ class _ShowProductsState extends State<ShowProducts> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white10,
         title:const Text('all the products Products'),
         actions:<Widget>[
           IconButton(icon:Icon(Icons.add),
@@ -55,7 +56,8 @@ class _ShowProductsState extends State<ShowProducts> {
       body: Padding(
         padding: EdgeInsets.all(8),
         child: ListView.builder(
-          itemCount: productData.items.length,
+          itemCount: mainProductModel.products.length,
+          //productData.items.length,
           itemBuilder:(_,i)=> Column(
             
             children: [

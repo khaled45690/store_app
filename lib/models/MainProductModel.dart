@@ -19,7 +19,7 @@ getMainProduct() async{
   print("${kUrl}getMainProduct");
   final response = await http.get("${kUrl}getMainProduct");
   products =  json.decode(response.body);
-}
+} 
 printoo(){
     print(_products);
 }

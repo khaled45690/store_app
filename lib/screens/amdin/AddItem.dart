@@ -55,6 +55,7 @@ class _AddItemState extends State<AddItem> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white10,
         title:Text("Add Product"),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.save),
@@ -245,6 +246,8 @@ class _AddItemState extends State<AddItem> {
               print(responseJson);
               if (responseJson["state"] != null) {
                 print(responseJson);
+                            Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
+
               } else {
                 print("--------------------------------------------------------------------");
                 Navigator.of(context).pop();

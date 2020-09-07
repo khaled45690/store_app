@@ -87,13 +87,16 @@ List favorite = [];
           );
       } ,
           child: Container(
-        padding: EdgeInsets.only(bottom:10),
-        margin: EdgeInsets.all(3),
+            width: 800,
+        padding: EdgeInsets.only(bottom:10,),
+    //    margin: EdgeInsets.all(0),
         color: Colors.white,
         child: Row(
           children: <Widget>[
             Container(
-              width: 150,
+           // padding: EdgeInsets.only(right: 1),
+
+              width: 130,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,7 +104,7 @@ List favorite = [];
                   Container(
                     width: 140,
                     height: 200,
-                    margin: EdgeInsets.only(top: 10),
+                 //   margin: EdgeInsets.only(top: 10,),
                     child: Image.network("${kUrl}getImage/${jsonDecode(images[0])}"),
                   ),
                   SizedBox(height: 20.0),
@@ -142,6 +145,8 @@ List favorite = [];
                   },
                 ),
                 IconButton(
+                padding: EdgeInsets.only(right: 10),
+
                   color: Colors.black,
                   icon: Icon(
                     

@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/models/product_model.dart';
@@ -8,24 +12,83 @@ import 'package:store_app/screens/CartScreen.dart';
 
 import 'CustomButton.dart';
 class ResuableProductFavorite extends StatefulWidget {
-     String id;
-   double price;
-  int quantity;
-   String name;
-   String imageUrl;
-  ResuableProductFavorite(this.id,this.price,this.quantity,this.name,this.imageUrl);
+  //    String id;
+  //  double price;
+  // int quantity;
+  //  String name;
+  //  String imageUrl;
+     final Map product;
+
+  ResuableProductFavorite(this.product);
 
   @override
-  _ResuableProductFavoriteState createState() => _ResuableProductFavoriteState();
+  _ResuableProductFavoriteState createState() => _ResuableProductFavoriteState(productMap : product);
 }
 
 class _ResuableProductFavoriteState extends State<ResuableProductFavorite> {
+  List favorite = [];
+  bool isFavorite = false;
+   Map productMap;
+   _ResuableProductFavoriteState({this.productMap});
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
+    _prefs.then((SharedPreferences prefs) {
+      setState(() {
+        favorite.addAll(jsonDecode(prefs.get("favorite")));
+        isFavorite = favorite.any((element) => element["_id"] == productMap["_id"]);
+      });
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
          //  final cart = Provider.of<Cart>(context);
-         final product = Provider.of<Product>(context,listen: false);
-   final cart = Provider.of<Cart>(context,listen: false);
-    final favo = Provider.of<Favorite>(context);
+         Cart cart = Provider.of<Cart>(context);
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    List images = productMap["images"];
+    print("$kUrl${jsonDecode(images[0])}");
+
+    void addAndRemoveFavoriteItems() {
+      if(isFavorite){
+        setState(() {
+          isFavorite = false;
+        });
+
+        _prefs.then((SharedPreferences prefs) {
+          favorite = jsonDecode(prefs.get("favorite"));
+          List filter = [];
+          favorite.forEach((e) => {
+            print(e["_id"] == productMap["_id"]),
+            if(e["_id"] == productMap["_id"]){
+                  
+            }else{
+              filter.add(e)
+            }
+          });
+          print(filter);
+          prefs.setString("favorite" , jsonEncode(filter));
+        });
+        print(favorite);
+      }else{
+        _prefs.then((SharedPreferences prefs) {
+          favorite = jsonDecode(prefs.get("favorite"));
+          favorite.add(productMap);
+          prefs.setString("favorite" , jsonEncode(favorite));
+        });
+        setState(() {
+          isFavorite = true;
+        });
+
+      }
+    }
+
+  //        final product = Provider.of<Product>(context,listen: false);
+  //  final cart = Provider.of<Cart>(context,listen: false);
+  //   final favo = Provider.of<Favorite>(context);
 
 
     return  Card(
@@ -45,7 +108,8 @@ class _ResuableProductFavoriteState extends State<ResuableProductFavorite> {
                 
                 Image.network(
                 (
-                  widget.imageUrl
+                  "${kUrl}getImage/${jsonDecode(images[0])}"
+                 // widget.imageUrl
                
                   ),
                 )
@@ -56,7 +120,8 @@ class _ResuableProductFavoriteState extends State<ResuableProductFavorite> {
                     children: <Widget>[
                       Text(
                       //  't-shirt',
-                          widget.name,
+                       //   widget.name,
+                        productMap["nameOfProduct"],
                         style: TextStyle(
                           fontSize: 20
                         ),
@@ -64,8 +129,9 @@ class _ResuableProductFavoriteState extends State<ResuableProductFavorite> {
                       SizedBox(height: 50,),
                       Text(
                       
-                    
-                        '\$${widget.price.toString()}',
+                                      "${ productMap["price"]} \$",
+
+                      //  '\$${widget.price.toString()}',
                         style: TextStyle(
                             fontSize: 20
                         ),
@@ -115,27 +181,7 @@ class _ResuableProductFavoriteState extends State<ResuableProductFavorite> {
     
   }
 
-  void subtract()
-  {
-    if(widget.quantity >= 0)
-    {
-    setState(() {
-            widget.quantity = widget.quantity - 1;
 
-        });
-
-    }
-  }
-
-  void add(){
-
-    if(widget.quantity >= 0){
-      setState(() {
-        widget.quantity = widget.quantity +1;
-      });
-    }
-
-  }
 }
 
 

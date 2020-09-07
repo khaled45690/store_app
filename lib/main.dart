@@ -6,6 +6,7 @@ import 'package:store_app/core/viewmodels/home_model.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/CartScreen.dart';
+import 'package:store_app/screens/Deals_screen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/screens/SignUpNew.dart';
@@ -17,6 +18,7 @@ import 'package:store_app/screens/LoginNew.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
 import 'package:store_app/models/producttt.dart';
+import 'package:store_app/shared/globals.dart';
 import 'package:store_app/widgets/spalshScreenWidget.dart';
 import 'models/UserData.dart';
 import 'models/MainProductModel.dart';
@@ -47,7 +49,8 @@ class StoreApp extends StatelessWidget {
 
       title: "StoreApp",
       theme: ThemeData(
-        primaryColor: Color(0xFFEAE8FF),
+        primaryColor: Global.mediumBlue,
+        //Color(0xFFEAE8FF),
       ),
 
 
@@ -65,7 +68,8 @@ class StoreApp extends StatelessWidget {
         FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
         LoginPage.routeName:(ctx)=>LoginPage(),
         SignUpNew.routeName:(ctx) =>SignUpNew(),
-        AddItem.routeName:(ctx) => AddItem()
+        AddItem.routeName:(ctx) => AddItem(),
+        DealsScreen.routeName:(ctx)=>DealsScreen()
       },
     );
   }

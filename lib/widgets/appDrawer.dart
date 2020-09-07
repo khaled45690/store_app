@@ -9,10 +9,12 @@ import 'package:store_app/constants/updateUserData.dart';
 import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/CartScreen.dart';
+import 'package:store_app/screens/Deals_screen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/LoginNew.dart';
 import 'package:store_app/screens/amdin/ShowProduct.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:store_app/shared/globals.dart';
 
 class AppDrawer extends StatefulWidget {
   @override
@@ -28,7 +30,9 @@ class _AppDrawerState extends State<AppDrawer> {
     if (userData.userData != null) {
       print(userData.userData["profileImage"]);
       return Drawer(
+        
           child: ListView(children: <Widget>[
+            
         UserAccountsDrawerHeader(
           accountName: Text(userData.userData["name"]),
           accountEmail: Text(userData.userData["email"]),
@@ -61,14 +65,14 @@ class _AppDrawerState extends State<AppDrawer> {
             child: userData.userData["profileImage"] == null
                 ? CircleAvatar(
                     backgroundColor: Colors.white,
-                    child: Icon(Icons.person, color: Colors.blue))
+                    child: Icon(Icons.person, color: Global.mediumBlue,))
                 : CircleAvatar(
                     backgroundImage: Image.network(
                             "${kUrl}getImage/${userData.userData["profileImage"]}")
                         .image,
                   ),
           ),
-          decoration: BoxDecoration(color: Colors.blue),
+          decoration: BoxDecoration(color: Global.mediumBlue,),
         ),
         userData.userData["isAdmin"]
             ? InkWell(
@@ -79,11 +83,23 @@ class _AppDrawerState extends State<AppDrawer> {
                   title: Text("ManageProduct"),
                   leading: Icon(
                     Icons.edit,
-                    color: Colors.blue,
+                    color: Global.mediumBlue,
                   ),
                 ),
               )
             : Container(),
+               InkWell(
+          onTap: () {
+            Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
+          },
+          child: ListTile(
+            title: Text("DealsToday"),
+            leading: Icon(
+              FontAwesomeIcons.moneyBillWave,
+              color: Global.mediumBlue,
+            ),
+          ),
+        ),
         InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(CartWidget.routeName);
@@ -92,7 +108,7 @@ class _AppDrawerState extends State<AppDrawer> {
             title: Text("ShopCart"),
             leading: Icon(
               Icons.shopping_cart,
-              color: Colors.blue,
+              color: Global.mediumBlue,
             ),
           ),
         ),
@@ -105,25 +121,23 @@ class _AppDrawerState extends State<AppDrawer> {
           child: ListTile(
             title: Text("MyFavorite"),
             leading: Icon(
-              Icons.favorite,
-              color: Colors.blue,
+              Icons.favorite_border,
+              color:Global.mediumBlue,
             ),
           ),
         ),
-        // InkWell(
-        //   onTap: () {
-
-        //  //   productsContainer.showAll();
-        //       Navigator.of(context).pushNamed(FavoriteScreen.routeName);
-        //   },
-        //   child: ListTile(
-        //     title: Text("ShowAll Products"),
-        //     leading: Icon(
-        //       Icons.select_all,
-        //       color: Colors.blue,
-        //     ),
-        //   ),
-        // ),
+      InkWell(
+          onTap: () {
+            Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
+          },
+          child: ListTile(
+            title: Text("Terms of Service"),
+            leading: Icon(
+              FontAwesomeIcons.question,
+              color: Global.mediumBlue,
+            ),
+          ),
+        ),
         InkWell(
           onTap: () {
             userData.userData = null;
@@ -135,7 +149,7 @@ class _AppDrawerState extends State<AppDrawer> {
             leading: Icon(
                                   FontAwesomeIcons.signOutAlt,
 
-              color: Colors.blue,
+              color: Global.mediumBlue,
             ),
           ),
         ),
@@ -144,37 +158,66 @@ class _AppDrawerState extends State<AppDrawer> {
       return Drawer(
           child: ListView(children: <Widget>[
         UserAccountsDrawerHeader(
-          decoration: BoxDecoration(color: Colors.blue),
+          
+                accountName: Text("Welcome"),
+          accountEmail: FlatButton(child:Text("log in / Sign up",),
+          onPressed:(){
+             Navigator.of(context).popAndPushNamed(LoginPage.routeName);
+          } ,),
+          decoration: BoxDecoration(color: Global.mediumBlue,),
+          currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(FontAwesomeIcons.userAlt,size: 50, color:Global.mediumBlue,))
         ),
-        InkWell(
+        
+               InkWell(
           onTap: () {
-            Navigator.of(context).popAndPushNamed(LoginPage.routeName);
+            Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
           },
           child: ListTile(
-            title: Text(
-              "Sign in",
-              style: TextStyle(fontSize: 18),
-            ),
+            title: Text("DealsToday"),
             leading: Icon(
-              Icons.account_circle,
-              color: Colors.blue,
-              size: 40,
+              FontAwesomeIcons.moneyBillWave,
+              color: Global.mediumBlue,
             ),
           ),
         ),
-        InkWell(
+
+               InkWell(
           onTap: () {
-            Navigator.of(context).popAndPushNamed(FavoriteScreen.routeName);
+          //  Navigator.of(context).popAndPushNamed(CartWidget.routeName);
           },
           child: ListTile(
-            title: Text(
-              "wishlist",
-              style: TextStyle(fontSize: 18),
-            ),
+            title: Text("ShopCart"),
             leading: Icon(
-              Icons.account_circle,
-              color: Colors.blue,
-              size: 40,
+              FontAwesomeIcons.cartArrowDown,
+              color: Global.mediumBlue,
+            ),
+          ),
+        ),
+           InkWell(
+          onTap: () {
+            Navigator.of(context).popAndPushNamed(FavoriteScreen.routeName);
+            //   productsContainer.showFavoritesOnly();
+            // Navigator.of(context).pushNamed(MainProductScreen.routeName);
+          },
+          child: ListTile(
+            title: Text("MyFavorite"),
+            leading: Icon(
+              Icons.favorite_border,
+              color: Global.mediumBlue,
+            ),
+          ),
+        ),
+               InkWell(
+          onTap: () {
+            Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
+          },
+          child: ListTile(
+            title: Text("Terms of Service"),
+            leading: Icon(
+              FontAwesomeIcons.question,
+              color: Global.mediumBlue,
             ),
           ),
         ),
