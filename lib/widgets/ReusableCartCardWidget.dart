@@ -26,6 +26,7 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
     Cart cart = Provider.of<Cart>(context, listen: false);
     Timer(const Duration(milliseconds: 500), () {
        cart.totalPriceFunction({productMap["_id"] : int.parse(productMap["price"]) * quantity} , productMap["_id"]);
+       cart.calculatingTheProfiteOfAdmins(productMap , quantity , int.parse(productMap["price"]) * quantity , productMap["_id"]);
     });
   }
 
@@ -84,6 +85,7 @@ List images = productMap["images"];
                         setState(() {
                           quantity ++;
                           cart.totalPriceFunction({productMap["_id"] :  int.parse(productMap["price"]) * quantity} , productMap["_id"]);
+                          cart.calculatingTheProfiteOfAdmins(productMap , quantity , int.parse(productMap["price"]) * quantity , productMap["_id"]);
                         });
 
                     
@@ -93,6 +95,7 @@ List images = productMap["images"];
                         setState(() {
                           quantity --;
                           cart.totalPriceFunction({productMap["_id"] :  int.parse(productMap["price"]) *quantity} , productMap["_id"]);
+                          cart.calculatingTheProfiteOfAdmins(productMap , quantity , int.parse(productMap["price"]) * quantity , productMap["_id"]);
                         });
                       }),
                     ],
@@ -101,9 +104,7 @@ List images = productMap["images"];
                 Container(
                   margin: EdgeInsets.only(bottom: 20),
                   child: Text(
-                  //  quantity.toString(),
-                //  ('${widget.quantity} number'),
-              "*" +  quantity.toString() ,
+                  quantity.toString() ,
                     style: TextStyle(
                         fontSize: 20
                     ),

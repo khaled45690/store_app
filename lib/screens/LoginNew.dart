@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/core/viewmodels/home_model.dart';
 import 'package:store_app/models/UserData.dart';
@@ -20,6 +21,7 @@ class LoginPage extends StatelessWidget {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   submitForm(String email, String password, context) async {
+    Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
     UserData userDataContext = Provider.of<UserData>(context, listen: false);
     print("${kUrl}Signin");
     final response = await http.post(
@@ -32,28 +34,15 @@ class LoginPage extends StatelessWidget {
         "password": password,
       })
     );
-  //   .catchError((error){
-  //     showDialog(context: context,
-  //     builder:(ctx) =>AlertDialog(
-  //       title: Text("An error occurred"),
-  //       content: Text("SomeThinge went wrong"),
-  //       actions: <Widget>[
-  //         FlatButton(child: Text("okay"),
-  //         onPressed: (){
-  //           Navigator.of(context).pop();
-  //         },
-  //         )
-  //       ],
-  //     )
-      
-  //     );
-  //  });
     final Map responseJson = json.decode(response.body);
     print(responseJson);
     if (responseJson["state"] != null) {
       print(responseJson);
     } else {
       userDataContext.userData = responseJson;
+      _prefs.then((SharedPreferences prefs) {
+        prefs.setString("userData", jsonEncode(responseJson));
+      });
     }
   }
 

@@ -7,7 +7,6 @@ import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
 import 'package:store_app/constants/updateUserData.dart';
 import 'package:store_app/models/UserData.dart';
-import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/Deals_screen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
@@ -17,6 +16,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:store_app/shared/globals.dart';
 
 class AppDrawer extends StatefulWidget {
+
   @override
   _AppDrawerState createState() => _AppDrawerState();
 }
@@ -24,8 +24,7 @@ class AppDrawer extends StatefulWidget {
 class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
-    final Products productsContainer =
-        Provider.of<Products>(context, listen: false);
+
     final UserData userData = Provider.of<UserData>(context, listen: false);
     if (userData.userData != null) {
       print(userData.userData["profileImage"]);

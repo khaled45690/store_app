@@ -29,10 +29,15 @@ List favorite = [];
     super.initState();
     Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
     _prefs.then((SharedPreferences prefs) {
+      if( prefs.get("favorite") == null ){
+        prefs.setString("favorite" , jsonEncode([]));
+      } else{
       setState(() {
-        favorite.addAll(jsonDecode(prefs.get("favorite")));
-        isFavorite = favorite.any((element) => element["_id"] == productMap["_id"]);
+      favorite.addAll(jsonDecode(prefs.get("favorite")));
+      isFavorite = favorite.any((element) => element["_id"] == productMap["_id"]);
       });
+      }
+
     });
 
   }
