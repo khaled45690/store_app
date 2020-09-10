@@ -94,8 +94,8 @@ class CartWidget extends StatelessWidget {
                                                   },
                                                   body: jsonEncode(cart.itemsUsedInProfitCalculation)
                                               );
-                                              final Map responseJson = json.decode(response.body);
-                                              Navigator.of(context).pop();
+                                              final responseJson = json.decode(response.body);
+                                              Navigator.of(context).pop(true);
                                             },
                                             child: Text("yes"),
                                           ),
