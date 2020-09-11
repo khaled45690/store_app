@@ -1,21 +1,16 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/models/MainProductModel.dart';
+import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
-
 import 'package:store_app/models/product_model.dart';
-
-
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appDrawer.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
-import 'package:store_app/widgets/productWidget.dart';
 import 'CartScreen.dart';
 class MainProductScreen extends StatefulWidget {
   static const routeName = '/MainProductScreen';
@@ -32,8 +27,10 @@ class _MainProductScreenState extends State<MainProductScreen> {
     // TODO: implement initState
     super.initState();
     MainProductModel mainProductModel = Provider.of<MainProductModel>(context, listen: false);
+    UserData userData = Provider.of<UserData>(context, listen: false);
     mainProductModel.getMainProduct();
     Timer(const Duration(milliseconds: 500), () {
+      userData.checkIfUserDataOnMobileStorage();
       mainProductModel.printoo();
     });
 

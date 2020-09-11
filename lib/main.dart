@@ -55,9 +55,7 @@ class StoreApp extends StatelessWidget {
       ),
 
 
-      home:     SpashScreenWidget(),
-
-
+      home: SpashScreenWidget(),
       routes: {
         MainProductScreen.routeName: (ctx) => MainProductScreen(),
         CartWidget.routeName: (ctx) => CartWidget(),

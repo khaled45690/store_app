@@ -3,8 +3,6 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:store_app/constants/kConstants.dart';
-import 'package:store_app/models/MainProductModel.dart';
-import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';

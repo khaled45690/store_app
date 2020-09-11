@@ -24,4 +24,37 @@ printoo(){
     print(_products);
 }
 
+  deleteProduct(Map product) async {
+    print("${kUrl}deleteProduct");
+
+    List images = product["images"];
+
+    images.forEach((element) async{
+      final response = await http.post(
+        "${kUrl}deleteProductImages",
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(element),
+      );
+    });
+
+print( jsonEncode(product));
+    final response = await http.post(
+      "${kUrl}deleteProduct",
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(product),
+    );
+
+    // final responseJson = json.decode(response.body);
+    // print(responseJson);
+    // if (responseJson["state"] != null) {
+    //   print(responseJson);
+    // } else {
+    //   products = json.decode(response.body);
+    // }
+  }
+
 }

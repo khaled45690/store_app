@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/constants/kConstants.dart';
+import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/productDetails.dart';
 
@@ -14,11 +15,6 @@ class UserProductItem extends StatefulWidget {
      final Map product;
   UserProductItem(this.product);
 
-  // UserProductItem(this.id, this.name, 
-  // this.imageUrl,
-  // this.price
-  // );
-
   @override
   _UserProductItemState createState() => _UserProductItemState(productMap : this.product);
 }
@@ -29,11 +25,11 @@ class _UserProductItemState extends State<UserProductItem> {
    _UserProductItemState({this.productMap});
   @override
   Widget build(BuildContext context) {
-    //   final product = Provider.of<Product>(context);
+    MainProductModel mainProductModel = Provider.of<MainProductModel>(context, listen: false);
         List images = productMap["images"];
 
-
     return Dismissible(
+
       key: ValueKey(productMap["_id"]),
       background: Container(
         color: Colors.red,
@@ -44,6 +40,7 @@ class _UserProductItemState extends State<UserProductItem> {
       ),
       direction: DismissDirection.endToStart,
          confirmDismiss: (ctx){
+
              return  showDialog(
                       context: context,
                       builder: (ctx) => AlertDialog(
@@ -59,8 +56,9 @@ class _UserProductItemState extends State<UserProductItem> {
                                ),
                               FlatButton(
                                 onPressed: (){
-                                      Navigator.of(ctx).pop(true);
-
+                                  mainProductModel.deleteProduct(productMap);
+                                  mainProductModel.getMainProduct();
+                                      Navigator.of(context).pop(true);
                                 },
                                child: Text("yes"),
                                )
@@ -91,19 +89,7 @@ class _UserProductItemState extends State<UserProductItem> {
             width: 50,
             child: Row(
               children: <Widget>[
-                // IconButton(
-                //   icon: Icon(Icons.edit),
-                //   color: Colors.blue,
-                //   onPressed: () {},
-                // ),
                 Text(productMap["price"])
-             
-              
-                //  IconButton(icon: Icon(Icons.delete),
-                // onPressed: (){
-
-                // },
-                // color: Colors.red,)
               ],
             ),
           ),

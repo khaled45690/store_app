@@ -22,58 +22,50 @@ class ProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context).settings.arguments as String;
 
-   // final loadedProduct = Provider.of<Products>(context).findbyId(productId);
-//    firstWhere((prod) => prod.id ==productId);
+    final loadedProduct = Provider.of<MainProductModel>(context)
+        .products
+        .firstWhere((productMap) => productMap["_id"] == productId);
 
-    final loadedProduct = Provider.of<MainProductModel>(context).products.
-   firstWhere(( productMap) =>  productMap["_id"] ==productId);
-
-       List images = loadedProduct["images"];
+    List images = loadedProduct["images"];
 
     final Product product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
-     Widget image_carousel = Container(
+    Widget image_carousel = Container(
       height: 200,
       child: Carousel(
         boxFit: BoxFit.cover,
-        images:[
+        images: [
           NetworkImage(
-            'https://ae01.alicdn.com/kf/HTB1FNX1SpXXXXXZXXXXq6xXFXXXs/Hot-Sale-Spring-Autumn-New-Fashion-Brand-Men-Jacket-Coats-Thin-Overcoat-Cotton-Jackets-Mens-Outerwear.jpg_960x960.jpg'
-          ),
-           NetworkImage(
-            'https://i.pinimg.com/originals/c8/c8/f6/c8c8f6a67b4f3402de8c43739a158683.jpg'
-          ),
-           NetworkImage(
-            'https://ph-test-11.slatic.net/p/c1184852190620363e075fd428ee315e.jpg_340x340q80.jpg_.webp'
-          ),
-
+              'https://ae01.alicdn.com/kf/HTB1FNX1SpXXXXXZXXXXq6xXFXXXs/Hot-Sale-Spring-Autumn-New-Fashion-Brand-Men-Jacket-Coats-Thin-Overcoat-Cotton-Jackets-Mens-Outerwear.jpg_960x960.jpg'),
+          NetworkImage(
+              'https://i.pinimg.com/originals/c8/c8/f6/c8c8f6a67b4f3402de8c43739a158683.jpg'),
+          NetworkImage(
+              'https://ph-test-11.slatic.net/p/c1184852190620363e075fd428ee315e.jpg_340x340q80.jpg_.webp'),
         ],
         autoplay: true,
         animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds:100),
+        animationDuration: Duration(milliseconds: 100),
         indicatorBgPadding: 15.0,
-        
-        
         dotColor: Colors.white,
         dotBgColor: Colors.black87,
         dotSpacing: 80,
-        
       ),
     );
 
-   return Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text(  loadedProduct["nameOfProduct"] , ),
+        title: Text(
+          loadedProduct["nameOfProduct"],
+        ),
         flexibleSpace: AppBarContainer(),
         actions: <Widget>[
-
-  Consumer<Cart>(builder: (_,cart,ch)=>Badge(
-            child: ch,
-            value: cart.items.length.toString(),
-          ),
+          Consumer<Cart>(
+            builder: (_, cart, ch) => Badge(
+              child: ch,
+              value: cart.items.length.toString(),
+            ),
             child: IconButton(
               color: Colors.white,
-
               icon: Icon(Icons.shopping_cart),
               onPressed: () {
                 Navigator.of(context).pushNamed(CartWidget.routeName);
@@ -82,49 +74,33 @@ class ProductDetails extends StatelessWidget {
           )
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-    
+      body: ListView(children: <Widget>[
         Container(
-          
           height: 300,
           width: double.infinity,
           child: Carousel(
-        boxFit: BoxFit.cover,
-        images:[
-            NetworkImage(
-       //     loadedProduct.imageUrl
-      "${kUrl}getImage/${jsonDecode(images[0])}"
-                   ),
-           NetworkImage(
-      "${kUrl}getImage/${jsonDecode(images[1])}"
-          ),
-           NetworkImage(
-      "${kUrl}getImage/${jsonDecode(images[2])}"
-          ),
+            boxFit: BoxFit.cover,
+            images: [
+              NetworkImage("${kUrl}getImage/${jsonDecode(images[0])}"),
+              NetworkImage("${kUrl}getImage/${jsonDecode(images[1])}"),
+              NetworkImage("${kUrl}getImage/${jsonDecode(images[2])}"),
+            ],
+            autoplay: false,
+            animationCurve: Curves.fastOutSlowIn,
+            animationDuration: Duration(milliseconds: 100),
+            indicatorBgPadding: 5.0,
 
-        ],
-        autoplay: false,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds:100),
-        indicatorBgPadding: 5.0,
-        
-        
-        dotColor: Colors.white,
-       // dotBgColor: Colors.black87,
-        dotSpacing: 15,
-        
-      ),
-          // Image.network(
-          //   loadedProduct.imageUrl,
-          //   fit: BoxFit.cover,
-          // ),
+
+            dotColor: Colors.white,
+            // dotBgColor: Colors.black87,
+            dotSpacing: 15,
+          ),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-       loadedProduct["price"] + "€" ,
-         //   '\$${loadedProduct.price}',
+            loadedProduct["price"] + "€",
+            //   '\$${loadedProduct.price}',
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
@@ -134,7 +110,7 @@ class ProductDetails extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-         loadedProduct['description'],
+            loadedProduct['description'],
             style: TextStyle(color: Colors.black, fontSize: 18),
             textAlign: TextAlign.center,
           ),
@@ -150,7 +126,7 @@ class ProductDetails extends StatelessWidget {
           onClick: () {
 //            cart.addItem(loadedProduct.id, loadedProduct.price,
 //                loadedProduct.name, loadedProduct.imageUrl,loadedProduct.quantity);
-                    cart.addItemToCart(loadedProduct);
+            cart.addItemToCart(loadedProduct);
 
 //            Navigator.of(context).pushNamed(
 //              CartWidget.routeName,
