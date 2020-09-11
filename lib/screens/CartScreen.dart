@@ -33,7 +33,7 @@ class CartWidget extends StatelessWidget {
                   ),
                   // SizedBox(height:1),
                   Padding(
-                    padding: const EdgeInsets.only(top:600.0),
+                    padding: const EdgeInsets.only(top:500.0),
                     child:
                       Card(
                         

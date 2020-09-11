@@ -75,7 +75,8 @@ class _AppDrawerState extends State<AppDrawer> {
           decoration: BoxDecoration(color: Global.mediumBlue,),
         ),
         userData.userData["isAdmin"]
-            ? InkWell(
+            ? 
+              InkWell(
                 onTap: () {
                   Navigator.of(context).popAndPushNamed(ShowProducts.routeName);
                 },
@@ -87,6 +88,8 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
                 ),
               )
+              
+              
             : Container(),
                InkWell(
           onTap: () {

@@ -94,13 +94,13 @@ class ProductDetails extends StatelessWidget {
         images:[
             NetworkImage(
        //     loadedProduct.imageUrl
-      " ${kUrl}getImage/${jsonDecode(images[0])}"
+      "${kUrl}getImage/${jsonDecode(images[0])}"
                    ),
            NetworkImage(
-      " ${kUrl}getImage/${jsonDecode(images[1])}"
+      "${kUrl}getImage/${jsonDecode(images[1])}"
           ),
            NetworkImage(
-      " ${kUrl}getImage/${jsonDecode(images[2])}"
+      "${kUrl}getImage/${jsonDecode(images[2])}"
           ),
 
         ],

@@ -23,6 +23,7 @@ import 'package:store_app/widgets/spalshScreenWidget.dart';
 import 'models/UserData.dart';
 import 'models/MainProductModel.dart';
 import 'models/favorite_model.dart';
+import 'screens/amdin/neumorphic_expenses/monthly_expenses_view.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -69,7 +70,8 @@ class StoreApp extends StatelessWidget {
         LoginPage.routeName:(ctx)=>LoginPage(),
         SignUpNew.routeName:(ctx) =>SignUpNew(),
         AddItem.routeName:(ctx) => AddItem(),
-        DealsScreen.routeName:(ctx)=>DealsScreen()
+        DealsScreen.routeName:(ctx)=>DealsScreen(),
+        MontlyExpensesView.routeName:(ctx)=>MontlyExpensesView(),
       },
     );
   }
