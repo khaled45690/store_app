@@ -12,12 +12,16 @@ import 'package:store_app/widgets/button_widget.dart';
 import 'package:store_app/widgets/textfield_widget.dart';
 import 'package:store_app/widgets/wave_widget.dart';
 import 'package:http/http.dart' as http;
-import 'MainProductScreen.dart';
 import 'SignUpNew.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   static const routeName = '/LoginPage';
-  String email, password;
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String email, password , errorMessage = "";
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   submitForm(String email, String password, context) async {
@@ -25,19 +29,22 @@ class LoginPage extends StatelessWidget {
     UserData userDataContext = Provider.of<UserData>(context, listen: false);
     print("${kUrl}Signin");
     final response = await http.post(
-      "${kUrl}Signin",
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<dynamic, dynamic>{
-        "email": email,
-        "password": password,
-      })
+        "${kUrl}Signin",
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<dynamic, dynamic>{
+          "email": email,
+          "password": password,
+        })
     );
     final Map responseJson = json.decode(response.body);
     print(responseJson);
-    if (responseJson["state"] != null) {
+    if (responseJson["msg"] != null) {
       print(responseJson);
+      setState(() {
+        errorMessage = responseJson["msg"];
+      });
     } else {
       userDataContext.userData = responseJson;
       _prefs.then((SharedPreferences prefs) {
@@ -132,12 +139,18 @@ class LoginPage extends StatelessWidget {
                           return null;
                         },
                         hintText: 'Password',
-                        
+
                         obscureText: model.isVisible ? false : true,
                         prefixIconData: Icons.lock_outline,
                         suffixIconData: model.isVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
+                      ),
+                      Text(
+                        errorMessage,
+                        style: TextStyle(
+                          color: Colors.red,
+                        ),
                       ),
                       SizedBox(
                         height: 10.0,
@@ -159,7 +172,7 @@ class LoginPage extends StatelessWidget {
                     onClick: () {
                       if (_key.currentState.validate()) {
                         submitForm(email, password, context);
-                           // Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
+                        // Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
                       }
                       //  Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
                     },
@@ -184,3 +197,4 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+

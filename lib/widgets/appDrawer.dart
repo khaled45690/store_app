@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/constants/deleteImageFunction.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
@@ -16,7 +17,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:store_app/shared/globals.dart';
 
 class AppDrawer extends StatefulWidget {
-
   @override
   _AppDrawerState createState() => _AppDrawerState();
 }
@@ -24,14 +24,11 @@ class AppDrawer extends StatefulWidget {
 class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
-
     final UserData userData = Provider.of<UserData>(context, listen: false);
     if (userData.userData != null) {
       print(userData.userData["profileImage"]);
       return Drawer(
-        
           child: ListView(children: <Widget>[
-            
         UserAccountsDrawerHeader(
           accountName: Text(userData.userData["name"]),
           accountEmail: Text(userData.userData["email"]),
@@ -64,18 +61,22 @@ class _AppDrawerState extends State<AppDrawer> {
             child: userData.userData["profileImage"] == null
                 ? CircleAvatar(
                     backgroundColor: Colors.white,
-                    child: Icon(Icons.person, color: Global.mediumBlue,))
+                    child: Icon(
+                      Icons.person,
+                      color: Global.mediumBlue,
+                    ))
                 : CircleAvatar(
                     backgroundImage: Image.network(
                             "${kUrl}getImage/${userData.userData["profileImage"]}")
                         .image,
                   ),
           ),
-          decoration: BoxDecoration(color: Global.mediumBlue,),
+          decoration: BoxDecoration(
+            color: Global.mediumBlue,
+          ),
         ),
         userData.userData["isAdmin"]
-            ? 
-              InkWell(
+            ? InkWell(
                 onTap: () {
                   Navigator.of(context).popAndPushNamed(ShowProducts.routeName);
                 },
@@ -87,10 +88,8 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
                 ),
               )
-              
-              
             : Container(),
-               InkWell(
+        InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
           },
@@ -124,11 +123,11 @@ class _AppDrawerState extends State<AppDrawer> {
             title: Text("MyFavorite"),
             leading: Icon(
               Icons.favorite_border,
-              color:Global.mediumBlue,
+              color: Global.mediumBlue,
             ),
           ),
         ),
-      InkWell(
+        InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
           },
@@ -142,6 +141,10 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         InkWell(
           onTap: () {
+            Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
+            _prefs.then((SharedPreferences prefs) {
+              prefs.remove("userData");
+            });
             userData.userData = null;
             userData.isUserDataLoaded = false;
             Navigator.of(context).pop();
@@ -149,8 +152,7 @@ class _AppDrawerState extends State<AppDrawer> {
           child: ListTile(
             title: Text("Logout"),
             leading: Icon(
-                                  FontAwesomeIcons.signOutAlt,
-
+              FontAwesomeIcons.signOutAlt,
               color: Global.mediumBlue,
             ),
           ),
@@ -160,19 +162,26 @@ class _AppDrawerState extends State<AppDrawer> {
       return Drawer(
           child: ListView(children: <Widget>[
         UserAccountsDrawerHeader(
-          
-                accountName: Text("Welcome"),
-          accountEmail: FlatButton(child:Text("log in / Sign up",),
-          onPressed:(){
-             Navigator.of(context).popAndPushNamed(LoginPage.routeName);
-          } ,),
-          decoration: BoxDecoration(color: Global.mediumBlue,),
-          currentAccountPicture: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Icon(FontAwesomeIcons.userAlt,size: 50, color:Global.mediumBlue,))
-        ),
-        
-               InkWell(
+            accountName: Text("Welcome"),
+            accountEmail: FlatButton(
+              child: Text(
+                "log in / Sign up",
+              ),
+              onPressed: () {
+                Navigator.of(context).popAndPushNamed(LoginPage.routeName);
+              },
+            ),
+            decoration: BoxDecoration(
+              color: Global.mediumBlue,
+            ),
+            currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(
+                  FontAwesomeIcons.userAlt,
+                  size: 50,
+                  color: Global.mediumBlue,
+                ))),
+        InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
           },
@@ -184,10 +193,9 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ),
         ),
-
-               InkWell(
+        InkWell(
           onTap: () {
-          //  Navigator.of(context).popAndPushNamed(CartWidget.routeName);
+            //  Navigator.of(context).popAndPushNamed(CartWidget.routeName);
           },
           child: ListTile(
             title: Text("ShopCart"),
@@ -197,7 +205,7 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ),
         ),
-           InkWell(
+        InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(FavoriteScreen.routeName);
             //   productsContainer.showFavoritesOnly();
@@ -211,7 +219,7 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ),
         ),
-               InkWell(
+        InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
           },

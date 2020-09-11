@@ -28,7 +28,7 @@ if (req.url === "/Signup") {
          
          console.log(result === null);
           if (result === null) {
-            let respond = { "msg": "the password or email or wrong please try agan" }
+            let respond = { "msg": "the password or email is wrong please try again" }
             res.end(JSON.stringify(respond))
           } else {
             console.log("send data");

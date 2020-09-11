@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:store_app/core/viewmodels/home_model.dart';
 import 'package:store_app/models/cart.dart';
@@ -43,8 +44,13 @@ void main() => runApp(
 
 class StoreApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
+    // Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
+    // _prefs.then((SharedPreferences prefs) {
+    //   prefs.remove("userData");
+    // });
     return MaterialApp(
        debugShowCheckedModeBanner: false,
 
