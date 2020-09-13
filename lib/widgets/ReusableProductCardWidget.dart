@@ -7,6 +7,7 @@ import 'package:store_app/constants/kConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
+import 'package:store_app/models/screenSizeModel.dart';
 import 'package:store_app/screens/productDetails.dart';
 import 'CustomButton.dart';
 class ReusableCardWidget extends StatefulWidget {
@@ -46,6 +47,7 @@ List favorite = [];
   @override
   Widget build(BuildContext context) {
     Cart cart = Provider.of<Cart>(context);
+    ScreenSize screenSize = Provider.of<ScreenSize>(context);
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     List images = productMap["images"];
     print("$kUrl${jsonDecode(images[0])}");
@@ -101,14 +103,13 @@ List favorite = [];
             Container(
            // padding: EdgeInsets.only(right: 1),
 
-              width: 130,
+              width: screenSize.productContainerWidth,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: 140,
-                    height: 200,
+                    width: screenSize.productContainerWidth,
                  //   margin: EdgeInsets.only(top: 10,),
                     child: Image.network("${kUrl}getImage/${jsonDecode(images[0])}"),
                   ),
@@ -117,7 +118,7 @@ List favorite = [];
                     productMap["nameOfProduct"],
                     style: TextStyle(
                       fontWeight:FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: screenSize.fontSize,
 
                     ),
                   ),
@@ -127,14 +128,14 @@ List favorite = [];
                   "${ productMap["price"]} \$",
                     style: TextStyle(
                       fontWeight:FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: screenSize.fontSize,
 
                     ),
                   ),
                   SizedBox(height: 20.0),
                   CustomButton(
                     text: "add to cart",
-                    fontSize: 15,
+                    fontSize: screenSize.fontSize,
                     onClick: (){},),
                 ],
               ),
@@ -142,7 +143,7 @@ List favorite = [];
             Column(
               children: <Widget>[
                 IconButton(
-                  padding: EdgeInsets.only(bottom: 280 , top: 20),
+                  padding: EdgeInsets.only(bottom: screenSize.favoriteIconBottomPadding ,right: 0 ,left: 0 ,top: screenSize.favoriteIconTopPadding),
                   color: Colors.red,
                   icon:  isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
                   onPressed: () {
@@ -150,7 +151,7 @@ List favorite = [];
                   },
                 ),
                 IconButton(
-                padding: EdgeInsets.only(right: 10),
+                padding: EdgeInsets.only(right: 5),
 
                   color: Colors.black,
                   icon: Icon(

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/models/screenSizeModel.dart';
 class InputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenSize screenSize = Provider.of<ScreenSize>(context);
     return  Container(
-      width: 230,
+      width: screenSize.inputWidgetWidth,
     
       child: Center(
         child: TextFormField(

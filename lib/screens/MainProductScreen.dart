@@ -6,6 +6,7 @@ import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/models/screenSizeModel.dart';
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
@@ -37,12 +38,7 @@ class _MainProductScreenState extends State<MainProductScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    // Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-    //     _prefs.then((SharedPreferences prefs) {
-  
-    //   prefs.setString("favorite" , jsonEncode([]));
 
-    // });
     MainProductModel mainProductModel = Provider.of<MainProductModel>(context);
     Favorite favoriteModel = Provider.of<Favorite>(context);
     if( favoriteModel.isTrue){
@@ -51,10 +47,6 @@ class _MainProductScreenState extends State<MainProductScreen> {
       });
 
     Products products = Provider.of<Products>(context);
-// =======
-
-// >>>>>>> Stashed changes
-      print("entered");
       favoriteModel.isTrue = false;
     }
     return Scaffold(

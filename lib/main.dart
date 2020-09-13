@@ -24,6 +24,7 @@ import 'package:store_app/widgets/spalshScreenWidget.dart';
 import 'models/UserData.dart';
 import 'models/MainProductModel.dart';
 import 'models/favorite_model.dart';
+import 'models/screenSizeModel.dart';
 import 'screens/amdin/neumorphic_expenses/monthly_expenses_view.dart';
 
 void main() => runApp(
@@ -35,6 +36,7 @@ void main() => runApp(
           ChangeNotifierProvider(create: (_) => UserData()),
           ChangeNotifierProvider(create: (_) => Product()),
           ChangeNotifierProvider(create: (_)=>Favorite(),),
+          ChangeNotifierProvider(create: (_)=>ScreenSize(),),
           ChangeNotifierProvider(create: (_)=>HomeModel(),),
 
         ],
@@ -47,10 +49,6 @@ class StoreApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
-    // _prefs.then((SharedPreferences prefs) {
-    //   prefs.remove("userData");
-    // });
     return MaterialApp(
        debugShowCheckedModeBanner: false,
 
