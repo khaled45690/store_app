@@ -14,6 +14,7 @@ import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/LoginNew.dart';
 import 'package:store_app/screens/amdin/ShowProduct.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:store_app/screens/amdin/neumorphic_expenses/monthly_expenses_view.dart';
 import 'package:store_app/shared/globals.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -76,18 +77,41 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
         ),
         userData.userData["isAdmin"]
-            ? InkWell(
-                onTap: () {
-                  Navigator.of(context).popAndPushNamed(ShowProducts.routeName);
-                },
-                child: ListTile(
-                  title: Text("ManageProduct"),
-                  leading: Icon(
-                    Icons.edit,
-                    color: Global.mediumBlue,
-                  ),
+            ? Column(
+              children: [
+                Container(
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).popAndPushNamed(ShowProducts.routeName);
+                      },
+                      child: ListTile(
+                        title: Text("ManageProduct"),
+                        leading: Icon(
+                          FontAwesomeIcons.edit,
+                          color: Global.mediumBlue,
+                        ),
+                      ),
+                    ),
+                    
                 ),
-              )
+                 Container(
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).popAndPushNamed(MontlyExpensesView.routeName);
+                      },
+                      child: ListTile(
+                        title: Text("ShowProfit"),
+                        leading: Icon(
+                          FontAwesomeIcons.chartLine,
+                          color: Global.mediumBlue,
+                        ),
+                      ),
+                    ),
+                    
+                ),
+                
+              ],
+            )
             : Container(),
         InkWell(
           onTap: () {
@@ -108,7 +132,7 @@ class _AppDrawerState extends State<AppDrawer> {
           child: ListTile(
             title: Text("ShopCart"),
             leading: Icon(
-              Icons.shopping_cart,
+              FontAwesomeIcons.shoppingCart,
               color: Global.mediumBlue,
             ),
           ),
@@ -122,7 +146,7 @@ class _AppDrawerState extends State<AppDrawer> {
           child: ListTile(
             title: Text("MyFavorite"),
             leading: Icon(
-              Icons.favorite_border,
+                          FontAwesomeIcons.heart,
               color: Global.mediumBlue,
             ),
           ),
