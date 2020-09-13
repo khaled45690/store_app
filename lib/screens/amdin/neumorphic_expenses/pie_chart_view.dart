@@ -66,7 +66,7 @@ class PieChartView extends StatelessWidget {
                     ],
                   ),
                   child: Center(
-                    child: Text('\$1280.200',style: TextStyle(fontSize:25),),
+                    child: Text('\$800.00',style: TextStyle(fontSize:25),),
                   ),
                 ),
               ),
