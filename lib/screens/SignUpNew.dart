@@ -41,9 +41,9 @@ class SignUpNew extends StatefulWidget {
     if (responseJson["state"] != null) {
       print(responseJson);
     } else {
-      userDataContext.userData = responseJson;
+          Navigator.of(context).popAndPushNamed(LoginScreen.routeName);
+      }
     }
-  }
 
 
 
@@ -59,13 +59,7 @@ class _SignUpNewState extends State<SignUpNew> {
   @override
   Widget build(BuildContext context) {
       UserData userDataContext = Provider.of<UserData>(context);
-    print(userDataContext.isUserDataLoaded);
-    if (userDataContext.isUserDataLoaded) {
-      Timer(const Duration(milliseconds: 200), () {
-        Navigator.of(context).pop();
-        Navigator.of(context).pop();
-      });
-    }
+
     return Scaffold(
       body: SafeArea(
         child: Stack(children: <Widget>[
