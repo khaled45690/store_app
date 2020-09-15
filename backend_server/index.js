@@ -17,8 +17,12 @@ const purchaseApi = require('./server_apis/purchaseApi');
 const app = express();
 app.use(cors());
 
-// app.use('/' ,express.static(path.normalize(__dirname + '/build')));
-
+app.use('/' ,express.static(path.normalize(__dirname + '/build')));
+app.get('/' , (req , res)=>{
+    if(req.url === "/"){
+        res.sendFile(path.normalize(__dirname + '/index.html'));
+    }
+})
 app.use('/api', (req , res) => {
     console.log(req.url);
     if (req.url === "/Signup" || req.url === "/Signin" ) {
@@ -51,4 +55,5 @@ app.use('/api', (req , res) => {
 // listen to the local server
 app.listen(process.env.PORT || 3001, () => {
     console.log("you are connected to the Server");
+    console.log(process.env.PORT);
 });

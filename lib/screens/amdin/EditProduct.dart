@@ -80,7 +80,6 @@ class _AdminEditProductState extends State<AdminEditProduct> {
                 print("--------------------------------------------------------------------");
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
-                Navigator.of(context).pop();
               }
             },
            )
