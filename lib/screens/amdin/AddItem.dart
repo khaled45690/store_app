@@ -11,19 +11,57 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 
 import '../MainProductScreen.dart';
 
-
 class AddItem extends StatefulWidget {
-  static const routeName ='/add-item';
+  static const routeName = '/add-item';
+
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   @override
   _AddItemState createState() => _AddItemState();
 }
 
-class _AddItemState extends State<AddItem> {
+class Category {
+  int id;
+  String name;
+  Category(this.id, this.name);
 
-  String nameOfProduct , description , price , quantity ;
+  static List<Category> getCategory() {
+    return <Category>[
+      Category(1, 't-shirt'),
+      Category(2, 'shoes'),
+      Category(3, 'jeans'),
+      Category(4, 'sweetPants'),
+      Category(5, 'other'),
+    ];
+  }
+}
+
+class _AddItemState extends State<AddItem> {
+  String nameOfProduct, description, price, quantity;
   List<String> images = [];
+
+  List<Category> _category = Category.getCategory();
+  List<DropdownMenuItem<Category>> _dropdownItems;
+  Category _selectedCategory;
+  @override
+  void initState() {
+    _dropdownItems = buildDrobDownMenuItems(_category);
+    _selectedCategory = _dropdownItems[0].value;
+    super.initState();
+  }
+
+  List<DropdownMenuItem<Category>> buildDrobDownMenuItems(List categories) {
+    List<DropdownMenuItem<Category>> items = List();
+    for (Category cat in categories) {
+      items.add(
+        DropdownMenuItem(
+          value: cat,
+           child: Text(cat.name),
+           )
+           );
+    }
+    return items;
+  }
 
   uploadAssetImages(Asset image) async {
     String imageName;
@@ -46,20 +84,23 @@ class _AddItemState extends State<AddItem> {
         images.add(value);
         print(images);
       });
-
     });
-
+  }
+  onchangeDropdownItems(Category selectedCategory){
+    setState(() {
+      _selectedCategory =selectedCategory;
+    });
   }
 
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white10,
-        title:Text("Add Product"),
+        title: Text("Add Product"),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.save),
-            onPressed: () async{
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () async {
               final response = await http.post(
                 "${kUrl}addProduct",
                 headers: <String, String>{
@@ -79,76 +120,85 @@ class _AddItemState extends State<AddItem> {
               if (responseJson["state"] != null) {
                 print(responseJson);
               } else {
-                print("--------------------------------------------------------------------");
+                print(
+                    "--------------------------------------------------------------------");
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               }
             },
-           )
-
-
+          )
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top:75),
+        padding: const EdgeInsets.only(top: 75),
         child: Form(
           key: widget._key,
-          child: ListView(children: <Widget>[
+          child: ListView(
+            children: <Widget>[
+              Center(child: Text("select the category of the project",style: TextStyle(fontSize:20),)),
+              DropdownButton(
+                style: TextStyle(color:Colors.black,fontSize:24),
+                dropdownColor: Colors.blue,
+                value: _selectedCategory,
+                items: _dropdownItems,
+                 onChanged: onchangeDropdownItems,),
+
+                SizedBox(height: 40),
+                Row(
+                  children: [
+                    Text("CategorySelected: ",style: TextStyle(fontSize:24),
+                    ),
+                    Text('${_selectedCategory.name}',style: TextStyle(fontSize:24,color:Colors.blue),)
+                  ],
+                ),
+              SizedBox(height: 20),
 
               TextFormField(
-                            validator: (value){
-                              if(value.isEmpty) return 'required name';
-                            },
-                            onChanged: (value) {
-                              nameOfProduct = value;
-                               },
-                            decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 16),
-                                hintText: "nameOfProduct",
-                                border: OutlineInputBorder()),
-                          ),
-            // CustomTextField(
-            //   hint: 'name of product',
-            //   onchange: (value){
-            //     nameOfProduct = value;
-            //   },
-              //),
-              SizedBox(height:20),
+                validator: (value) {
+                  if (value.isEmpty) return 'required name';
+                },
+                onChanged: (value) {
+                  nameOfProduct = value;
+                },
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    hintText: "nameOfProduct",
+                    border: OutlineInputBorder()),
+              ),
+         
+              SizedBox(height: 20),
               TextFormField(
-                            validator: (value){
-                              if(value.isEmpty) return 'required Description';
-                            },
-                            onChanged: (value) {
-                              description = value;
-                               },
-                            decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 16),
-                                hintText: "description",
-                                border: OutlineInputBorder()),
-                          ),
+                validator: (value) {
+                  if (value.isEmpty) return 'required Description';
+                },
+                onChanged: (value) {
+                  description = value;
+                },
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    hintText: "description",
+                    border: OutlineInputBorder()),
+              ),
               //  CustomTextField(
               // hint: 'description of product',
               //    onchange: (value){
               //      description = value;
               //    },
               // ),
-                            SizedBox(height:20),
-                            TextFormField(
-                            validator: (value){
-                              if(value.isEmpty) return 'required price';
-                            },
-                            onChanged: (value) {
-                              price = value;
-                               },
-                            decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 16),
-                                hintText: "price",
-                                border: OutlineInputBorder()),
-                          ),
+              SizedBox(height: 20),
+              TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) return 'required price';
+                },
+                onChanged: (value) {
+                  price = value;
+                },
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    hintText: "price",
+                    border: OutlineInputBorder()),
+              ),
 
               //  CustomTextField(
               // hint: 'price of product',
@@ -156,119 +206,98 @@ class _AddItemState extends State<AddItem> {
               //      price = value;
               //    },
               // ),
-                            SizedBox(height:20),
-                            TextFormField(
-                            validator: (value){
-                              if(value.isEmpty) return 'required quantity';
-                            },
-                            onChanged: (value) {
-                              quantity = value;
-                               },
-                            decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 16),
-                                hintText: "quantity",
-                                border: OutlineInputBorder()),
-                          ),
+              SizedBox(height: 20),
+              TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) return 'required quantity';
+                },
+                onChanged: (value) {
+                  quantity = value;
+                },
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    hintText: "quantity",
+                    border: OutlineInputBorder()),
+              ),
 
-              //  CustomTextField(
-              // hint: 'quantity of product',
-              //    onchange: (value){
-              //      quantity = value;
-              //    },
-              // ),
-            SizedBox(height:40),
-            Container(
-              
-              child: Text("you have to add at least 3 images for the product",style:TextStyle(fontSize:20, color: Colors.black))),
-            Container(
-              margin: EdgeInsets.only(left: 50, right: 50,bottom: 5),
-              height: 60,
-              child: RaisedButton(
-                            
-                            color: Colors.grey,
-                            onPressed: () async{
-                             
-              List<Asset> images = List<Asset>();
-                  List<Asset> resultList = List<Asset>();
+              SizedBox(height: 40),
+              Container(
+                  child: Text(
+                      "you have to add at least 3 images for the product",
+                      style: TextStyle(fontSize: 20, color: Colors.black))),
+              Container(
+                margin: EdgeInsets.only(left: 50, right: 50, bottom: 5),
+                height: 60,
+                child: RaisedButton(
+                  color: Colors.grey,
+                  onPressed: () async {
+                    List<Asset> images = List<Asset>();
+                    List<Asset> resultList = List<Asset>();
 
-                  resultList = await MultiImagePicker.pickImages(
-                    maxImages: 300,
-                    enableCamera: true,
-                    selectedAssets: images,
-                    cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
-                    materialOptions: MaterialOptions(
-                      actionBarColor: "#abcdef",
-                      actionBarTitle: "Example App",
-                      allViewTitle: "All Photos",
-                      useDetailsView: false,
-                      selectCircleStrokeColor: "#000000",
-                    ),
-                  );
-                  resultList.forEach((element) async{
-                    uploadAssetImages(element);
-                  });
-                            },
-                            
-                          child: Text("add images for product",style: TextStyle(
-                            fontWeight:FontWeight.bold
-                          ),),
-                          
-                          
-                          ),
-                          
-                          
-          
-            ),
+                    resultList = await MultiImagePicker.pickImages(
+                      maxImages: 300,
+                      enableCamera: true,
+                      selectedAssets: images,
+                      cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
+                      materialOptions: MaterialOptions(
+                        actionBarColor: "#abcdef",
+                        actionBarTitle: "Example App",
+                        allViewTitle: "All Photos",
+                        useDetailsView: false,
+                        selectCircleStrokeColor: "#000000",
+                      ),
+                    );
+                    resultList.forEach((element) async {
+                      uploadAssetImages(element);
+                    });
+                  },
+                  child: Text(
+                    "add images for product",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
 
-                        SizedBox(height:80),
-                            CustomButton(
-                              
+              SizedBox(height: 80),
+              CustomButton(
                 text: "add the product ",
                 fontSize: 20,
-                onClick: ()async{
-                  if(widget._key.currentState.validate()){
-                   final response = await http.post(
-                "${kUrl}addProduct",
-                headers: <String, String>{
-                  'Content-Type': 'application/json; charset=UTF-8',
+                onClick: () async {
+                  if (widget._key.currentState.validate()) {
+                    final response = await http.post(
+                      "${kUrl}addProduct",
+                      headers: <String, String>{
+                        'Content-Type': 'application/json; charset=UTF-8',
+                      },
+                      body: jsonEncode(<dynamic, dynamic>{
+                        "nameOfProduct": nameOfProduct,
+                        "description": description,
+                        "price": price,
+                        "quantity": quantity,
+                        "images": images,
+                      }),
+                    );
+
+                    final Map responseJson = json.decode(response.body);
+                    print(responseJson);
+                    if (responseJson["state"] != null) {
+                      print(responseJson);
+                      Navigator.of(context)
+                          .popAndPushNamed(MainProductScreen.routeName);
+                    } else {
+                      print(
+                          "--------------------------------------------------------------------");
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    }
+                  }
                 },
-                body: jsonEncode(<dynamic, dynamic>{
-                  "nameOfProduct": nameOfProduct,
-                  "description": description,
-                  "price": price,
-                  "quantity": quantity,
-                  "images": images,
-                }),
-              );
-
-              final Map responseJson = json.decode(response.body);
-              print(responseJson);
-              if (responseJson["state"] != null) {
-                print(responseJson);
-                            Navigator.of(context).popAndPushNamed(MainProductScreen.routeName);
-
-              } else {
-                print("--------------------------------------------------------------------");
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-                   } }
-            },
-                
-                
-
-                              ),
-                        
-
-
-        ],
+              ),
+            ],
           ),
         ),
       ),
-
     );
-
   }
-  
 }

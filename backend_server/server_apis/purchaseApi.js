@@ -22,9 +22,9 @@ ObjectID = require('mongodb').ObjectID,
           });
         })
       })).then((data)=>{
-
+        
                     // updating the profite for Admins section --------------------------------------->
-  
+
             db.collection("users").find({ "isAdmin": true }).toArray((err, result) => {
               Object(result).map((MapData, index) => {
                 if (MapData.profite === undefined) {

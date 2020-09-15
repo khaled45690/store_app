@@ -12,6 +12,7 @@ import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/Deals_screen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/LoginNew.dart';
+import 'package:store_app/screens/amdin/AddItem.dart';
 import 'package:store_app/screens/amdin/ShowProduct.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:store_app/screens/amdin/neumorphic_expenses/monthly_expenses_view.dart';
@@ -88,6 +89,21 @@ class _AppDrawerState extends State<AppDrawer> {
                         title: Text("ManageProduct"),
                         leading: Icon(
                           FontAwesomeIcons.edit,
+                          color: Global.mediumBlue,
+                        ),
+                      ),
+                    ),
+                    
+                ),
+                 Container(
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).popAndPushNamed(AddItem.routeName);
+                      },
+                      child: ListTile(
+                        title: Text("addProduct"),
+                        leading: Icon(
+                          FontAwesomeIcons.plus,
                           color: Global.mediumBlue,
                         ),
                       ),
