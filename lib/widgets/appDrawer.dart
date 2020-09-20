@@ -12,10 +12,10 @@ import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/Deals_screen.dart';
 import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/LoginNew.dart';
-import 'package:store_app/screens/amdin/AddItem.dart';
-import 'package:store_app/screens/amdin/ShowProduct.dart';
+import 'package:store_app/screens/admin/AddItem.dart';
+import 'package:store_app/screens/admin/ShowProduct.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:store_app/screens/amdin/neumorphic_expenses/monthly_expenses_view.dart';
+import 'package:store_app/screens/admin/neumorphic_expenses/monthly_expenses_view.dart';
 import 'package:store_app/shared/globals.dart';
 
 class AppDrawer extends StatefulWidget {

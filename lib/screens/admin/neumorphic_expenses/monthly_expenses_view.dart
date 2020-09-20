@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:store_app/screens/amdin/neumorphic_expenses/pie_chart_view.dart';
+import 'package:store_app/screens/admin/neumorphic_expenses/pie_chart_view.dart';
 
 import 'categories_row.dart';
 

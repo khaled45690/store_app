@@ -12,9 +12,9 @@ import 'package:store_app/screens/FavoriteScreen.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/screens/SignUpNew.dart';
 import 'package:store_app/screens/SignUpScreen.dart';
-import 'package:store_app/screens/amdin/AddItem.dart';
-import 'package:store_app/screens/amdin/EditProduct.dart';
-import 'package:store_app/screens/amdin/ShowProduct.dart';
+import 'package:store_app/screens/admin/AddItem.dart';
+import 'package:store_app/screens/admin/EditProduct.dart';
+import 'package:store_app/screens/admin/ShowProduct.dart';
 import 'package:store_app/screens/LoginNew.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
@@ -25,7 +25,7 @@ import 'models/UserData.dart';
 import 'models/MainProductModel.dart';
 import 'models/favorite_model.dart';
 import 'models/screenSizeModel.dart';
-import 'screens/amdin/neumorphic_expenses/monthly_expenses_view.dart';
+import 'screens/admin/neumorphic_expenses/monthly_expenses_view.dart';
 
 void main() => runApp(
       MultiProvider(
