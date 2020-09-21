@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../images/logoImage.png'
+
+import NavigatorComponent from '../Components/NavigatorComponent'
 class Header extends Component {
 
     constructor(props) {
@@ -9,11 +11,12 @@ class Header extends Component {
     }
 
     render() {
-        return (
-            <div className="Header" >
-                <img src={logo} alt = "logo"></img>
-            </div>
-        );
+            return (
+                <div className="Header" >
+                    <NavigatorComponent />
+                    <img className="Header-Logo col s12 m4 l8" src={logo} alt = "logo"></img>
+                </div>
+            );
     }
 }
 

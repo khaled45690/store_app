@@ -79,11 +79,12 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         userData.userData["isAdmin"]
             ? Column(
-              children: [
-                Container(
-                  child: InkWell(
+                children: [
+                  Container(
+                    child: InkWell(
                       onTap: () {
-                        Navigator.of(context).popAndPushNamed(ShowProducts.routeName);
+                        Navigator.of(context)
+                            .popAndPushNamed(ShowProducts.routeName);
                       },
                       child: ListTile(
                         title: Text("ManageProduct"),
@@ -93,12 +94,12 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                       ),
                     ),
-                    
-                ),
-                 Container(
-                  child: InkWell(
+                  ),
+                  Container(
+                    child: InkWell(
                       onTap: () {
-                        Navigator.of(context).popAndPushNamed(AddItem.routeName);
+                        Navigator.of(context)
+                            .popAndPushNamed(AddItem.routeName);
                       },
                       child: ListTile(
                         title: Text("addProduct"),
@@ -108,12 +109,12 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                       ),
                     ),
-                    
-                ),
-                 Container(
-                  child: InkWell(
+                  ),
+                  Container(
+                    child: InkWell(
                       onTap: () {
-                        Navigator.of(context).popAndPushNamed(MontlyExpensesView.routeName);
+                        Navigator.of(context)
+                            .popAndPushNamed(MontlyExpensesView.routeName);
                       },
                       child: ListTile(
                         title: Text("ShowProfit"),
@@ -123,11 +124,9 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                       ),
                     ),
-                    
-                ),
-                
-              ],
-            )
+                  ),
+                ],
+              )
             : Container(),
         InkWell(
           onTap: () {
@@ -162,7 +161,7 @@ class _AppDrawerState extends State<AppDrawer> {
           child: ListTile(
             title: Text("MyFavorite"),
             leading: Icon(
-                          FontAwesomeIcons.heart,
+              FontAwesomeIcons.heart,
               color: Global.mediumBlue,
             ),
           ),
@@ -181,7 +180,7 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         InkWell(
           onTap: () {
-            Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
+            Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
             _prefs.then((SharedPreferences prefs) {
               prefs.remove("userData");
             });
