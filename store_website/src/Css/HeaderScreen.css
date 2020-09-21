@@ -1,6 +1,9 @@
 
-.Header , .NavigatorComponent , .nav-btn{
+.Header , .NavigatorComponent , .nav-btn , .center , .nav-btn-drawer{
   display: flex !important;
+}
+.NavigatorComponent{
+  width: 100%;
 }
 .Header{
     background-color: #4e92ff;
@@ -8,18 +11,58 @@
     -webkit-box-shadow: 0px 0px 10px 5px #ccc;
     box-shadow:         0px 0px 10px 5px #ccc;
 }
-
+.sidenav{
+  display: block !important;
+}
 .Header-Logo{
     height: 100px;
 }
-
-.NavigatorComponent{
-  width: 45%;
+.hide-logo{
+display: block;
 }
 
+.center-nav-items{
+  width: 95%;
+}
+.center{
+  height: 100%;
+  justify-content: center;
+}
+.background-div{
+  background-color: blue;
+  opacity: 0.2;
+  width: 100%;
+  height: 120%;
+  z-index: 999999;
+  position: absolute;
+}
+.NavigatorComponentDrawer{
+  background-color: transparent;
+  -moz-box-shadow:    0px 0px 0px 0px #ccc;
+  -webkit-box-shadow: 0px 0px 0px 0px #ccc;
+  box-shadow:         0px 0px 0px 0px #ccc;
+  width: 60%;
+  height: inherit;
+  z-index: 999999;
+  position: absolute;
+
+}
+.show-hide{
+  display: none;
+}
+
+.user-info{
+  background-color:  #4e92ff;
+  height: 200px;
+}
+.Tabs{
+  background-color: white;
+}
 .nav-btn{
+
   background-color: inherit;
   color: aliceblue;
+  height: 100%;
   padding-top: 40px;
   padding-left: 5px;
   padding-right: 5px;
@@ -30,3 +73,41 @@
   background-color: #86b5ff;
 }
 
+.nav-btn-drawer{
+  width: 100%;
+  background-color: inherit;
+  color: black;
+  padding-top: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.nav-btn-drawer:hover{
+  background-color: #86b5ff;
+
+}
+
+.Drawer-icon{
+  width: 30px;
+  cursor: pointer;
+  margin-top: 30px;
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 50px;
+
+}
+.hiden{
+  display: none;
+}
+
+
+@media only screen  and (max-width: 966px) {
+
+  .center-nav-items , .hide-logo{
+    display: none;
+  }
+  .hiden{
+    display: block;
+  }
+}
