@@ -14,7 +14,6 @@ class Header extends Component {
             return (
                 <div className="Header" >
                     <NavigatorComponent />
-                   
                 </div>
             );
     }

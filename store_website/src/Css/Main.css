@@ -1,0 +1,20 @@
+
+.Main , .Favorite{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex:auto;
+}
+.CardComponent{
+    margin-left: 20px;
+    width: 300px;
+    height: auto ;
+}
+
+.card{
+    height: 450px;
+}
+
+.card img{
+    height: 300px;
+}

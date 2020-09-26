@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 module.exports = (req, res) => {
+  console.log("enteeeeeererrrrreeeeed");
   console.log(req.url.substring(10, 15));
+
   if (req.url.substring(10, 15) == "image") {
     url = __dirname + '/../images/' + req.url.substring(10);
     console.log(path.normalize(url));

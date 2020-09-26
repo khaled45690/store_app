@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
 import CardComponent from "../Components/CardComponent";
+
 import { Kurl } from '../Konstant'
-class Main extends Component {
+class ManageProduct extends Component {
 
     constructor(props) {
         super(props);
@@ -20,22 +20,18 @@ class Main extends Component {
                 items: result
             })
         });
-    }
-    render() {
-        if (this.state.items.length > 0) {
-            return (
-                <div className="Main" >
-                    {this.state.items.map(item => (
-                        <div key={item._id.toString()}><CardComponent item={item}/></div>     
-                    ))}
-                   
-                </div>
-            )
-        } else {
-            return (<div></div>)
-        }
+    } 
 
+    render() {
+                return (
+                    <div className="ManageProduct" >
+                        {this.state.items.map(item => (
+                            <div key={item._id.toString()}><CardComponent item={item}/></div>     
+                        ))}
+                       
+                    </div>
+                )
     }
 }
 
-export default Main;
+export default ManageProduct;

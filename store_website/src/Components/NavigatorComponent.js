@@ -9,7 +9,6 @@ class NavigatorComponent extends Component {
         this.state = {};
     }
     hideShowFunc = (value) => {
-        console.log(value);
         if (value === "hide") {
             this.Drawer.style.display = "none"
         }else if (value === "show") {
@@ -23,12 +22,12 @@ class NavigatorComponent extends Component {
                 <img className="Header-Logo col s12 m4 l8 hide-logo" src={logo} alt="logo"></img>
                     <div className="center-nav-items">
                         <div className="center">
-                            <Link to="/" className="waves-effect nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>home</i> <p style={{ margin: 0 }}>Home</p></Link>
-                            <Link to="/" className="waves-effect nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>mode_edit</i> <p style={{ margin: 0 }}>Manage product</p></Link>
-                            <Link to="/" className="waves-effect nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>add</i> <p style={{ margin: 0 }}>add product</p></Link>
-                            <Link to="/" className="waves-effect nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>shopping_cart</i> <p style={{ margin: 0 }}>shop cart</p></Link>
-                            <Link to="/" className="waves-effect nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>favorite</i> <p style={{ margin: 0 }}>my favorite</p></Link>
-                            <Link to="/" className="    waves-effect nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>lock</i> <p style={{ margin: 0 }}>Sign in</p></Link>
+                            <Link to="/" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>home</i> <p style={{ margin: 0 }}>Home</p></Link>
+                            <Link to="/ManageProduct" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>mode_edit</i> <p style={{ margin: 0 }}>Manage product</p></Link>
+                            <Link to="/" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>add</i> <p style={{ margin: 0 }}>add product</p></Link>
+                            <Link to="/" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>shopping_cart</i> <p style={{ margin: 0 }}>shop cart</p></Link>
+                            <Link to="/favorite" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>favorite</i> <p style={{ margin: 0 }}>my favorite</p></Link>
+                            <Link to="/" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>lock</i> <p style={{ margin: 0 }}>Sign in</p></Link>
                         </div>
                     </div>
 
@@ -37,17 +36,17 @@ class NavigatorComponent extends Component {
                     <nav className="NavigatorComponentDrawer"  >
                         <div className="user-info"></div>
                         <div className="Tabs">
-                            <Link to="/" className="waves-effect nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>home</i> <p style={{ margin: 0 }}>Home</p></Link>
-                            <Link to="/" className="waves-effect nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>mode_edit</i> <p style={{ margin: 0 }}>Manage product</p></Link>
-                            <Link to="/" className="waves-effect nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>add</i> <p style={{ margin: 0 }}>add product</p></Link>
-                            <Link to="/" className="waves-effect nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>shopping_cart</i> <p style={{ margin: 0 }}>shop cart</p></Link>
-                            <Link to="/" className="waves-effect nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>favorite</i> <p style={{ margin: 0 }}>my favorite</p></Link>
-                            <Link to="/" className="waves-effect nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>lock</i> <p style={{ margin: 0 }}>Sign in</p></Link>
+                            <Link to="/" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>home</i> <p style={{ margin: 0 }}>Home</p></Link>
+                            <Link to="/ManageProduct" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>mode_edit</i> <p style={{ margin: 0 }}>Manage product</p></Link>
+                            <Link to="/" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>add</i> <p style={{ margin: 0 }}>add product</p></Link>
+                            <Link to="/" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>shopping_cart</i> <p style={{ margin: 0 }}>shop cart</p></Link>
+                            <Link to="/favorite" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>favorite</i> <p style={{ margin: 0 }}>my favorite</p></Link>
+                            <Link to="/" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>lock</i> <p style={{ margin: 0 }}>Sign in</p></Link>
                         </div>
                     </nav>
     
                 </div>
-                <div className="hiden" style={{ width: "100%" }}><div className="waves-effect Drawer-icon" onClick={() => { this.hideShowFunc("show") }}><i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>dehaze</i></div></div>
+                <div className="hiden" style={{ width: "100%" }}><div className="waves-effect waves-purple Drawer-icon" onClick={() => { this.hideShowFunc("show") }}><i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>dehaze</i></div></div>
 
 
                 <img className="Header-Logo col s12 m4 l8" src={logo} alt="logo"></img>

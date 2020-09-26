@@ -49,6 +49,12 @@ class ScreenSize with ChangeNotifier {
       favoriteIconBottomPadding = 270;
       favoriteIconTopPadding = 10;
       inputWidgetWidth = 300;
+    }else{
+      productContainerWidth = 150;
+      fontSize = 19;
+      favoriteIconBottomPadding = 270;
+      favoriteIconTopPadding = 10;
+      inputWidgetWidth = 300;
     }
   }
 

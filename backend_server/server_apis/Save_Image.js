@@ -7,8 +7,7 @@ module.exports =  (req,res)=>{
   var busboy = new Busboy({ headers: req.headers });
   busboy.on('file', function(fieldname, file, filename, encoding, mimetype ) {
     name = filename;
-    var saveTo = path.join(__dirname + "/../images/",filename);
-    console.log(mimetype);
+    var saveTo = path.join(__dirname + "/../images/" ,filename);
     file.pipe(fs.createWriteStream(saveTo));
   });
   busboy.on('finish', function() {
