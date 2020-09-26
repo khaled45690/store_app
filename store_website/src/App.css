@@ -1,0 +1,11 @@
+.Header , .NavigatorComponent , .nav-btn , .center , .nav-btn-drawer , .ManageProduct{
+    display: flex !important;
+  }
+  
+
+.Main , .Favorite , .ManageProduct{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex:auto;
+}

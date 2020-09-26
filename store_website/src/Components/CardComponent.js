@@ -27,8 +27,8 @@ class CardComponent extends Component {
                             </div>
                             <div className="card-action">
                                 <div className="" style={{ width: "100%", display: "flex" }}>
-                                    <div className="waves-effect waves-purple " onClick={() => { this.favoriteFunc(this.props.item) }}><i className="material-icons" style={{ paddingTop: 2, paddingRight: 0, width: 30, color: "red" }}>{this.state.isFavorite ? "favorite" : "favorite_border"}</i></div>
-                                    <div className="waves-effect waves-purple " style={{ marginLeft: 200 }}><i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>add_shopping_cart</i></div></div>
+                                    <div className="waves-effect waves-purple" onClick={() => { this.favoriteFunc(this.props.item) }}><i className="material-icons" style={{ paddingTop: 2, paddingRight: 0, width: 30, color: "red" }}>{this.state.isFavorite ? "favorite" : "favorite_border"}</i></div>
+                                    <div className="waves-effect waves-purple" style={{ marginLeft: 200 }}><i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>add_shopping_cart</i></div></div>
                             </div>
                         </div>
                     </div>

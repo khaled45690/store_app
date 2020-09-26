@@ -1,7 +1,4 @@
 
-.Header , .NavigatorComponent , .nav-btn , .center , .nav-btn-drawer{
-  display: flex !important;
-}
 .NavigatorComponent{
   width: 100%;
 }

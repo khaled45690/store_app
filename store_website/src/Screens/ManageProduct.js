@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import CardComponent from "../Components/CardComponent";
+import ManageProductComponent from "../Components/ManageProductComponent";
 
+import { Link } from "react-router-dom";
 import { Kurl } from '../Konstant'
 class ManageProduct extends Component {
 
@@ -25,10 +26,12 @@ class ManageProduct extends Component {
     render() {
                 return (
                     <div className="ManageProduct" >
+                        <Link to="/addProduct" className="floActionBtn"><i className="material-icons addProductIcon">add</i><div>add product</div> </Link>
                         {this.state.items.map(item => (
-                            <div key={item._id.toString()}><CardComponent item={item}/></div>     
+                            <div key={item._id.toString()}><ManageProductComponent item={item}/></div>     
                         ))}
-                       
+                         
+                      
                     </div>
                 )
     }

@@ -1,0 +1,92 @@
+.ManageProductComponent{
+  margin-left: 10px;
+}
+.floActionBtn {
+  position: fixed;
+  display: flex;
+  right: 10px;
+  bottom: 10px;
+  background-color: #4e92ff;
+  -moz-box-shadow: 0px 0px 10px 5px #ccc;
+  -webkit-box-shadow: 0px 0px 15px 5px #ccc;
+  box-shadow: 0px 0px 10px 5px #ccc;
+  width: 140px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50px;
+  color: aliceblue;
+  z-index: 1;
+}
+.floActionBtn div {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.addProductIcon {
+  margin-left: 10px;
+  margin-top: 12px;
+}
+.centerized {
+  text-align: center;
+}
+.size{
+  width:350px;
+  height: 550px;
+  border-radius: 30px !important;
+}
+
+.size img{
+  width:100%;
+}
+
+.removeProductButton{
+  animation-name: removeProductButtonAnimationOffHover;
+  animation-duration: 0.5s;
+  cursor: pointer;
+  margin-right: 20px;
+  float: right;
+  display: flex;
+  border-radius: 300px;
+  background-color: #4e92ff;
+  -moz-box-shadow: 0px 0px 10px 5px #ccc;
+  -webkit-box-shadow: 0px 0px 15px 5px #ccc;
+  box-shadow: 0px 0px 10px 5px #ccc;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  overflow: hidden;
+}
+.removeProductButton:hover{
+  animation-name: removeProductButtonAnimationOnHover;
+  animation-duration: 0.5s;
+  width: 200px;
+}
+
+.removeProductButton i{
+margin-left: 7px;
+margin-top: 5px;
+margin-right: 7px;
+}
+.removeProductButton p{
+overflow: hidden;
+  margin-left: 7px;
+  margin-top: 7px;
+  margin-right: 7px;
+  font-weight: 700;
+  color: white;
+  }
+
+
+
+  @keyframes removeProductButtonAnimationOnHover {
+    from {width: 40px;}
+    to {width: 200px;}
+  }
+
+  @keyframes removeProductButtonAnimationOffHover {
+    from {width: 200px;}
+    to {width: 40px;}
+  }
+
+
+
