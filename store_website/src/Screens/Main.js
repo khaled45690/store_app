@@ -11,7 +11,7 @@ class Main extends Component {
             items: []
         }
     }
-    componentWillMount() {
+    componentDidMount() {
 
         fetch(Kurl + "getMainProduct", {
             method: 'GET',

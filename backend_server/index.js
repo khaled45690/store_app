@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+var http = require('http');
+const fs = require('fs');
+
 const registration = require('./server_apis/signin_signup');
 const Save_Image = require('./server_apis/Save_Image');
 const deleteProductImages = require('./server_apis/deleteProductImages');
@@ -13,9 +16,12 @@ const getMainProduct = require('./server_apis/getMainProduct');
 const deleteProduct = require('./server_apis/deleteProduct');
 const purchaseApi = require('./server_apis/purchaseApi');
 
+
 // set up express app
 const app = express();
 app.use(cors());
+
+var httpServer = http.createServer(app);
 
 app.use('/' ,express.static(path.normalize(__dirname + '/build')));
 app.get('/' , (req , res)=>{
@@ -53,7 +59,7 @@ app.use('/api', (req , res) => {
 });
 
 // listen to the local server
-app.listen(process.env.PORT || 3001, () => {
+httpServer.listen(process.env.PORT || 3001, () => {
     console.log("you are connected to the Server");
     console.log(process.env.PORT);
 });

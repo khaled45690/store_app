@@ -41,7 +41,7 @@
 
 .removeProductButton{
   animation-name: removeProductButtonAnimationOffHover;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
   cursor: pointer;
   margin-right: 20px;
   float: right;
