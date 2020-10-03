@@ -3,10 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:store_app/constants/deleteImageFunction.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/constants/kSaveImageFunction.dart';
-import 'package:store_app/constants/updateUserData.dart';
 import 'package:store_app/models/UserData.dart';
 import 'package:store_app/screens/CartScreen.dart';
 import 'package:store_app/screens/Deals_screen.dart';
@@ -25,6 +23,7 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> {
   @override
+
   Widget build(BuildContext context) {
     final UserData userData = Provider.of<UserData>(context, listen: false);
     if (userData.userData != null) {
@@ -37,29 +36,16 @@ class _AppDrawerState extends State<AppDrawer> {
           currentAccountPicture: GestureDetector(
             onTap: () async {
               Map userDataClone = userData.userData;
-              if (userDataClone["profileImage"] == null) {
                 final picked =
                     await ImagePicker.pickImage(source: ImageSource.gallery);
                 if (picked != null) {
-                  saveImage(picked);
-                  userDataClone["profileImage"] = basename(picked.path);
-                  updateUserData(userDataClone);
+                  saveImage(picked , userDataClone["_id"]  , userDataClone);
                   print(userData.userData);
-                  userData.userData = userDataClone;
-                }
-              } else {
-                final picked =
-                    await ImagePicker.pickImage(source: ImageSource.gallery);
-                if (picked != null) {
-                  deleteImage(userDataClone["profileImage"]);
-                  saveImage(picked);
-                  userDataClone["profileImage"] = basename(picked.path);
-                  updateUserData(userDataClone);
-                  print(userData.userData);
-                  userData.userData = userDataClone;
+                }else {
+                  print("something happened");
                 }
               }
-            },
+          ,
             child: userData.userData["profileImage"] == null
                 ? CircleAvatar(
                     backgroundColor: Colors.white,
@@ -68,9 +54,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       color: Global.mediumBlue,
                     ))
                 : CircleAvatar(
-                    backgroundImage: Image.network(
-                            "${kUrl}getImage/${userData.userData["profileImage"]}")
-                        .image,
+                    backgroundImage: Image.network(userData.userData["profileImage"]).image,
                   ),
           ),
           decoration: BoxDecoration(

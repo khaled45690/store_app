@@ -80,11 +80,11 @@ class ProductDetails extends StatelessWidget {
           width: double.infinity,
           child: Carousel(
             boxFit: BoxFit.cover,
-            images: [
-              NetworkImage("${kUrl}getImage/${jsonDecode(images[0])}"),
-              NetworkImage("${kUrl}getImage/${jsonDecode(images[1])}"),
-              NetworkImage("${kUrl}getImage/${jsonDecode(images[2])}"),
-            ],
+            images:
+              List.generate(images.length,(index){
+                var image = images[index];
+                return NetworkImage(image["url"]);
+              }),
             autoplay: false,
             animationCurve: Curves.fastOutSlowIn,
             animationDuration: Duration(milliseconds: 100),

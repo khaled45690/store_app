@@ -20,7 +20,7 @@ class AdminEditProduct extends StatefulWidget {
 class _AdminEditProductState extends State<AdminEditProduct> {
 
   String nameOfProduct , description , price , quantity ;
-  List<String> images = [];
+  List<Map> images = [];
 
   uploadAssetImages(Asset image) async {
     String imageName;
@@ -39,8 +39,9 @@ class _AdminEditProductState extends State<AdminEditProduct> {
     print(response.statusCode);
     response.stream.transform(utf8.decoder).listen((value) {
       print(value);
+      Map data = json.decode(value);
       setState(() {
-        images.add(value);
+        images.add(data);
         print(images);
       });
 

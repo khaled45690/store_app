@@ -50,7 +50,8 @@ List favorite = [];
     ScreenSize screenSize = Provider.of<ScreenSize>(context);
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     List images = productMap["images"];
-    print("$kUrl${jsonDecode(images[0])}");
+    Map image = images[0];
+    String imageUrl = image["url"];
 
     void addAndRemoveFavoriteItems() {
       if(isFavorite){
@@ -111,7 +112,7 @@ List favorite = [];
                   Container(
                     width: screenSize.productContainerWidth,
                  //   margin: EdgeInsets.only(top: 10,),
-                    child: Image.network("${kUrl}getImage/${jsonDecode(images[0])}"),
+                    child: Image.network(imageUrl),
                   ),
                   SizedBox(height: 20.0),
                   Text(

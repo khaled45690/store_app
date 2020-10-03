@@ -11,7 +11,6 @@ class MainProductModel extends ChangeNotifier {
 
   set products(List productsParameter){
     _products = productsParameter;
-    print(_products);
     notifyListeners();
 }
 
@@ -19,8 +18,9 @@ getMainProduct() async{
   print("${kUrl}getMainProduct");
   final response = await http.get("${kUrl}getMainProduct");
   products =  json.decode(response.body);
-} 
+}
 printoo(){
+  print("-------------------------------------------------------------------------->");
     print(_products);
 }
 
@@ -48,13 +48,6 @@ print( jsonEncode(product));
       body: jsonEncode(product),
     );
 
-    // final responseJson = json.decode(response.body);
-    // print(responseJson);
-    // if (responseJson["state"] != null) {
-    //   print(responseJson);
-    // } else {
-    //   products = json.decode(response.body);
-    // }
   }
 
 }

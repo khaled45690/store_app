@@ -38,7 +38,7 @@ class Category {
 
 class _AddItemState extends State<AddItem> {
   String nameOfProduct, description, price, quantity;
-  List<String> images = [];
+  List<Map> images = [];
 
   List<Category> _category = Category.getCategory();
   List<DropdownMenuItem<Category>> _dropdownItems;
@@ -80,8 +80,10 @@ class _AddItemState extends State<AddItem> {
     print(response.statusCode);
     response.stream.transform(utf8.decoder).listen((value) {
       print(value);
+      print(jsonDecode(value));
+      Map data = jsonDecode(value);
       setState(() {
-        images.add(value);
+        images.add(data);
         print(images);
       });
     });
@@ -112,6 +114,7 @@ class _AddItemState extends State<AddItem> {
                   "price": price,
                   "quantity": quantity,
                   "images": images,
+                  "Category" : _selectedCategory.name,
                 }),
               );
 
@@ -122,7 +125,6 @@ class _AddItemState extends State<AddItem> {
               } else {
                 print(
                     "--------------------------------------------------------------------");
-                Navigator.of(context).pop();
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               }
@@ -157,6 +159,7 @@ class _AddItemState extends State<AddItem> {
               TextFormField(
                 validator: (value) {
                   if (value.isEmpty) return 'required name';
+                  else return null;
                 },
                 onChanged: (value) {
                   nameOfProduct = value;
@@ -171,6 +174,7 @@ class _AddItemState extends State<AddItem> {
               TextFormField(
                 validator: (value) {
                   if (value.isEmpty) return 'required Description';
+                  else return null;
                 },
                 onChanged: (value) {
                   description = value;
@@ -180,16 +184,12 @@ class _AddItemState extends State<AddItem> {
                     hintText: "description",
                     border: OutlineInputBorder()),
               ),
-              //  CustomTextField(
-              // hint: 'description of product',
-              //    onchange: (value){
-              //      description = value;
-              //    },
-              // ),
+
               SizedBox(height: 20),
               TextFormField(
                 validator: (value) {
                   if (value.isEmpty) return 'required price';
+                  else return null;
                 },
                 onChanged: (value) {
                   price = value;
@@ -200,16 +200,11 @@ class _AddItemState extends State<AddItem> {
                     border: OutlineInputBorder()),
               ),
 
-              //  CustomTextField(
-              // hint: 'price of product',
-              //    onchange: (value){
-              //      price = value;
-              //    },
-              // ),
               SizedBox(height: 20),
               TextFormField(
                 validator: (value) {
                   if (value.isEmpty) return 'required quantity';
+                  else return null;
                 },
                 onChanged: (value) {
                   quantity = value;
@@ -275,6 +270,7 @@ class _AddItemState extends State<AddItem> {
                         "price": price,
                         "quantity": quantity,
                         "images": images,
+                        "Category" : _selectedCategory.name,
                       }),
                     );
 
@@ -287,7 +283,6 @@ class _AddItemState extends State<AddItem> {
                     } else {
                       print(
                           "--------------------------------------------------------------------");
-                      Navigator.of(context).pop();
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
                     }

@@ -23,7 +23,7 @@ uploadAssetImages(Asset image) async {
 
 
 response.stream.transform(utf8.decoder).listen((value) {
-    print(value);
+  Map data = json.decode(value);
   });
 
 }
