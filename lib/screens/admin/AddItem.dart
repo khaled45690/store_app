@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:store_app/constants/kConstants.dart';
-import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
 import 'package:store_app/widgets/CustomButton.dart';
-import 'package:store_app/widgets/CustomTextField.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:store_app/models/MainProductModel.dart';
 
 import '../MainProductScreen.dart';
 
@@ -37,9 +37,11 @@ class Category {
 }
 
 class _AddItemState extends State<AddItem> {
+
   String nameOfProduct, description, price, quantity;
   List<Map> images = [];
-
+  bool waiting = false;
+  int numberOfImages = 0;
   List<Category> _category = Category.getCategory();
   List<DropdownMenuItem<Category>> _dropdownItems;
   Category _selectedCategory;
@@ -64,7 +66,6 @@ class _AddItemState extends State<AddItem> {
   }
 
   uploadAssetImages(Asset image) async {
-    String imageName;
     print("${kUrl}uploadAssetImages");
     Uri uri = Uri.parse("${kUrl}uploadAssetImages");
     http.MultipartRequest request = http.MultipartRequest("POST", uri);
@@ -84,6 +85,11 @@ class _AddItemState extends State<AddItem> {
       Map data = jsonDecode(value);
       setState(() {
         images.add(data);
+        if(images.length == numberOfImages){
+          waiting = false;
+        }else{
+
+        }
         print(images);
       });
     });
@@ -95,6 +101,7 @@ class _AddItemState extends State<AddItem> {
   }
 
   Widget build(BuildContext context) {
+    MainProductModel mainProductModel = Provider.of<MainProductModel>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white10,
@@ -103,6 +110,7 @@ class _AddItemState extends State<AddItem> {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () async {
+
               final response = await http.post(
                 "${kUrl}addProduct",
                 headers: <String, String>{
@@ -123,6 +131,9 @@ class _AddItemState extends State<AddItem> {
               if (responseJson["state"] != null) {
                 print(responseJson);
               } else {
+                List productsClone = mainProductModel.products;
+                productsClone.add(responseJson);
+                mainProductModel.products = productsClone;
                 print(
                     "--------------------------------------------------------------------");
                 Navigator.of(context).pop();
@@ -216,10 +227,7 @@ class _AddItemState extends State<AddItem> {
               ),
 
               SizedBox(height: 40),
-              Container(
-                  child: Text(
-                      "you have to add at least 3 images for the product",
-                      style: TextStyle(fontSize: 20, color: Colors.black))),
+
               Container(
                 margin: EdgeInsets.only(left: 50, right: 50, bottom: 5),
                 height: 60,
@@ -230,7 +238,7 @@ class _AddItemState extends State<AddItem> {
                     List<Asset> resultList = List<Asset>();
 
                     resultList = await MultiImagePicker.pickImages(
-                      maxImages: 300,
+                      maxImages: 5,
                       enableCamera: true,
                       selectedAssets: images,
                       cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
@@ -242,6 +250,10 @@ class _AddItemState extends State<AddItem> {
                         selectCircleStrokeColor: "#000000",
                       ),
                     );
+                    setState(() {
+                      waiting = true;
+                      numberOfImages = resultList.length;
+                    });
                     resultList.forEach((element) async {
                       uploadAssetImages(element);
                     });
@@ -251,6 +263,17 @@ class _AddItemState extends State<AddItem> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
+              ),
+
+              Container(
+                  height: 50,
+                  child: waiting? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(children: [
+                      Text("please wait till this text vanish   "),
+                      Image(image: Image.asset("images/circular_progress_indicator_selective.gif").image,)
+                    ],),
+                  ) : null
               ),
 
               SizedBox(height: 80),

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -56,6 +55,7 @@ class SignUpNew extends StatefulWidget {
 }
 
 class _SignUpNewState extends State<SignUpNew> {
+
   @override
   Widget build(BuildContext context) {
       UserData userDataContext = Provider.of<UserData>(context);

@@ -4,16 +4,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
-import 'package:store_app/widgets/ReusableProductFavoriteWidget.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 
 import 'CartScreen.dart';
-import 'MainProductScreen.dart';
 class FavoriteScreen extends StatefulWidget {
   static const routeName = '/FavoriteScreen';
   @override

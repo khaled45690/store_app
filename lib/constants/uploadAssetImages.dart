@@ -3,10 +3,8 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:store_app/constants/kConstants.dart';
-import 'package:store_app/models/MainProductModel.dart';
 
 uploadAssetImages(Asset image) async {
-  String imageName;
   print("${kUrl}uploadAssetImages");
   Uri uri = Uri.parse("${kUrl}uploadAssetImages");
   http.MultipartRequest request = http.MultipartRequest("POST", uri);
@@ -23,7 +21,6 @@ uploadAssetImages(Asset image) async {
 
 
 response.stream.transform(utf8.decoder).listen((value) {
-  Map data = json.decode(value);
   });
 
 }

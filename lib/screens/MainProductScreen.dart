@@ -5,7 +5,6 @@ import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/favorite_model.dart';
-import 'package:store_app/models/product_model.dart';
 import 'package:store_app/widgets/ReusableProductCardWidget.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 import 'package:store_app/widgets/InputWidget.dart';
@@ -45,7 +44,6 @@ class _MainProductScreenState extends State<MainProductScreen> {
         Navigator.of(context).pushReplacementNamed(MainProductScreen.routeName);
       });
 
-    Products products = Provider.of<Products>(context);
       favoriteModel.isTrue = false;
     }
     return Scaffold(

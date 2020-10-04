@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:store_app/constants/kConstants.dart';
 class MainProductModel extends ChangeNotifier {
   List _products = [];
-  bool _refreshScreen = false ;
 
   List get products => _products;
 
@@ -30,7 +29,7 @@ printoo(){
     List images = product["images"];
 
     images.forEach((element) async{
-      final response = await http.post(
+      await http.post(
         "${kUrl}deleteProductImages",
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -39,8 +38,7 @@ printoo(){
       );
     });
 
-print( jsonEncode(product));
-    final response = await http.post(
+     await http.post(
       "${kUrl}deleteProduct",
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',

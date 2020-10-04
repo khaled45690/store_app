@@ -90,7 +90,6 @@ class Cart with ChangeNotifier {
       "quantity": quantity,
       "totalPriceForTheItem": totalPriceForTheItem,
     };
-    int finalPriceOutput = 0;
 
     if (itemsClone.length == 0) {
       _itemsUsedInProfitCalculation.add(data);

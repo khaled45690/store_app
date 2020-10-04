@@ -1,15 +1,10 @@
-import 'dart:convert';
-
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/models/cart.dart';
-import 'package:store_app/models/product_model.dart';
 import 'package:store_app/models/producttt.dart';
 import 'package:store_app/widgets/CustomButton.dart';
-import 'package:store_app/widgets/InputWidget.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
 import 'package:store_app/widgets/cartConnection.dart';
 

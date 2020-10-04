@@ -7,7 +7,6 @@ import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
-import '../MainProductScreen.dart';
 
 
 class AdminEditProduct extends StatefulWidget {
@@ -23,7 +22,6 @@ class _AdminEditProductState extends State<AdminEditProduct> {
   List<Map> images = [];
 
   uploadAssetImages(Asset image) async {
-    String imageName;
     print("${kUrl}uploadAssetImages");
     Uri uri = Uri.parse("${kUrl}uploadAssetImages");
     http.MultipartRequest request = http.MultipartRequest("POST", uri);

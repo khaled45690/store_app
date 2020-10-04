@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/screenSizeModel.dart';
 import 'package:store_app/screens/MainProductScreen.dart';
-import 'package:store_app/ui/views/home_view.dart';
+import 'package:http/http.dart' as http;
 
 
 class SpashScreenWidget extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     ScreenSize screenSize = Provider.of<ScreenSize>(context);
+    http.get(kUrl);
     screenSize.width = MediaQuery.of(context).size.width;
     return SplashScreen(
       seconds:7,

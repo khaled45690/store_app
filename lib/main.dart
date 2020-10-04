@@ -1,8 +1,5 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:splashscreen/splashscreen.dart';
 import 'package:store_app/core/viewmodels/home_model.dart';
 import 'package:store_app/models/cart.dart';
 import 'package:store_app/models/product_model.dart';
@@ -18,7 +15,6 @@ import 'package:store_app/screens/admin/ShowProduct.dart';
 import 'package:store_app/screens/LoginNew.dart';
 import 'package:store_app/screens/loginScreen.dart';
 import 'package:store_app/screens/productDetails.dart';
-import 'package:store_app/models/producttt.dart';
 import 'package:store_app/shared/globals.dart';
 import 'package:store_app/widgets/spalshScreenWidget.dart';
 import 'models/UserData.dart';
@@ -34,7 +30,6 @@ void main() => runApp(
           ChangeNotifierProvider(create: (_) => Products()),
           ChangeNotifierProvider(create: (_) => MainProductModel()),
           ChangeNotifierProvider(create: (_) => UserData()),
-          ChangeNotifierProvider(create: (_) => Product()),
           ChangeNotifierProvider(create: (_)=>Favorite(),),
           ChangeNotifierProvider(create: (_)=>ScreenSize(),),
           ChangeNotifierProvider(create: (_)=>HomeModel(),),

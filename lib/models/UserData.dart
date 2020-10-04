@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:store_app/constants/updateUserData.dart';
 class UserData  extends ChangeNotifier{
    Map _userData;
    Map get userData => _userData;

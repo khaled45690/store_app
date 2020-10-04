@@ -88,14 +88,14 @@ class CartWidget extends StatelessWidget {
                                         actions: <Widget>[
                                           FlatButton(
                                             onPressed: () async{
-                                              final response = await http.post(
+                                               await http.post(
                                                   "${kUrl}purchaseApi",
                                                   headers: <String, String>{
                                                     'Content-Type': 'application/json; charset=UTF-8',
                                                   },
                                                   body: jsonEncode(cart.itemsUsedInProfitCalculation)
                                               );
-                                              final responseJson = json.decode(response.body);
+
                                               Navigator.of(context).pop(true);
                                             },
                                             child: Text("yes"),

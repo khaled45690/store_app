@@ -4,7 +4,7 @@ import 'package:store_app/constants/kConstants.dart';
 
 updateUserData(Map userData) async {
   print("${kUrl}updateUserData");
-  final response = await http.post(
+   await http.post(
     "${kUrl}updateUserData",
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',

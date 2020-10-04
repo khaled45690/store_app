@@ -6,7 +6,6 @@ import 'package:store_app/models/UserData.dart';
 import 'package:store_app/widgets/CustomButton.dart';
 import 'package:store_app/widgets/CustomTextField.dart';
 import 'package:http/http.dart' as http;
-import 'MainProductScreen.dart';
 import 'loginScreen.dart';
 import 'package:store_app/constants/kConstants.dart';
 

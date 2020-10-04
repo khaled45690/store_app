@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:store_app/models/MainProductModel.dart';
 import 'package:store_app/widgets/addproductWidget.dart';
 import 'AddItem.dart';
-import 'package:http/http.dart' as http;
 
 class ShowProducts extends StatefulWidget {
   static const routeName ='/user-product';
