@@ -50,7 +50,6 @@ class _MainProductScreenState extends State<MainProductScreen> {
       appBar: AppBar(
         flexibleSpace: AppBarContainer(),
         actions: <Widget>[
-          InputWidget(),
           Consumer<Cart>(builder: (_,cart,ch)=>Badge(
             child: ch,
             value: cart.items.length.toString(),

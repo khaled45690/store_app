@@ -8,12 +8,16 @@ import 'package:http/http.dart' as http;
 
 
 class SpashScreenWidget extends StatelessWidget {
-
+bool variable = true;
 
   @override
   Widget build(BuildContext context) {
     ScreenSize screenSize = Provider.of<ScreenSize>(context);
-    // http.get(kUrl);
+    if(variable){
+      http.get(kUrl);
+      print(variable);
+      variable = false;
+    }
     screenSize.width = MediaQuery.of(context).size.width;
     return SplashScreen(
       seconds:7,

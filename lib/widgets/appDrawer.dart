@@ -94,36 +94,9 @@ class _AppDrawerState extends State<AppDrawer> {
                       ),
                     ),
                   ),
-                  Container(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context)
-                            .popAndPushNamed(MontlyExpensesView.routeName);
-                      },
-                      child: ListTile(
-                        title: Text("ShowProfit"),
-                        leading: Icon(
-                          FontAwesomeIcons.chartLine,
-                          color: Global.mediumBlue,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               )
             : Container(),
-        InkWell(
-          onTap: () {
-            Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
-          },
-          child: ListTile(
-            title: Text("DealsToday"),
-            leading: Icon(
-              FontAwesomeIcons.moneyBillWave,
-              color: Global.mediumBlue,
-            ),
-          ),
-        ),
         InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(CartWidget.routeName);
@@ -144,18 +117,6 @@ class _AppDrawerState extends State<AppDrawer> {
             title: Text("MyFavorite"),
             leading: Icon(
               FontAwesomeIcons.heart,
-              color: Global.mediumBlue,
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
-          },
-          child: ListTile(
-            title: Text("Terms of Service"),
-            leading: Icon(
-              FontAwesomeIcons.question,
               color: Global.mediumBlue,
             ),
           ),
@@ -204,18 +165,6 @@ class _AppDrawerState extends State<AppDrawer> {
                 ))),
         InkWell(
           onTap: () {
-            Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
-          },
-          child: ListTile(
-            title: Text("DealsToday"),
-            leading: Icon(
-              FontAwesomeIcons.moneyBillWave,
-              color: Global.mediumBlue,
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
             //  Navigator.of(context).popAndPushNamed(CartWidget.routeName);
           },
           child: ListTile(
@@ -236,18 +185,6 @@ class _AppDrawerState extends State<AppDrawer> {
             title: Text("MyFavorite"),
             leading: Icon(
               Icons.favorite_border,
-              color: Global.mediumBlue,
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.of(context).popAndPushNamed(DealsScreen.routeName);
-          },
-          child: ListTile(
-            title: Text("Terms of Service"),
-            leading: Icon(
-              FontAwesomeIcons.question,
               color: Global.mediumBlue,
             ),
           ),
