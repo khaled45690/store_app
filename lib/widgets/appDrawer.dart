@@ -139,8 +139,6 @@ class _AppDrawerState extends State<AppDrawer> {
         InkWell(
           onTap: () {
             Navigator.of(context).popAndPushNamed(FavoriteScreen.routeName);
-            //   productsContainer.showFavoritesOnly();
-            // Navigator.of(context).pushNamed(MainProductScreen.routeName);
           },
           child: ListTile(
             title: Text("MyFavorite"),

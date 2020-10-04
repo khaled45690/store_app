@@ -13,7 +13,7 @@ class SpashScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenSize screenSize = Provider.of<ScreenSize>(context);
-    http.get(kUrl);
+    // http.get(kUrl);
     screenSize.width = MediaQuery.of(context).size.width;
     return SplashScreen(
       seconds:7,

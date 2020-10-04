@@ -16,32 +16,38 @@ class FavoriteScreen extends StatefulWidget {
   @override
   _FavoriteScreenState createState() => _FavoriteScreenState();
 }
-
+int i;
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  List favorite = [];
+
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
-    _prefs.then((SharedPreferences prefs) {
-      setState(() {
-        favorite.addAll(jsonDecode(prefs.get("favorite")));
-      });
-    });
 
+    super.initState();
+
+
+
+  }
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    Favorite favoriteModel = Provider.of<Favorite>(context);
+    setState(() {
+  i = favoriteModel.favorite.length;
+    });
   }
 
   @override
-  void deactivate() {
-    super.deactivate();
-    Favorite favoriteModel = Provider.of<Favorite>(context , listen: false);
-      favoriteModel.isTrue = true;
-
-
-  }
+  // void deactivate() {
+  //   super.deactivate();
+  //   Favorite favoriteModel = Provider.of<Favorite>(context , listen: false);
+  //     favoriteModel.isTrue = true;
+  //
+  //
+  // }
   Widget build(BuildContext context) {
-
+    Favorite favoriteModel = Provider.of<Favorite>(context);
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
       appBar: AppBar(
@@ -69,9 +75,14 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: GridView.builder(
-          itemCount: favorite.length,
-          itemBuilder: (ctx, i) =>
-              ReusableCardWidget(favorite[i]),
+
+          itemCount: favoriteModel.favorite.length,
+          itemBuilder:(BuildContext  ctx, i) {
+            Favorite favoriteModel = Provider.of<Favorite>(ctx);
+            final item =  favoriteModel.favorite[i];
+            return ReusableCardWidget(item);
+          },
+
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: (1 / 2),

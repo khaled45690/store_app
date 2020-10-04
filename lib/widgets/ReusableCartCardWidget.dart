@@ -3,9 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/cart.dart';
-import 'package:store_app/models/product_model.dart';
 import 'package:store_app/models/producttt.dart';
 
 class ReusableCartCardWidget extends StatefulWidget {
@@ -35,7 +33,6 @@ class _ReusableCartCardWidgetState extends State<ReusableCartCardWidget> {
   }
 
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context, listen: false);
     final cart = Provider.of<Cart>(context);
     List images = productMap["images"];
     Map image = images[0];

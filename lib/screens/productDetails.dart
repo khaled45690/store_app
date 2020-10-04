@@ -23,29 +23,7 @@ class ProductDetails extends StatelessWidget {
 
     List images = loadedProduct["images"];
 
-    final Product product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
-    Widget image_carousel = Container(
-      height: 200,
-      child: Carousel(
-        boxFit: BoxFit.cover,
-        images: [
-          NetworkImage(
-              'https://ae01.alicdn.com/kf/HTB1FNX1SpXXXXXZXXXXq6xXFXXXs/Hot-Sale-Spring-Autumn-New-Fashion-Brand-Men-Jacket-Coats-Thin-Overcoat-Cotton-Jackets-Mens-Outerwear.jpg_960x960.jpg'),
-          NetworkImage(
-              'https://i.pinimg.com/originals/c8/c8/f6/c8c8f6a67b4f3402de8c43739a158683.jpg'),
-          NetworkImage(
-              'https://ph-test-11.slatic.net/p/c1184852190620363e075fd428ee315e.jpg_340x340q80.jpg_.webp'),
-        ],
-        autoplay: true,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds: 100),
-        indicatorBgPadding: 15.0,
-        dotColor: Colors.white,
-        dotBgColor: Colors.black87,
-        dotSpacing: 80,
-      ),
-    );
 
     return Scaffold(
       appBar: AppBar(
@@ -95,7 +73,6 @@ class ProductDetails extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             loadedProduct["price"] + "€",
-            //   '\$${loadedProduct.price}',
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
@@ -119,13 +96,7 @@ class ProductDetails extends StatelessWidget {
           text: "add to cart",
           fontSize: 15,
           onClick: () {
-//            cart.addItem(loadedProduct.id, loadedProduct.price,
-//                loadedProduct.name, loadedProduct.imageUrl,loadedProduct.quantity);
             cart.addItemToCart(loadedProduct);
-
-//            Navigator.of(context).pushNamed(
-//              CartWidget.routeName,
-//            );
           },
         ),
         // ),

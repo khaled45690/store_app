@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,6 @@ class CartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
-    //final product = Provider.of<Product>(context,listen: false);
 
     return Container(
       child: Scaffold(
@@ -27,8 +27,10 @@ class CartWidget extends StatelessWidget {
           title: Text("Cart Screen"),
         ),
         body: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
             Container(
+              margin: EdgeInsets.only(bottom: 100),
               child: ListView.builder(
                 itemCount: cart.items.length,
                 itemBuilder: (ctx, i) => ReusableCartCardWidget(cart.items[i]),
@@ -36,93 +38,89 @@ class CartWidget extends StatelessWidget {
 
             ),
             // SizedBox(height:1),
-            Padding(
-              padding: const EdgeInsets.only(top: 500.0),
-              child: Card(
-                color: Colors.black,
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: ListTile(
-                    leading: Text(
-                      "Sub Total: ${cart.totalPrice} \$",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    trailing: Container(
-                      width: 100,
-                      height: 150,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.green,
-                        child: FlatButton(
-                          onPressed: () {
-                            final UserData userData =
-                                Provider.of<UserData>(context, listen: false);
-                            //     userData.userData["isAdmin"] ? Navigator.of(context).pop() :
-                            if (userData.userData == null) {
-                              return showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                        content:
-                                            Text('you have to sign in first'),
-                                        actions: <Widget>[
-                                          FlatButton(
+            Card(
+              color: Colors.black,
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: ListTile(
+                  leading: Text(
+                    "Sub Total: ${cart.totalPrice} \$",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  trailing: Container(
+                    width: 100,
+                    height: 150,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.green,
+                      child: FlatButton(
+                        onPressed: () {
+                          final UserData userData =
+                              Provider.of<UserData>(context, listen: false);
+                          if (userData.userData == null) {
+                            return showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      content:
+                                          Text('you have to sign in first'),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .popAndPushNamed(
+                                                    LoginPage.routeName);
+                                          },
+                                          child: Text("Sign in"),
+                                        ),
+                                        FlatButton(
                                             onPressed: () {
-                                              Navigator.of(context)
-                                                  .popAndPushNamed(
-                                                      LoginPage.routeName);
+                                              Navigator.of(context).pop();
                                             },
-                                            child: Text("Sign in"),
-                                          ),
-                                          FlatButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: Text("Cancel"))
-                                        ],
-                                      ));
-                            } else {
-                              return showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                        content: Text(
-                                            'do u want to pay via credit card'),
-                                        actions: <Widget>[
-                                          FlatButton(
-                                            onPressed: () async{
-                                               await http.post(
-                                                  "${kUrl}purchaseApi",
-                                                  headers: <String, String>{
-                                                    'Content-Type': 'application/json; charset=UTF-8',
-                                                  },
-                                                  body: jsonEncode(cart.itemsUsedInProfitCalculation)
-                                              );
+                                            child: Text("Cancel"))
+                                      ],
+                                    ));
+                          } else {
+                            return showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      content: Text(
+                                          'do u want to pay via credit card'),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          onPressed: () async{
+                                             await http.post(
+                                                "${kUrl}purchaseApi",
+                                                headers: <String, String>{
+                                                  'Content-Type': 'application/json; charset=UTF-8',
+                                                },
+                                                body: jsonEncode(cart.itemsUsedInProfitCalculation)
+                                            );
 
-                                              Navigator.of(context).pop(true);
+                                            Navigator.of(context).pop(true);
+                                          },
+                                          child: Text("yes"),
+                                        ),
+                                        FlatButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
                                             },
-                                            child: Text("yes"),
-                                          ),
-                                          FlatButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: Text("Cancel"))
-                                        ],
-                                      ));
-                            }
-                          },
-                          child: Text(
-                            "buy it ",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
+                                            child: Text("Cancel"))
+                                      ],
+                                    ));
+                          }
+                        },
+                        child: Text(
+                          "buy it ",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
                   ),
                 ),
-
-                //    child: Text("dsad")
               ),
+
+              //    child: Text("dsad")
             ),
             //  )
           ],

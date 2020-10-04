@@ -30,9 +30,7 @@ class _MainProductScreenState extends State<MainProductScreen> {
     mainProductModel.getMainProduct();
     Timer(const Duration(milliseconds: 500), () {
       userData.checkIfUserDataOnMobileStorage();
-      mainProductModel.printoo();
     });
-
   }
   @override
   Widget build(BuildContext context) {
@@ -46,10 +44,10 @@ class _MainProductScreenState extends State<MainProductScreen> {
 
       favoriteModel.isTrue = false;
     }
+
     return Scaffold(
       backgroundColor: Color(0xFFEAE8FF),
-      appBar:
-      AppBar(
+      appBar: AppBar(
         flexibleSpace: AppBarContainer(),
         actions: <Widget>[
           InputWidget(),
@@ -69,21 +67,14 @@ class _MainProductScreenState extends State<MainProductScreen> {
         ],
       ),
       drawer: AppDrawer(),
-      body:
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: GridView.builder(
-          itemCount: mainProductModel.products.length,
-          itemBuilder: (ctx, i) =>
-              ReusableCardWidget(mainProductModel.products[i]),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: (1 / 2) ,
-
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
+      body: GridView.builder(
+        itemCount: mainProductModel.products.length > 0 ? mainProductModel.products.length : 0,
+         itemBuilder: (ctx, i) => ReusableCardWidget(mainProductModel.products[i]),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: (1 / 2) ,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
         ),
       ),
     );

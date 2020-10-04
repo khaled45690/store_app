@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Favorite with ChangeNotifier {
+
   List _favorite = List();
   bool _isTrue = false;
 
@@ -21,10 +24,13 @@ class Favorite with ChangeNotifier {
 
   }
 
+  void initialAssign (){
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    List favoriteInitialAssign = List();
+    _prefs.then((SharedPreferences prefs) {
+      favoriteInitialAssign.addAll(jsonDecode(prefs.get("favorite")));
+      favorite = favoriteInitialAssign;
 
-  void removeItem(String productId) {}
-
-  void removeSingleItem(String productId) {}
-
-  void clear() {}
+    });
+  }
 }
