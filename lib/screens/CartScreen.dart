@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/constants/kConstants.dart';
 import 'package:store_app/models/UserData.dart';
 import 'package:store_app/models/cart.dart';
+import 'package:store_app/screens/payment_Screen.dart';
 import 'package:store_app/shared/globals.dart';
 import 'package:store_app/widgets/ReusableCartCardWidget.dart';
 import 'package:store_app/widgets/appBarContainer.dart';
@@ -95,7 +96,10 @@ class CartWidget extends StatelessWidget {
                                                 body: jsonEncode(cart.itemsUsedInProfitCalculation)
                                             );
 
-                                            Navigator.of(context).pop(true);
+                                           // Navigator.of(context).pop(true);
+                                            Navigator.of(context)
+                                                .popAndPushNamed(
+                                                    Payment_Screen.routeName);
                                           },
                                           child: Text("yes"),
                                         ),

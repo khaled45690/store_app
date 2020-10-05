@@ -14,6 +14,7 @@ import 'package:store_app/screens/admin/EditProduct.dart';
 import 'package:store_app/screens/admin/ShowProduct.dart';
 import 'package:store_app/screens/LoginNew.dart';
 import 'package:store_app/screens/loginScreen.dart';
+import 'package:store_app/screens/payment_Screen.dart';
 import 'package:store_app/screens/productDetails.dart';
 import 'package:store_app/shared/globals.dart';
 import 'package:store_app/widgets/spalshScreenWidget.dart';
@@ -69,6 +70,7 @@ class StoreApp extends StatelessWidget {
         AddItem.routeName:(ctx) => AddItem(),
         DealsScreen.routeName:(ctx)=>DealsScreen(),
         MontlyExpensesView.routeName:(ctx)=>MontlyExpensesView(),
+        Payment_Screen.routeName:(ctx)=> Payment_Screen()
       },
     );
   }
