@@ -3,7 +3,7 @@
   }
   
 
-.Main , .Favorite , .ManageProduct{
+.Main , .Favorite , .ManageProduct , .favorite{
     justify-content: center;
     display: flex;
     flex-wrap: wrap;

@@ -24,8 +24,7 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
   bool isFavorite = false;
   _ReusableCardWidgetState();
 
-
-
+  d
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies

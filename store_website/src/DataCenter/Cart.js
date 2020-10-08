@@ -7,7 +7,7 @@ export const Cart = createContext();
 export const history = createBrowserHistory({
   forceRefresh: true
 });
-class MainDataProvider extends Component {
+class CartProvider extends Component {
   state = {
     Cart: []
   }
@@ -60,4 +60,4 @@ class MainDataProvider extends Component {
   }
 }
 
-export default MainDataProvider;
+export default CartProvider;
