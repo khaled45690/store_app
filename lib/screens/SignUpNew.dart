@@ -169,7 +169,7 @@ class _SignUpNewState extends State<SignUpNew> {
                                     groupValue: groupValue,
                                 //    onChanged: (e) => valueChanged(e)
                                    onChanged: (e) {
-                              
+                              widget.gender = e;
                                valueChanged(e);
                               },
                                     
@@ -188,6 +188,7 @@ class _SignUpNewState extends State<SignUpNew> {
                                     groupValue: groupValue,
                                  //   onChanged: (e) => valueChanged(e)
                                      onChanged: (e) {
+                                       widget.gender=e;
                              valueChanged(e);
                               },
                                     
