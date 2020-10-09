@@ -37,7 +37,6 @@ class Category {
 }
 
 class _AddItemState extends State<AddItem> {
-
   String nameOfProduct, description, price, quantity;
   List<Map> images = [];
   bool waiting = false;
@@ -55,12 +54,10 @@ class _AddItemState extends State<AddItem> {
   List<DropdownMenuItem<Category>> buildDrobDownMenuItems(List categories) {
     List<DropdownMenuItem<Category>> items = List();
     for (Category cat in categories) {
-      items.add(
-        DropdownMenuItem(
-          value: cat,
-           child: Text(cat.name),
-           )
-           );
+      items.add(DropdownMenuItem(
+        value: cat,
+        child: Text(cat.name),
+      ));
     }
     return items;
   }
@@ -85,18 +82,17 @@ class _AddItemState extends State<AddItem> {
       Map data = jsonDecode(value);
       setState(() {
         images.add(data);
-        if(images.length == numberOfImages){
+        if (images.length == numberOfImages) {
           waiting = false;
-        }else{
-
-        }
+        } else {}
         print(images);
       });
     });
   }
-  onchangeDropdownItems(Category selectedCategory){
+
+  onchangeDropdownItems(Category selectedCategory) {
     setState(() {
-      _selectedCategory =selectedCategory;
+      _selectedCategory = selectedCategory;
     });
   }
 
@@ -110,34 +106,39 @@ class _AddItemState extends State<AddItem> {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () async {
+              if (widget._key.currentState.validate()) {
+                if (waiting) {
+                } else {
+                  final response = await http.post(
+                    "${kUrl}addProduct",
+                    headers: <String, String>{
+                      'Content-Type': 'application/json; charset=UTF-8',
+                    },
+                    body: jsonEncode(<dynamic, dynamic>{
+                      "nameOfProduct": nameOfProduct,
+                      "description": description,
+                      "price": price,
+                      "quantity": quantity,
+                      "images": images,
+                      "Category": _selectedCategory.name,
+                    }),
+                  );
 
-              final response = await http.post(
-                "${kUrl}addProduct",
-                headers: <String, String>{
-                  'Content-Type': 'application/json; charset=UTF-8',
-                },
-                body: jsonEncode(<dynamic, dynamic>{
-                  "nameOfProduct": nameOfProduct,
-                  "description": description,
-                  "price": price,
-                  "quantity": quantity,
-                  "images": images,
-                  "Category" : _selectedCategory.name,
-                }),
-              );
-
-              final Map responseJson = json.decode(response.body);
-              print(responseJson);
-              if (responseJson["state"] != null) {
-                print(responseJson);
-              } else {
-                List productsClone = mainProductModel.products;
-                productsClone.add(responseJson);
-                mainProductModel.products = productsClone;
-                print(
-                    "--------------------------------------------------------------------");
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
+                  final Map responseJson = json.decode(response.body);
+                  print(responseJson);
+                  if (responseJson["state"] != null) {
+                    print(responseJson);
+                    Navigator.of(context)
+                        .popAndPushNamed(MainProductScreen.routeName);
+                  } else {
+                    print(
+                        "--------------------------------------------------------------------");
+                    List productClone = mainProductModel.products;
+                    productClone.add(responseJson);
+                    mainProductModel.products =   productClone;
+                    Navigator.of(context).pop();
+                  }
+                }
               }
             },
           )
@@ -149,28 +150,38 @@ class _AddItemState extends State<AddItem> {
           key: widget._key,
           child: ListView(
             children: <Widget>[
-              Center(child: Text("select the category of the project",style: TextStyle(fontSize:20),)),
+              Center(
+                  child: Text(
+                "select the category of the project",
+                style: TextStyle(fontSize: 20),
+              )),
               DropdownButton(
-                style: TextStyle(color:Colors.black,fontSize:24),
+                style: TextStyle(color: Colors.black, fontSize: 24),
                 dropdownColor: Colors.blue,
                 value: _selectedCategory,
                 items: _dropdownItems,
-                 onChanged: onchangeDropdownItems,),
-
-                SizedBox(height: 40),
-                Row(
-                  children: [
-                    Text("CategorySelected: ",style: TextStyle(fontSize:24),
-                    ),
-                    Text('${_selectedCategory.name}',style: TextStyle(fontSize:24,color:Colors.blue),)
-                  ],
-                ),
+                onChanged: onchangeDropdownItems,
+              ),
+              SizedBox(height: 40),
+              Row(
+                children: [
+                  Text(
+                    "CategorySelected: ",
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  Text(
+                    '${_selectedCategory.name}',
+                    style: TextStyle(fontSize: 24, color: Colors.blue),
+                  )
+                ],
+              ),
               SizedBox(height: 20),
-
               TextFormField(
                 validator: (value) {
-                  if (value.isEmpty) return 'required name';
-                  else return null;
+                  if (value.isEmpty)
+                    return 'required name';
+                  else
+                    return null;
                 },
                 onChanged: (value) {
                   nameOfProduct = value;
@@ -180,12 +191,13 @@ class _AddItemState extends State<AddItem> {
                     hintText: "nameOfProduct",
                     border: OutlineInputBorder()),
               ),
-         
               SizedBox(height: 20),
               TextFormField(
                 validator: (value) {
-                  if (value.isEmpty) return 'required Description';
-                  else return null;
+                  if (value.isEmpty)
+                    return 'required Description';
+                  else
+                    return null;
                 },
                 onChanged: (value) {
                   description = value;
@@ -195,12 +207,13 @@ class _AddItemState extends State<AddItem> {
                     hintText: "description",
                     border: OutlineInputBorder()),
               ),
-
               SizedBox(height: 20),
               TextFormField(
                 validator: (value) {
-                  if (value.isEmpty) return 'required price';
-                  else return null;
+                  if (value.isEmpty)
+                    return 'required price';
+                  else
+                    return null;
                 },
                 onChanged: (value) {
                   price = value;
@@ -210,12 +223,13 @@ class _AddItemState extends State<AddItem> {
                     hintText: "price",
                     border: OutlineInputBorder()),
               ),
-
               SizedBox(height: 20),
               TextFormField(
                 validator: (value) {
-                  if (value.isEmpty) return 'required quantity';
-                  else return null;
+                  if (value.isEmpty)
+                    return 'required quantity';
+                  else
+                    return null;
                 },
                 onChanged: (value) {
                   quantity = value;
@@ -225,9 +239,7 @@ class _AddItemState extends State<AddItem> {
                     hintText: "quantity",
                     border: OutlineInputBorder()),
               ),
-
               SizedBox(height: 40),
-
               Container(
                 margin: EdgeInsets.only(left: 50, right: 50, bottom: 5),
                 height: 60,
@@ -264,50 +276,60 @@ class _AddItemState extends State<AddItem> {
                   ),
                 ),
               ),
-
               Container(
                   height: 50,
-                  child: waiting? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(children: [
-                      Text("please wait till this text vanish   "),
-                      Image(image: Image.asset("images/circular_progress_indicator_selective.gif").image,)
-                    ],),
-                  ) : null
-              ),
-
+                  child: waiting
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Text("please wait till this image upload   "),
+                              Image(
+                                image: Image.asset(
+                                        "images/circular_progress_indicator_selective.gif")
+                                    .image,
+                              )
+                            ],
+                          ),
+                        )
+                      : null),
               SizedBox(height: 80),
               CustomButton(
                 text: "add the product ",
                 fontSize: 20,
                 onClick: () async {
                   if (widget._key.currentState.validate()) {
-                    final response = await http.post(
-                      "${kUrl}addProduct",
-                      headers: <String, String>{
-                        'Content-Type': 'application/json; charset=UTF-8',
-                      },
-                      body: jsonEncode(<dynamic, dynamic>{
-                        "nameOfProduct": nameOfProduct,
-                        "description": description,
-                        "price": price,
-                        "quantity": quantity,
-                        "images": images,
-                        "Category" : _selectedCategory.name,
-                      }),
-                    );
-
-                    final Map responseJson = json.decode(response.body);
-                    print(responseJson);
-                    if (responseJson["state"] != null) {
-                      print(responseJson);
-                      Navigator.of(context)
-                          .popAndPushNamed(MainProductScreen.routeName);
+                    if (waiting) {
                     } else {
-                      print(
-                          "--------------------------------------------------------------------");
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pop();
+                      final response = await http.post(
+                        "${kUrl}addProduct",
+                        headers: <String, String>{
+                          'Content-Type': 'application/json; charset=UTF-8',
+                        },
+                        body: jsonEncode(<dynamic, dynamic>{
+                          "nameOfProduct": nameOfProduct,
+                          "description": description,
+                          "price": price,
+                          "quantity": quantity,
+                          "images": images,
+                          "Category": _selectedCategory.name,
+                        }),
+                      );
+
+                      final Map responseJson = json.decode(response.body);
+                      print(responseJson);
+                      if (responseJson["state"] != null) {
+                        print(responseJson);
+                        Navigator.of(context)
+                            .popAndPushNamed(MainProductScreen.routeName);
+                      } else {
+                        print(
+                            "--------------------------------------------------------------------");
+                        List productClone = mainProductModel.products;
+                        productClone.add(responseJson);
+                        mainProductModel.products =   productClone;
+                        Navigator.of(context).pop();
+                      }
                     }
                   }
                 },

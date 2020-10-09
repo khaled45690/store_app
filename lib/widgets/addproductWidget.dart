@@ -55,6 +55,7 @@ class _UserProductItemState extends State<UserProductItem> {
                         mainProductModel.deleteProduct(productMap);
                         mainProductModel.getMainProduct();
                         Navigator.of(context).pop(false);
+                        Navigator.of(context).pop(false);
                       },
                       child: Text("yes"),
                     )

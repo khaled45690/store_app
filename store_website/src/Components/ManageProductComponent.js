@@ -14,13 +14,14 @@ class ManageProductComponent extends Component {
     render() {
         console.log(this.props.item);
         let { nameOfProduct, images, price, description } = this.props.item;
+        let image = images[0];
         return (
             <div className="ManageProductComponent" >
                 <div className="row">
                     <div className="">
                         <div className="card size">
                             <div style={{height:480}} >
-                                <img src={Kurl + "/getImage/" + JSON.parse(images[0])} alt="productimage" />
+                                <img src={image["url"]} alt="productimage" />
                                 <div className="card-content centerized">
                                     <span className="card-title" style={{ color: "black", fontWeight: 700 }}>{nameOfProduct}</span>
                                     <span className="card-title" style={{ color: "black", fontWeight: 700 }}>{description}</span>
