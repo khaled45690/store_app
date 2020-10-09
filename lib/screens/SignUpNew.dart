@@ -15,6 +15,8 @@ class SignUpNew extends StatefulWidget {
   UserData userData = new UserData();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String name, email, password, confirmPassword;
+    String gender;
+
 
   submitForm(String name, String email, String password, String confirmPassword,
       context) async {
@@ -29,8 +31,11 @@ class SignUpNew extends StatefulWidget {
         "name": name,
         "email": email,
         "password": password,
+        "confirmPassword":confirmPassword,
         "isAdmin": false,
-        "favorite": []
+        'gender':gender,
+
+      //  "favorite": []
       }),
     );
 
@@ -50,7 +55,6 @@ class SignUpNew extends StatefulWidget {
 }
 
 class _SignUpNewState extends State<SignUpNew> {
-  String gender;
   String groupValue = 'male';
   bool loading = false;
 
@@ -163,7 +167,13 @@ class _SignUpNewState extends State<SignUpNew> {
                                 trailing: Radio(
                                     value: "male",
                                     groupValue: groupValue,
-                                    onChanged: (e) => valueChanged(e)),
+                                //    onChanged: (e) => valueChanged(e)
+                                   onChanged: (e) {
+                              
+                               valueChanged(e);
+                              },
+                                    
+                                    ),
                               )
                               ),
                                 Expanded(
@@ -176,7 +186,12 @@ class _SignUpNewState extends State<SignUpNew> {
                                 trailing: Radio(
                                     value: "female",
                                     groupValue: groupValue,
-                                    onChanged: (e) => valueChanged(e)),
+                                 //   onChanged: (e) => valueChanged(e)
+                                     onChanged: (e) {
+                             valueChanged(e);
+                              },
+                                    
+                                    ),
                               )
                               ),
                           
