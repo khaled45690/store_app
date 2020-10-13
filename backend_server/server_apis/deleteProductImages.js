@@ -10,6 +10,7 @@ cloudinary.config({
 module.exports =  (req,res)=>{  
     req.on('data', function (data) {
         var body = JSON.parse(data);
+        console.log(body);
         cloudinary.uploader.destroy(body.imageName, function(result) { console.log(result) });
         res.end("done");
       });

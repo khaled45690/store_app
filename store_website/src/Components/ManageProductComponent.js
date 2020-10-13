@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { Kurl } from '../Konstant'
 class ManageProductComponent extends Component {
 
     constructor(props) {
@@ -12,8 +11,8 @@ class ManageProductComponent extends Component {
     }
 
     render() {
-        console.log(this.props.item);
         let { nameOfProduct, images, price, description } = this.props.item;
+        
         let image = images[0];
         return (
             <div className="ManageProductComponent" >
@@ -28,13 +27,14 @@ class ManageProductComponent extends Component {
                                     <p>{price + " $"}</p>
                                 </div>
                             </div>
-                               <div className="removeProductButton"><i className="material-icons" style={{ paddingTop: 2, paddingRight: 0, width: 30, color: "red" }}>delete</i><p >remove product</p></div>
+                               <div onClick={()=>{this.props.deletProduct(this.props.item)}} className="removeProductButton"><i className="material-icons" style={{ paddingTop: 2, paddingRight: 0, width: 30, color: "red" }}>delete</i><p >remove product</p></div>
                         </div>
                     </div>
                 </div>
             </div>
         )
     }
+
 }
 
 export default ManageProductComponent;

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import CardComponent from "../Components/CardComponent";
-import { Kurl } from '../Konstant'
-class Main extends Component {
+class CartScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -26,10 +24,9 @@ class Main extends Component {
             return (
                 <div className="Main" >
                     {this.state.items.map(item => (
-                        <div key={item._id.toString()}><CardComponent item={item} /></div>
-
+                        <div key={item._id.toString()}><CardComponent item={item}/></div>     
                     ))}
-
+                   
                 </div>
             )
         } else {
@@ -39,4 +36,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default CartScreen;

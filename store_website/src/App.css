@@ -9,3 +9,7 @@
     flex-wrap: wrap;
     flex:auto;
 }
+
+select{
+  display: inline !important;
+}

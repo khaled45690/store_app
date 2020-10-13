@@ -15,6 +15,7 @@ const addProduct = require('./server_apis/addProduct');
 const getMainProduct = require('./server_apis/getMainProduct');
 const deleteProduct = require('./server_apis/deleteProduct');
 const purchaseApi = require('./server_apis/purchaseApi');
+const uploadWebImage = require('./server_apis/uploadWebImage');
 
 
 // set up express app
@@ -54,6 +55,8 @@ app.use('/api', (req , res) => {
         deleteProductImages(req , res);
     }else if (req.url === "/purchaseApi"){
         purchaseApi(req , res);
+    }else if (req.url === "/uploadWebImage"){
+        uploadWebImage(req , res);
     }
     
 });
