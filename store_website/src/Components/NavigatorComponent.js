@@ -26,7 +26,7 @@ class NavigatorComponent extends Component {
                             <Link to="/ManageProduct" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>mode_edit</i> <p style={{ margin: 0 }}>Manage product</p></Link>
                             <Link to="/addProduct" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>add</i> <p style={{ margin: 0 }}>add product</p></Link>
                             <Link to="/favorite" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>favorite</i> <p style={{ margin: 0 }}>my favorite</p></Link>
-                            <Link to="/" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>lock</i> <p style={{ margin: 0 }}>Sign in</p></Link>
+                            <Link to="/SignIN" className="waves-effect waves-purple nav-btn"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>lock</i> <p style={{ margin: 0 }}>Sign in</p></Link>
                             <Link to="/" className="waves-effect waves-purple nav-btn" style={{marginLeft:20 }}> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>shopping_cart</i> <p style={{ marginLeft: -8  , marginTop: 5 , color:"red"}}>{this.props.NumberOfCartItems}</p></Link>
                         </div>
                     </div>
@@ -41,7 +41,7 @@ class NavigatorComponent extends Component {
                             <Link to="/addProduct" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>add</i> <p style={{ margin: 0 }}>add product</p></Link>
                             <Link to="/" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>shopping_cart</i> <p style={{ margin: 0 }}>shop cart</p></Link>
                             <Link to="/favorite" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>favorite</i> <p style={{ margin: 0 }}>my favorite</p></Link>
-                            <Link to="/" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>lock</i> <p style={{ margin: 0 }}>Sign in</p></Link>
+                            <Link to="/SignIN" className="waves-effect waves-purple nav-btn-drawer"> <i className="material-icons" style={{ paddingTop: 2, paddingRight: 5 }}>lock</i> <p style={{ margin: 0 }}>Sign in</p></Link>
                         </div>
                     </nav>
     

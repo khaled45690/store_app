@@ -11,6 +11,7 @@ import FavoriteScreen from "./Screens/Favorite";
 import addProduct from "./Screens/addProduct";
 import ManageProduct from "./Screens/ManageProduct";
 import Footer from "./Screens/Footer";
+import SignIN from "./Screens/Signin";
 
 import "./App.css";
 import "./Css/HeaderScreen.css";
@@ -27,6 +28,7 @@ function App() {
             <FavoriteProvider>
               <Header />
               <Route exact path="/" component={Main} />
+              <Route exact path="/SignIN" component={SignIN} />
               <Route exact path="/favorite" component={FavoriteScreen} />
               <Route exact path="/addProduct" component={addProduct} />
               <Route exact path="/ManageProduct" component={ManageProduct} />
