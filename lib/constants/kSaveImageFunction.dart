@@ -10,7 +10,7 @@ saveImage(File imageFile , String name , Map userDataClone) async {
   UserData userData = new UserData();
 
 
-  var stream = new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+  var stream = new http.ByteStream(imageFile.openRead());
   var length = await imageFile.length();
   print(Uri.parse("${kUrl}SaveImage"));
   var request = new http.MultipartRequest("POST", Uri.parse("${kUrl}SaveImage"));
